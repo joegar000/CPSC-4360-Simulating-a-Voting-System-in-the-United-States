@@ -6,6 +6,6 @@ public class Main {
 
         System.out.println("Kaden Test");
 
-        System.out.println("Joey Test");
+        System.out.println("Test");
     }
 }
