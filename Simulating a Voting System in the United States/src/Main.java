@@ -1,5 +1,6 @@
 /*
-CPSC - 4360 - 01, Spring 2021, Voting System
+Project: Voting System
+CPSC - 4360 - 01, Spring 2021
 
 */
 
