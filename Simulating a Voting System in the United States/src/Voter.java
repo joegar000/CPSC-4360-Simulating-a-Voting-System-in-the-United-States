@@ -15,6 +15,4 @@ public class Voter {
     public String State;
     protected String SSN;
     protected boolean ifVoted; 
-
-
 }
