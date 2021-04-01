@@ -1,13 +1,6 @@
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-
-        System.out.println("Hello, World!");
-
-        System.out.println("Kaden Test");
-
-        System.out.println("Test");
-
-        System.out.println("Alex Test");
+        
+        
     }
 }
