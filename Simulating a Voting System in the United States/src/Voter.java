@@ -1,5 +1,9 @@
 /*
 
+
+Comments, edits, questions, suggestions, or concerns are welcomed!
+
+
 */
 
 public class Voter {
