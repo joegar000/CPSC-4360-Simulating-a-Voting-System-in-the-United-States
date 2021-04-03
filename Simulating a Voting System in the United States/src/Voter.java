@@ -20,3 +20,11 @@ public class Voter {
     protected String SSN;
     protected boolean ifVoted; 
 }
+
+
+/*
+Possibly get and sets
+
+
+
+*/
