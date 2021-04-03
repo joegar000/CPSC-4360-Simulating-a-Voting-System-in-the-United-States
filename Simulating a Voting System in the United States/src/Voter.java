@@ -1,8 +1,10 @@
 /*
-
-
 Comments, edits, questions, suggestions, or concerns are welcomed!
 
+To do list:
+1. Unsure if to only check if the voter did vote or not. 
+Or check along side other factors such as voted, if they voted already, and if they are registered.
+Or separately check all three.
 
 */
 
@@ -53,6 +55,6 @@ public class Voter {
         return SSN;
     }
 
-    
+
 }
 
