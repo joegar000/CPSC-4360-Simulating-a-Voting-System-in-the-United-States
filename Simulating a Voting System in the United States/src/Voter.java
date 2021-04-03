@@ -22,6 +22,8 @@ public class Voter {
     private String State;
     private String SSN;
     private boolean ifVoted; 
+    private boolean hasVoted;
+    private boolean isRegistered;
 
     //User either get or set the persons name.
     public void setName(String newName) {
@@ -54,7 +56,4 @@ public class Voter {
     public String getSSN() {
         return SSN;
     }
-
-
 }
-
