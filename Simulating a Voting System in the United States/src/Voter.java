@@ -11,14 +11,15 @@ public class Voter {
     Name: Joe Buden
     DOB: 03/16/1969
     State: Texas
-    SSN (In some places it only requires numbers, while in other places it requires numbers and dashes.): 123 - 45 - 6789 or 123456789
+    SSN (In some places it only requires numbers, 
+    while in other places it requires numbers and dashes.): 123 - 45 - 6789 or 123456789
     Voted: No
     */
-    public String Name;
-    public String DOB;
-    public String State;
-    protected String SSN;
-    protected boolean ifVoted; 
+    private String Name;
+    private String DOB;
+    private String State;
+    private String SSN;
+    private boolean ifVoted; 
 
     //User either get or set the persons name.
     public void setName(String newName) {
@@ -43,5 +44,15 @@ public class Voter {
     public String getState() {
         return State;
     }
+
+    //User either get or set the persons SSN.
+    public void setSSN(String newSSN) {
+        this.SSN = newSSN;
+    }
+    public String getSSN() {
+        return SSN;
+    }
+
+    
 }
 
