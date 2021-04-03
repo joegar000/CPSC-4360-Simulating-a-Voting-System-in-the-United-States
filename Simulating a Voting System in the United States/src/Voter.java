@@ -19,12 +19,26 @@ public class Voter {
     public String State;
     protected String SSN;
     protected boolean ifVoted; 
+
+    public void setName(String newName) {
+        this.Name = newName;
+    }
+    public String getName() {
+        return Name;
+    }
+
+    public void setDOB(String newDOB) {
+        this.DOB = newDOB;
+    }
+    public String getDOB() {
+        return DOB;
+    }
+    
+    public void setState(String newState) {
+        this.State = newState;
+    }
+    public String getState() {
+        return State;
+    }
 }
 
-
-/*
-Possibly get and sets
-
-
-
-*/
