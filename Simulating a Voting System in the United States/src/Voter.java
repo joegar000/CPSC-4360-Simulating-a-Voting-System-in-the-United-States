@@ -20,6 +20,7 @@ public class Voter {
     protected String SSN;
     protected boolean ifVoted; 
 
+    //User either get or set the persons name.
     public void setName(String newName) {
         this.Name = newName;
     }
@@ -27,13 +28,15 @@ public class Voter {
         return Name;
     }
 
+    //User either get or set the persons DOB.
     public void setDOB(String newDOB) {
         this.DOB = newDOB;
     }
     public String getDOB() {
         return DOB;
     }
-    
+
+    //User either get or set the persons State.
     public void setState(String newState) {
         this.State = newState;
     }
