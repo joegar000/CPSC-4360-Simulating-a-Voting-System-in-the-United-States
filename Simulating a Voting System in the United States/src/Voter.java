@@ -25,7 +25,7 @@ public class Voter {
     private boolean hasVoted;
     private boolean isRegistered;
 
-    //User either get or set the persons name.
+    //User either gets or sets the persons name.
     public void setName(String newName) {
         this.Name = newName;
     }
@@ -33,7 +33,7 @@ public class Voter {
         return Name;
     }
 
-    //User either get or set the persons DOB.
+    //User either gets or sets the persons DOB.
     public void setDOB(String newDOB) {
         this.DOB = newDOB;
     }
@@ -41,7 +41,7 @@ public class Voter {
         return DOB;
     }
 
-    //User either get or set the persons State.
+    //User either gets or sets the persons State.
     public void setState(String newState) {
         this.State = newState;
     }
@@ -49,7 +49,7 @@ public class Voter {
         return State;
     }
 
-    //User either get or set the persons SSN.
+    //User either gets or sets the persons SSN.
     public void setSSN(String newSSN) {
         this.SSN = newSSN;
     }
