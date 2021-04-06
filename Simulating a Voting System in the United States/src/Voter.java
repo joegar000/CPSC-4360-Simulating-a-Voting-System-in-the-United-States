@@ -3,12 +3,12 @@ Comments, edits, questions, suggestions, or concerns are welcomed!
 
 Todo list:
 1. Discuss how to save the voters information and than check to see if the information matches. As well as, if they voted once.
-
-
+2. Will the Voter login information be given here?
+3. 
 */
 
 public class Voter {
-    /*Example:
+    /*Variables Example:
     Name: Joe Buden
     Age: 59
     State: Texas
@@ -26,7 +26,6 @@ public class Voter {
 
     //Default constructor
     public Voter() {
-
     }
 
     //Constructor with the arguements.
@@ -39,7 +38,6 @@ public class Voter {
         this.ifVoted = ifVoted;
         this.hasVoted = hasVoted;
         this.isRegistered = isRegistered;
-
     }
 
     //User either gets or sets the persons name.
@@ -75,28 +73,36 @@ public class Voter {
     }
 
     /*
-    Note: This is a vague idea of doing it as it was 
-    unclear how to store the voters information and 
-    check to see if it matches. Unsure if the database 
-    that was mentioned would also do this.
+    Note #1: 
+    This is a vague idea of how to possibly check if someone is registered. 
+    I was unsure as how to do it, such as will the voters information will be saved in the database?
 
-    Makeshift formula:
-    "Registering" = Name + Age + State + SSN
+    Makeshift Formula: 
+    "Registering" = VoterName + VoterAge =< 18 + VoterState + VoterSSN
     IsRegistered = "Registering"
     IfVoted = IsRegistered 
     HasVoted = IfVoted + IsRegistered
 
-    Each will be dependent on each other.
-    */
     public boolean CheckIsRegistered() {
-
+        if("Some how get the saved voter information.") {
+            ...
+        } else {
+            ...
+        }
     }
     public boolean CheckIfVoted() {
-        
+        if(isRegistered) {
+            ...
+        } else {
+            ...
+        }
     }
     public boolean CheckHasVoted() {
-
+        if(IfVoted && isRegistered) {
+            ...
+        } else {
+            ...
+        }
     }
-
-
+    */
 }
