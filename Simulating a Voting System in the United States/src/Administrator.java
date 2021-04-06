@@ -7,7 +7,6 @@ TODO
     Add methods for vote validation, 
     display voter database, 
     and display candidate database
-    test
 
 */
 
@@ -50,6 +49,19 @@ public class Administrator {
         AdminID = newAdminID;
     }
 
+    /*
+    These will be the methods for validating votes, displaying voter database, and displaying candidate database.
+    public ... ValidateVotes(){
+        ...
+    }
 
+    public ... DisplayVoterDB(){
+        ...
+    }
+
+    public ... DisplayCandidateDB(){
+        ...
+    }
+    */
     
 }
