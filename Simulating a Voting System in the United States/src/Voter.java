@@ -17,43 +17,46 @@ public class Voter {
     while in other places it requires numbers and dashes.): 123 - 45 - 6789 or 123456789
     Voted: No
     */
-    private String Name;
-    private String DOB;
-    private String State;
-    private String SSN;
+    private String VoterName;
+    private String VoterDOB;
+    private String VoterState;
+    private String VoterSSN;
     private boolean ifVoted; 
     private boolean hasVoted;
     private boolean isRegistered;
 
     //User either gets or sets the persons name.
-    public void setName(String newName) {
-        this.Name = newName;
+    public void setVoterName(String newVoterName) {
+        this.VoterName = newVoterName;
     }
-    public String getName() {
-        return Name;
+    public String getVoterName() {
+        return VoterName;
     }
 
     //User either gets or sets the persons DOB.
-    public void setDOB(String newDOB) {
-        this.DOB = newDOB;
+    public void setVoterDOB(String newVoterDOB) {
+        this.VoterDOB = newVoterDOB;
     }
-    public String getDOB() {
-        return DOB;
+    public String getVoterDOB() {
+        return VoterDOB;
     }
 
     //User either gets or sets the persons State.
-    public void setState(String newState) {
-        this.State = newState;
+    public void setVoterState(String newVoterState) {
+        this.VoterState = newVoterState;
     }
-    public String getState() {
-        return State;
+    public String getVoterState() {
+        return VoterState;
     }
 
     //User either gets or sets the persons SSN.
-    public void setSSN(String newSSN) {
-        this.SSN = newSSN;
+    public void setVoterSSN(String newVoterSSN) {
+        this.VoterSSN = newVoterSSN;
     }
-    public String getSSN() {
-        return SSN;
+    public String getVoterSSN() {
+        return VoterSSN;
     }
+
+    //
+
 }
