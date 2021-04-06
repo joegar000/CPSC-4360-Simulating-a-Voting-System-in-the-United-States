@@ -7,6 +7,7 @@ TODO
     Add methods for vote validation, 
     display voter database, 
     and display candidate database
+    test
 
 */
 
