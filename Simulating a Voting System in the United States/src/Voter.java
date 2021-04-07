@@ -10,6 +10,12 @@ the information matches. As well as, if they voted once.
 3. Logging in and out.
 */
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class Voter {
     /*Variables Example:
     Name: Joe Buden
