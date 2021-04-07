@@ -7,7 +7,7 @@ Todo list:
 1. Discuss how to save the voters information and than check to see if 
 the information matches. As well as, if they voted once.
 2. Will the Voter login information be given here?
-3. 
+3. Logging in and out.
 */
 
 public class Voter {
