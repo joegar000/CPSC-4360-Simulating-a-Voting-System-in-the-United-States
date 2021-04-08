@@ -84,6 +84,11 @@ public class Voter {
         return ifVoted;
     }
 
+    //Checks to see if the person is registered.
+    public boolean getisRegistered() {
+        return isRegistered;
+    }
+
     /*
     Note #1: 
     This is a vague idea of how to possibly check if someone is registered. 
