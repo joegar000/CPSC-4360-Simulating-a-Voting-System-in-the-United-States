@@ -30,7 +30,7 @@ public class Voter {
     private int VoterAge;
     private String VoterState;
     private String VoterSSN;
-    private boolean ifVoted; 
+    private boolean ifVoted;
     private boolean isRegistered;
 
     //Default constructor

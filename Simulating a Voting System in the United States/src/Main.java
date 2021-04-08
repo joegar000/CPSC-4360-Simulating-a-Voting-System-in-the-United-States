@@ -18,15 +18,90 @@ import java.util.*;
 // 1/3 of the Scene's height from the side closest to them. Likewise, the vertical will always remain 1/3 of the Scene's width from the side closest to them.
 
   
-public class Main {
+/*public class Main {
   public static void main(String[] args) throws Exception {        
 
     String firstName = "";
     String lastName = "";
     String SSN = "";
-    String password = "";
+    String password = ""; */
 
-    // Set up JavaFX window 'n stuff
+
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.scene.shape.Line;
+
+public class Main extends Application {
+	public void start(Stage primaryStage) {
+		
+		/** Creating a pane */
+		Pane pane = new Pane();
+		
+		/** Creating the first (horizontal) line */
+		Line line1 = new Line(0, 0, 0, 0);
+		/** Adding the line to the pane */
+		pane.getChildren().add(line1);
+		/** Setting the line's color */
+		line1.setStroke(Color.BLUE);
+		/** Making the line always reach from one side of the pane to the other */
+		line1.endXProperty().bind(pane.widthProperty());
+		/** Making the line always be 1/3 away from the parallel side that is closest to it */
+		line1.startYProperty().bind((pane.heightProperty().divide(3)));
+		line1.endYProperty().bind((pane.heightProperty().divide(3)));
+		
+		/** Creating the second (horizontal) line */
+		Line line2 = new Line(0, 0, 0, 0);
+		/** Adding the line to the pane */
+		pane.getChildren().add(line2);
+		/** Setting the line's color */
+		line2.setStroke(Color.BLUE);
+		/** Making the line always reach from one side of the pane to the other */
+		line2.endXProperty().bind(pane.widthProperty());
+		/** Making the line always be 1/3 away from the parallel side that is closest to it */
+		line2.startYProperty().bind((pane.heightProperty().multiply(2).divide(3)));
+		line2.endYProperty().bind((pane.heightProperty().multiply(2).divide(3)));
+		
+		/** Creating the third (first vertical) line */
+		Line line3 = new Line(0, 0, 0, 0);
+		/** Adding the line to the pane */
+		pane.getChildren().add(line3);
+		/** Setting the line's color */
+		line3.setStroke(Color.RED);
+		/** Making the line always reach from one side of the pane to the other */
+		line3.endYProperty().bind(pane.heightProperty());
+		/** Making the line always be 1/3 away from the parallel side that is closest to it */
+		line3.startXProperty().bind((pane.widthProperty().divide(3)));
+		line3.endXProperty().bind((pane.widthProperty().divide(3)));
+		
+		/** Creating the fourth (second vertical) line */
+		Line line4 = new Line(0, 0, 0, 0);
+		/** Adding the line to the pane */
+		pane.getChildren().add(line4);
+		/** Setting the line's color */
+		line4.setStroke(Color.RED);
+		/** Making the line always reach from one side of the pane to the other */
+		line4.endYProperty().bind(pane.heightProperty());
+		/** Making the line always be 1/3 away from the parallel side that is closest to it */
+		line4.startXProperty().bind((pane.widthProperty().multiply(2).divide(3)));
+		line4.endXProperty().bind((pane.widthProperty().multiply(2).divide(3)));
+		
+		
+		/** Adding the pane to a scene and displaying it */
+		Scene scene = new Scene(pane, 200, 200);
+		primaryStage.setTitle("GridDisplay");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
+
+    /*// Set up JavaFX window 'n stuff
     // Have empty fields for user to input credentials
 
     // Take firstName, lastName, and password from javaFX fields
@@ -60,6 +135,6 @@ public class Main {
       // The different buttons will be user.method() using setOnClickListeners
     }
 
-    // Return to login screen
+    // Return to login screen */
   }
 }
