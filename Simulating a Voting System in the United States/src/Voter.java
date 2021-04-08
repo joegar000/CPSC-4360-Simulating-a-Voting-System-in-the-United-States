@@ -31,7 +31,6 @@ public class Voter {
     private String VoterState;
     private String VoterSSN;
     private boolean ifVoted; 
-    private boolean hasVoted;
     private boolean isRegistered;
 
     //Default constructor
@@ -40,13 +39,11 @@ public class Voter {
 
     //Constructor with the arguements.
     public Voter(String VoterName, int VoterAge, 
-    String VoterState, String VoterSSN, boolean ifVoted, 
-    boolean hasVoted, boolean isRegistered) {
+    String VoterState, String VoterSSN, boolean ifVoted, boolean isRegistered) {
         this.VoterName = VoterName;
         this.VoterAge = VoterAge;
         this.VoterState = VoterState;
         this.ifVoted = ifVoted;
-        this.hasVoted = hasVoted;
         this.isRegistered = isRegistered;
     }
 
