@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Administrator extends PollWorker{
+public class Administrator {
 
     /*
     Variables
@@ -25,7 +25,7 @@ public class Administrator extends PollWorker{
     private String adminFirstName;
     private String adminLastName;
     private String AdminID;
-    private String adminPassword = "ABCD";
+    public static String adminPassword = "ABCD";
     private boolean adminLoggedIn = false;
 
     //default constructor
@@ -68,7 +68,9 @@ public class Administrator extends PollWorker{
     }
 
     //log in and log out methods
-    public void login()
+    public void login() {
+
+    }
 
     /*
     These will be the methods for validating votes, displaying voter database, and displaying candidate database.

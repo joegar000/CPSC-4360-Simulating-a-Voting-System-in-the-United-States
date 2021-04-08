@@ -11,12 +11,12 @@
             "mainClass": "Main",
             "projectName": "CPSC-4360-Simulating-a-Voting-System-in-the-United-States_9702a743"
         },
-        {
+        /* {
             "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
+        }, */
         {
             "type": "java",
             "name": "Launch Main",
