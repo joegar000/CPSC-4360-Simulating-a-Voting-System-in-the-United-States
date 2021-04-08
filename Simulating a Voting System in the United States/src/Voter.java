@@ -79,6 +79,11 @@ public class Voter {
         return VoterSSN;
     }
 
+    //Checks to see if the person voted.
+    public boolean getIfVoted() {
+        return ifVoted;
+    }
+
     /*
     Note #1: 
     This is a vague idea of how to possibly check if someone is registered. 
