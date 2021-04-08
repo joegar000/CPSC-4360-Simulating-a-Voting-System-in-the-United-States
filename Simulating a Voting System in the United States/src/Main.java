@@ -50,7 +50,7 @@ public class Main {
       // The different buttons will be user.method() using setOnClickListeners
     }
 
-    else if (password.equals(Administrator.password)) {
+    else if (password.equals(Administrator.adminPassword)) {
       // Compare firstName and lastName with database objects, if there is
       // a match sign the user in, if no match, give not registered error
 
