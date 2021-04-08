@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Simulating a Voting System in the United States/sqlite-jdbc-3.32.3.2.jar"
+    ]
+}
