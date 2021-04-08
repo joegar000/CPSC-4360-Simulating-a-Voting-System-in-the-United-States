@@ -4,10 +4,11 @@ Alejandro Figueroa, 4/2/2021
 Comments, edits, questions, suggestions, or concerns are welcomed!
 
 Todo list:
-1. Discuss how to save the voters information and than check to see if 
-the information matches. As well as, if they voted once.
-2. Will the Voter login information be given here?
-3. Logging in and out.
+
+1. Pull the persons information to see if they are within the system.
+If so, they vote and if not then they cannot.
+
+
 */
 
 import java.sql.Connection;
