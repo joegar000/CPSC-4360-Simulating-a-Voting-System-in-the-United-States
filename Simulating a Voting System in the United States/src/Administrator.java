@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Administrator{
+public class Administrator extends PollWorker{
 
     /*
     Variables
