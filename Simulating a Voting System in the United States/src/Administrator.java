@@ -24,6 +24,7 @@ public class Administrator {
     */
     private String AdminName;
     private String AdminID;
+    public static String password = "5678";
 
     //default constructor
     public Administrator(){
