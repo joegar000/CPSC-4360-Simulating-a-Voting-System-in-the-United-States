@@ -21,26 +21,45 @@ import java.util.*;
 public class Main {
   public static void main(String[] args) throws Exception {        
 
+    String firstName = "";
+    String lastName = "";
+    String SSN = "";
+    String password = "";
 
+    // Set up JavaFX window 'n stuff
+    // Have empty fields for user to input credentials
 
-      // Database stuff, we don't have to worry about this yet
-      Connection conn = null;
-      try {
-      String url = "jdbc:sqlite:chinook.db";
-      conn = DriverManager.getConnection(url);
-    
-      System.out.println("Got it!");
-    
-      } catch (SQLException e) {
-         throw new Error("Problem", e);
-      } finally {
-        try {
-          if (conn != null) {
-              conn.close();
-          }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-          }
+    // Take firstName, lastName, and password from javaFX fields
+    if (password.equals("")) {
+      // Compare firstName and lastName with database objects, if there is
+      // a match sign the user in, if no match, give not registered error
+
+      Voter user = //voter pulled from database with SSN acting as the key;
+
+      // Take user to new JavaFX screen with the voter options
+      // The different buttons will be user.method() using setOnClickListeners
     }
+
+    else if (password.equals(PollWorker.password)) {
+      // Compare firstName and lastName with database objects, if there is
+      // a match sign the user in, if no match, give not registered error
+
+      PollWorker user = //voter pulled from database with SSN acting as the key;
+
+      // Take user to new JavaFX screen with the voter options
+      // The different buttons will be user.method() using setOnClickListeners
+    }
+
+    else if (password.equals(Administrator.adminPassword)) {
+      // Compare firstName and lastName with database objects, if there is
+      // a match sign the user in, if no match, give not registered error
+
+      Administrator user = //voter pulled from database with SSN acting as the key;
+
+      // Take user to new JavaFX screen with the voter options
+      // The different buttons will be user.method() using setOnClickListeners
+    }
+
+    // Return to login screen
   }
 }

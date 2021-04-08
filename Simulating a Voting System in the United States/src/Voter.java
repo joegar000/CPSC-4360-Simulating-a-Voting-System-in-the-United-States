@@ -4,10 +4,11 @@ Alejandro Figueroa, 4/2/2021
 Comments, edits, questions, suggestions, or concerns are welcomed!
 
 Todo list:
-1. Discuss how to save the voters information and than check to see if 
-the information matches. As well as, if they voted once.
-2. Will the Voter login information be given here?
-3. Logging in and out.
+
+1. Pull the persons information to see if they are within the system.
+If so, they vote and if not then they cannot.
+
+
 */
 
 import java.sql.Connection;
@@ -30,7 +31,6 @@ public class Voter {
     private String VoterState;
     private String VoterSSN;
     private boolean ifVoted; 
-    private boolean hasVoted;
     private boolean isRegistered;
 
     //Default constructor
@@ -39,13 +39,11 @@ public class Voter {
 
     //Constructor with the arguements.
     public Voter(String VoterName, int VoterAge, 
-    String VoterState, String VoterSSN, boolean ifVoted, 
-    boolean hasVoted, boolean isRegistered) {
+    String VoterState, String VoterSSN, boolean ifVoted, boolean isRegistered) {
         this.VoterName = VoterName;
         this.VoterAge = VoterAge;
         this.VoterState = VoterState;
         this.ifVoted = ifVoted;
-        this.hasVoted = hasVoted;
         this.isRegistered = isRegistered;
     }
 

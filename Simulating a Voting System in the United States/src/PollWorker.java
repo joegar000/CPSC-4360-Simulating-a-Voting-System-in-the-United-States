@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class PollWorker extends Voter {
+public class PollWorker {
     
     // username and password is the same for all pollworkers
     private String firstName;
     private String lastName;
-    private String password = "1234";
+    public static String password = "1234";
     private boolean loggedIn = false;
 
     public PollWorker(String firstName, String lastName) {
