@@ -19,14 +19,16 @@ import java.sql.Statement;
 
 public class Voter {
     /*Variables Example:
-    Name: Joe Buden
+    First Name: Joe 
+    Last Name: Buden
     Age: 59
     State: Texas
     SSN (In some places it only requires numbers, 
     while in other places it requires numbers and dashes.): 123 - 45 - 6789 or 123456789
     Voted: No
     */
-    private String VoterName;
+    private String VoterFirstName;
+    private String VoterLastName;
     private int VoterAge;
     private String VoterState;
     private String VoterSSN;
@@ -38,21 +40,30 @@ public class Voter {
     }
 
     //Constructor with the arguements.
-    public Voter(String VoterName, int VoterAge, 
+    public Voter(String VoterFirstName, String VoterLastName, int VoterAge, 
     String VoterState, String VoterSSN, boolean ifVoted, boolean isRegistered) {
-        this.VoterName = VoterName;
+        this.VoterFirstName = VoterFirstName;
+        this.VoterLastName = VoterLastName;
         this.VoterAge = VoterAge;
         this.VoterState = VoterState;
         this.ifVoted = ifVoted;
         this.isRegistered = isRegistered;
     }
 
-    //User either gets or sets the persons name.
-    public void setVoterName(String newVoterName) {
-        this.VoterName = newVoterName;
+    //User either gets or sets the persons first name.
+    public void setVoterFirstName(String newVoterFirstName) {
+        this.VoterLastName = newVoterFirstName;
     }
-    public String getVoterName() {
-        return VoterName;
+    public String getVoterFirstName() {
+        return VoterFirstName;
+    }
+
+    //User either gets or sets the persons last name.
+    public void setVoterLastName(String newVoterLastName) {
+        this.VoterLastName = newVoterLastName;
+    }
+    public String getVoterLastName() {
+        return VoterLastName;
     }
 
     //User either gets or sets the persons Age.

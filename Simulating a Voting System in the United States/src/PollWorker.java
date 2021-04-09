@@ -42,8 +42,8 @@ public class PollWorker {
         }
     }
 
-    public void registerVoter(String VoterName, int VoterAge, String VoterState, String VoterSSN, boolean ifVoted, boolean hasVoted, boolean isRegistered) {
-        Voter voter = new Voter(VoterName, VoterAge, VoterState, VoterSSN, ifVoted, hasVoted, isRegistered);
+    public void registerVoter(String VoterFirstName, String VoterLastName, int VoterAge, String VoterState, String VoterSSN, boolean ifVoted, boolean isRegistered) {
+        Voter voter = new Voter(VoterFirstName, VoterLastName, VoterAge, VoterState, VoterSSN, ifVoted, isRegistered);
         /* Add the voter object to the database */
     }
 
