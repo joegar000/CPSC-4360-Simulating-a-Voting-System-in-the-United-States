@@ -103,7 +103,7 @@ public class Voter {
         return isRegistered;
     }
 
-    //
+    //If the given login information is incorrect, then the user is not let into vote.
     public void logIn(String FirstName, String LastName, String Password) {
         if(this.VoterPassword.equals(Password)) {
             this.VoterlogIn = true;
