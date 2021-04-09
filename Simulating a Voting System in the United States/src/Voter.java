@@ -34,6 +34,8 @@ public class Voter {
     private String VoterSSN;
     private boolean ifVoted;
     private boolean isRegistered;
+    public static String VoterPassword = "2468";
+    private boolean VoterlogIn = false;
 
     //Default constructor
     public Voter() {
@@ -90,6 +92,7 @@ public class Voter {
         return VoterSSN;
     }
 
+
     //Checks to see if the person voted.
     public boolean getIfVoted() {
         return ifVoted;
@@ -99,6 +102,20 @@ public class Voter {
     public boolean getisRegistered() {
         return isRegistered;
     }
+
+    //
+    public void logIn(String FirstName, String LastName, String Password) {
+        if(this.VoterPassword.equals(Password)) {
+            this.VoterlogIn = true;
+        } else {
+            System.out.println("The given input is incorrect, please try again.");
+        }
+    }
+
+    public void logOut() {
+        this.VoterlogIn = false;
+    }
+
 
     /*
     Note #1: 
