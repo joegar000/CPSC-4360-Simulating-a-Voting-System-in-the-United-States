@@ -68,8 +68,23 @@ public class Administrator {
     }
 
     //log in and log out methods
-    public void login() {
+    public void logIn(String adminFirstName, String adminLastName, String adminPassword) {
+        if (this.adminPassword.equals(adminPassword)) {
+            this.adminLoggedIn = true;
+        }
+        else {
+            System.out.println("The input name and/or password is incorrect.");
+        }
+    }
 
+    public void logOut() {
+        this.adminLoggedIn = false;
+    }
+
+    public void registerVoter(String VoterName, int VoterAge, String VoterState, String VoterSSN, 
+    boolean ifVoted, boolean hasVoted, boolean isRegistered) {
+        Voter voter = new Voter(VoterName, VoterAge, VoterState, VoterSSN, ifVoted, hasVoted, isRegistered);
+        /* Add the voter object to the database */
     }
 
     /*
@@ -86,5 +101,10 @@ public class Administrator {
         ...
     }
     */
+    
+    //prints success
+    public void printSuccess() {
+        System.out.println("it worked");
+    }
     
 }
