@@ -118,6 +118,12 @@ public class Voter {
         this.VoterlogIn = false;
     }
 
+    public void displayCandidateList() {
+        if (VoterlogIn == true) {
+            //Later pull the list from the database.
+        }
+    }
+
 
     /*
     Note #1: 
