@@ -25,7 +25,7 @@
             "request": "launch",
             "vmArgs": "--module-path \"C:\\Users\\drijo\\downloads\\javafx-sdk-11.0.2\\lib\" --add-modules javafx.controls,javafx.fxml",
             "mainClass": "Main",
-            "projectName": "CPSC-4360-Simulating-a-Voting-System-in-the-United-States_4224f878" 
+            "projectName": "CPSC-4360-Simulating-a-Voting-System-in-the-United-States_997fb043" 
         }
     ]
 }
