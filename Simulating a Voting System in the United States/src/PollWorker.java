@@ -50,11 +50,4 @@ public class PollWorker {
     public void printSuccess() {
         System.out.println("it worked");
     }
-
-
-
-
-
-
-
 }
