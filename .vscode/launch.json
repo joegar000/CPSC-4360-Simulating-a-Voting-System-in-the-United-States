@@ -13,7 +13,7 @@
         },
         {
             "type": "java",
-            "name": "Launch Main",
+            "name": "Launch David",
             "request": "launch",
             "vmArgs": "--module-path \"C:\\Users\\joega\\OneDrive\\Documents\\Lamar\\Spring_2021\\CPSC_4360_Software_Engineering\\JavaFX\\javafx-sdk-11.0.2\\lib\" --add-modules javafx.controls,javafx.fxml",
             "mainClass": "Main",
