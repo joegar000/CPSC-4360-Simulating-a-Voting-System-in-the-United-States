@@ -76,4 +76,18 @@ public class VoterOptions extends Application {
 
         return scene;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 }
