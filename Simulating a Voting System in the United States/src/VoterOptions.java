@@ -37,6 +37,7 @@ public class VoterOptions extends Application {
 
     @Override
     public void start(Stage voterStage) throws Exception {
+        
 
         //We create the window which will contain the title and directions.
         voterStage.setTitle("Welcome to the US elections!");
