@@ -89,7 +89,7 @@ public class VoterOptions extends Application {
 
     public static Scene getScene() {
 
-        // Add the layout info here, then add it to the scene
+        
 
         return scene;
     }
