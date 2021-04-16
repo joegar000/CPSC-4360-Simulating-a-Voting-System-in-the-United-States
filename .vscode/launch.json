@@ -36,6 +36,14 @@
             "mainClass": "Main",
             "projectName": "CPSC-4360-Simulating-a-Voting-System-in-the-United-States_16e835e0" 
 
+        },
+        {
+            "type": "java",
+            "name": "Launch Kaden",
+            "request": "launch",
+            "vmArgs": "--module-path \"C:\\Users\\isnob\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\" --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "Main",
+            "projectName": "CPSC-4360-Simulating-a-Voting-System-in-the-United-States_9702a743" 
         }
 
 
