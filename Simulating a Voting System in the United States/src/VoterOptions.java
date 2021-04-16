@@ -41,6 +41,47 @@ public class VoterOptions extends Application {
     }
 
     public static Scene getScene() {
+        //Displays instructions to the voter.
+        Label firstLabel = new Label("Please select the person you support.");
+        Label ResponseLabel = new Label();
+
+        //Informs the voter that their ballot has been casted when clicked.
+        Button button = new Button("Cast Ballot");
+
+        //Displays the candidates. Note: how to pull from database.
+        RadioButton radio1 = new RadioButton("Candidate Information");
+        RadioButton radio2 = new RadioButton("Candidate Information");
+        RadioButton radio3 = new RadioButton("Candidate Information");
+        RadioButton radio4 = new RadioButton("Candidate Information");
+
+        //Groups the radio buttons.
+        ToggleGroup CandidateList = new ToggleGroup();
+        radio1.setToggleGroup(CandidateList);
+        radio2.setToggleGroup(CandidateList);
+        radio3.setToggleGroup(CandidateList);
+        radio4.setToggleGroup(CandidateList);
+
+        //
+        button.setDisable(true);
+        radio1.setOnAction(e -> button.setDisable(false));
+        radio2.setOnAction(e -> button.setDisable(false));
+        radio3.setOnAction(e -> button.setDisable(false));
+        radio4.setOnAction(e -> button.setDisable(false));
+
+        //Once the voter casted their vote, the next thing they see is what is in ResponseLabel.
+        button.setOnAction(e -> {
+            if (radio1.isSelected() || radio2.isSelected() || 
+            radio3.isSelected() || radio4.isSelected()) {
+                ResponseLabel.setText("You have casted your ballot!");
+                button.setDisable(true);
+            }           
+        });
+
+        //Create a somewhat nice layout.
+        VBox layout = new VBox(15);
+        layout.setAlignment(Pos.CENTER);
+        layout.getChildren().addAll(firstLabel, radio1, radio2, radio3, radio4, button, ResponseLabel);
+
         return scene;
     }
 }
