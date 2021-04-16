@@ -37,54 +37,7 @@ public class VoterOptions extends Application {
 
     @Override
     public void start(Stage voterStage) throws Exception {
-        
-
-        //We create the window which will contain the title and directions.
-        voterStage.setTitle("Welcome to the US elections!");
-        Label firstLabel = new Label("Please select your candidate to endorse.");
-        Label labelResponse = new Label();
-
-        //A button is create so that the user is able to cast their ballot.
-        Button button = new Button("Cast Ballot");
-        button.setDisable(true);
-        
-        //Note: Need to somehow fetch the list of runners.
-        RadioButton radio0 = new RadioButton("Candidate Information");
-        RadioButton radio1 = new RadioButton("Candidate Information");
-        RadioButton radio2 = new RadioButton("Candidate Information");
-        RadioButton radio3 = new RadioButton("Candidate Information");
-
-        //Toggle group buttons.
-        ToggleGroup CandidateList = new ToggleGroup();
-        radio0.setToggleGroup(CandidateList);
-        radio1.setToggleGroup(CandidateList);
-        radio2.setToggleGroup(CandidateList);
-        radio3.setToggleGroup(CandidateList);
-
-        /*When a radio button is clicked, the button gets disabled (or enabled). 
-        Now, it can be clicked and the vote can be submitted for the election.*/
-        radio0.setOnAction(e -> button.setDisable(false));
-        radio1.setOnAction(e -> button.setDisable(false));
-        radio2.setOnAction(e -> button.setDisable(false));
-        radio3.setOnAction(e -> button.setDisable(false));
-
-        //When one choice is selected, it will be confrimed by telling the user what is in labelResponse.
-        button.setOnAction(e -> {
-        if(radio0.isSelected() || radio1.isSelected() || 
-        radio2.isSelected() || radio3.isSelected()) {
-            labelResponse.setText("Thank you for casting your vote.");
-            button.setDisable(true);
-        }});
-
-        //We create the layout and space out the options.
-        VBox layout = new VBox(20);
-        layout.getChildren().addAll(firstLabel, radio0, radio1, radio2, radio3, button, labelResponse);
-
-        //Create the scene and size.
-        Scene sceneVoter = new Scene(layout, 500, 500);
-        voterStage.setScene(sceneVoter);
-
-        voterStage.show();
+        //Ignore this
     }
 
     public static Scene getScene() {
