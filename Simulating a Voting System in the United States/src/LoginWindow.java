@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -21,8 +20,11 @@ import javafx.scene.image.ImageView;
 
 
 public class LoginWindow extends Application {
+<<<<<<< HEAD
 
     private static Scene scene;
+=======
+>>>>>>> 82c949fdccab1ca43af0d7d1ef02c47666ddddca
 
     @Override
     public void start(Stage arg0) throws Exception {
