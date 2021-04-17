@@ -9,14 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class LoginWindow extends Application {
-    private static StackPane root = new StackPane();
-    private static Scene scene;
 
     @Override
     public void start(Stage arg0) throws Exception {
