@@ -41,7 +41,7 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Welcome to the US elections!");
-		primaryStage.setScene(LoginWindow.getScene());
+		primaryStage.setScene(LoginWindow.getScene(primaryStage));
 		primaryStage.show();
 
 		String firstName = "";
@@ -59,7 +59,7 @@ public class Main extends Application {
 
    			  //Voter user = //voter pulled from database with SSN acting as the key;
 
-   			  primaryStage.setScene(VoterOptions.getScene());
+   			  primaryStage.setScene(VoterOptions.getScene(primaryStage));
    			  // The different buttons will be user.method() using setOnClickListeners
    		}
 
