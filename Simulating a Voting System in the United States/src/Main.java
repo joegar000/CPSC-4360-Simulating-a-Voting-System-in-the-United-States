@@ -23,6 +23,7 @@ import java.util.*;
 
 import javafx.application.*;
 import javafx.scene.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.*;
 
 
@@ -32,7 +33,26 @@ public class Main extends Application {
 	}
 
 	public void start(Stage primaryStage) throws Exception {
-		primaryStage.setScene(LoginWindow.getScene());
+		primaryStage.setTitle("Welcome to the US elections!");
+
+		/*HEY YOU LOOK HERE!!! Okay, since the login window is not linked yet. 
+		When you run, it will only display the login screen. If you wish to see 
+		if your FX stuff is working with this project just edit these parts.
+		
+		primaryStage.setScene(YOURCLASS.getScene(primaryStage));
+		primaryStage.setScene(VoterOptions.getScene(primaryStage));
+
+		Then if you still see the login screen. Comment this part 
+		out until you are done and restore it afterwards.
+
+		"primaryStage.setScene(VoterOptions.getScene(primaryStage));"
+		and
+		"primaryStage.setScene(AdministratorOptions.getScene(primaryStage));"
+
+		Then you should be able to test your FX.
+		
+		*/
+		primaryStage.setScene(LoginWindow.getScene(primaryStage));
 		primaryStage.show();
 
 		String firstName = "";
@@ -44,13 +64,13 @@ public class Main extends Application {
    		// Have empty fields for user to input credentials
 
    		// Take firstName, lastName, and password from javaFX fields
-   		if (password.equals("")) {
+   		if (password.equals(Voter.VoterPassword)) {
    			  // Compare firstName and lastName with database objects, if there is
    			  // a match sign the user in, if no match, give not registered error
 
    			  //Voter user = //voter pulled from database with SSN acting as the key;
 
-   			  primaryStage.setScene(VoterOptions.getScene());
+   			  primaryStage.setScene(VoterOptions.getScene(primaryStage));
    			  // The different buttons will be user.method() using setOnClickListeners
    		}
 
@@ -70,7 +90,7 @@ public class Main extends Application {
 
    		  	//Administrator user = administrator pulled from database with SSN acting as the key;
 
-			primaryStage.setScene(AdministratorOptions.getScene());// Take user to new JavaFX screen with the administrator options
+			primaryStage.setScene(AdministratorOptions.getScene(primaryStage));// Take user to new JavaFX screen with the administrator options
    			// The different buttons will be user.method() using setOnClickListeners
    		}
 

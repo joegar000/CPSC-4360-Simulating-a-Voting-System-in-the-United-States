@@ -18,6 +18,14 @@
         "c:\\Users\\drijo\\Downloads\\javafx-sdk-11.0.2\\lib\\javafx.swing.jar",
         "c:\\Users\\drijo\\Downloads\\javafx-sdk-11.0.2\\lib\\javafx.web.jar",
         "c:\\Users\\drijo\\Downloads\\javafx-sdk-11.0.2\\lib\\javafx-swt.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.base.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.controls.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.fxml.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.graphics.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.media.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.swing.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.web.jar",
+        "c:\\Users\\Alex Figueroa Jr\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx-swt.jar",
         "c:\\Users\\isnob\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.base.jar",
         "c:\\Users\\isnob\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.controls.jar",
         "c:\\Users\\isnob\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.fxml.jar",
@@ -26,6 +34,9 @@
         "c:\\Users\\isnob\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.swing.jar",
         "c:\\Users\\isnob\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx.web.jar",
         "c:\\Users\\isnob\\Documents\\JavaFX\\javafx-sdk-11.0.2\\lib\\javafx-swt.jar"
+    ],
+    "java.project.sourcePaths": [
+        "Simulating a Voting System in the United States/src"
     ]
 
 

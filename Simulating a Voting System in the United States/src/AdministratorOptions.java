@@ -1,34 +1,136 @@
 /* This class will contain the method for setting the JavaFX scene to the administrator options
    I (David) have tested setting JavaFX scenes this way and it works */
 
+/*
+TODO:
+
+Fix errors
+implement code for different scenes 
+*/
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
    
 public class AdministratorOptions extends Application {
     
-    private static Scene scene;
+    
 
     
     @Override
-    public void start(Stage arg0) throws Exception {
+    public void start(Stage administratorStage) throws Exception {
         // Ignore this
     }
 
-    public static Scene getScene() {
 
-        // Add the layout info here, then add it to the scene
+    public static Scene getScene(Stage administratorStage) {
+        //Scenes initialized
+        Scene OptionsScene,  RegScene, ValScene, 
+        VoterDBScene, CandidateDBScene;
 
-        return scene;
+        //OPTIONS SCENE
+        //Labels
+        Label label1 = new Label("Administrator Options");
+        label1.setFont(new Font("Arial", 25));
+        //TextFields
+        //Buttons
+        Button btn1 = new Button("Register Voter");
+        Button btn2 = new Button("Validate Votes");
+        Button btn3 = new Button("Display Voter Database");
+        Button btn4 = new Button("Display Candidate Database");
+        //Layout
+        VBox layout1 = new VBox(20, label1, btn1, btn2, btn3, btn4);
+        layout1.setAlignment(Pos.CENTER);
+        layout1.setPadding(new Insets(10, 10, 10, 10));
+        OptionsScene = new Scene(layout1, 400, 400);
+        
+        //REGISTRATION SCENE
+        //Labels
+        Label regSceneTitle = new Label("Voter Registration");
+        regSceneTitle.setFont(new Font("Arial", 25));
+        Label firstNameLabel = new Label("Enter First Name");
+        Label lastNameLabel = new Label("Enter last Name");
+        Label ageLabel = new Label("Enter Age");
+        Label stateLabel = new Label("Enter State");
+        Label ssnLabel = new Label("Enter SSN");
+        //Text Fields
+        TextField fnTextField = new TextField();
+        TextField lnTextField = new TextField();
+        TextField ageTextField = new TextField();
+        TextField stateTextField = new TextField();
+        TextField ssnTextField = new TextField();
+        //Buttons & Button Actions
+        Button regVoter = new Button("Register");    //does nothing right now
+        Button goBack1 = new Button("Go Back");
+        goBack1.setOnAction(e -> administratorStage.setScene(OptionsScene));
+        //Layout
+        VBox layout2 = new VBox(20, regSceneTitle, firstNameLabel, fnTextField, lastNameLabel, 
+        lnTextField, ageLabel, ageTextField, stateLabel, stateTextField, ssnLabel, 
+        ssnTextField, regVoter, goBack1);
+        layout2.setAlignment(Pos.CENTER);
+        layout2.setPadding(new Insets(10, 10, 10, 10));
+        RegScene = new Scene(layout2, 600, 600);
+
+        //VALIDATIONS SCENE
+        //Labels
+        Label label3 = new Label("This is where the validate votes scene will appear");
+        //Text Fields
+        //Buttons & Button Actions
+        Button validateBtn = new Button("Validate Vote");
+        Button goBack2 = new Button("Go Back");
+        goBack2.setOnAction(e -> administratorStage.setScene(OptionsScene));  //does nothing right now
+        //Layout
+        VBox layout3 = new VBox(20, label3, validateBtn, goBack2);
+        layout3.setAlignment(Pos.CENTER);
+        layout3.setPadding(new Insets(10, 10, 10, 10));
+        ValScene = new Scene(layout3, 320, 240);
+
+        //DISPLAY VOTER DATABASE SCENE
+        //Labels
+        Label label4 = new Label("This is where the voter database scene will appear");
+        //Text Fields
+        //Buttons & Button Actions
+        Button goBack3 = new Button("Go Back");
+        goBack3.setOnAction(e -> administratorStage.setScene(OptionsScene));
+        //Layout
+        VBox layout4 = new VBox(20, label4, goBack3);
+        layout4.setAlignment(Pos.CENTER);
+        layout4.setPadding(new Insets(10, 10, 10, 10));
+        VoterDBScene = new Scene(layout4, 320, 240);
+
+        //DISPLAY CANDIDATE DATABASE SCENE
+        //Labels
+        Label label5 = new Label("This is where the voter registration scene will appear");
+        //TextFields
+        //Buttons & Button Actions
+        Button goBack4 = new Button("Go Back");
+        goBack4.setOnAction(e -> administratorStage.setScene(OptionsScene));
+        //Layout
+        VBox layout5 = new VBox(20, label5, goBack4);
+        layout5.setAlignment(Pos.CENTER);
+        layout5.setPadding(new Insets(10, 10, 10, 10));
+        CandidateDBScene = new Scene(layout5, 320, 240);
+
+        /*Option scene button actions.
+          Had to put these down here for some reason. 
+          Wouldn't work when placed with the buttons on the Options scene class.
+          Also couldn't put the rest of the Options scene statements down here.
+        */
+        btn1.setOnAction(e -> administratorStage.setScene(RegScene));
+        btn2.setOnAction(e -> administratorStage.setScene(ValScene));
+        btn3.setOnAction(e -> administratorStage.setScene(VoterDBScene));
+        btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene));      
+        
+        
+
+        return OptionsScene;
     }
 
 }

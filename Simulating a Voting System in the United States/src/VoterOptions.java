@@ -2,94 +2,84 @@
    I (David) have tested setting JavaFX scenes this way and it works */
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class VoterOptions extends Application {
 
-    /*This is a vauge idea of how I thought of doing it. I am a little confused as to if I did this
-    correctly or if "start" was to be ignored.
+    /*This is a vauge idea of how I thought of doing it.
     
     Issues:
     Going from login screen to here.
     How to make Voter and VoterOptions work together.
     Fetching the candidate list. Then, fitting it in.
     Recording each vote, exiting/going back to the start for a new user.
-    Ensuring that a person cannot constantly vote over and over again.
-
     */
-
-    private static Scene scene;
 
     @Override
     public void start(Stage voterStage) throws Exception {
+        //Ignore this
+    }
 
-        //We create the window which will contain the title and directions.
-        voterStage.setTitle("Welcome to the US elections!");
-        Label firstLabel = new Label("Please select your candidate to endorse.");
-        Label labelResponse = new Label();
+    public static Scene getScene(Stage voterStage) {
+        Scene voteScene, thankYouScene;
 
-        //A button is create so that the user is able to cast their ballot.
+        //Displays instructions to the voter. Also, changes text font and size.
+        Label firstLabel = new Label("Please select the person you support.");
+        firstLabel.setFont(new Font("Arial", 18));
+        Label ResponseLabel = new Label("You have casted your ballot!");
+        ResponseLabel.setFont(new Font("Arial", 18));
+
+        //Informs the voter that their ballot has been casted when clicked.
         Button button = new Button("Cast Ballot");
-        button.setDisable(true);
-        
-        //Note: Need to somehow fetch the list of runners.
-        RadioButton radio0 = new RadioButton("Candidate Information");
-        RadioButton radio1 = new RadioButton("Candidate Information");
-        RadioButton radio2 = new RadioButton("Candidate Information");
-        RadioButton radio3 = new RadioButton("Candidate Information");
 
-        //Toggle group buttons.
+        //Displays the candidates. Note: how to pull from database.
+        RadioButton radio1 = new RadioButton("Candidate Information, Political Party");
+        RadioButton radio2 = new RadioButton("Candidate Information, Political Party");
+        RadioButton radio3 = new RadioButton("Candidate Information, Political Party");
+        RadioButton radio4 = new RadioButton("Candidate Information, Political Party");
+
+        //Changes the font and size.
+        radio1.setFont(new Font("Arial", 18));
+        radio2.setFont(new Font("Arial", 18));
+        radio3.setFont(new Font("Arial", 18));
+        radio4.setFont(new Font("Arial", 18));
+
+        //Groups the radio buttons.
         ToggleGroup CandidateList = new ToggleGroup();
-        radio0.setToggleGroup(CandidateList);
         radio1.setToggleGroup(CandidateList);
         radio2.setToggleGroup(CandidateList);
         radio3.setToggleGroup(CandidateList);
+        radio4.setToggleGroup(CandidateList);
 
-        /*When a radio button is clicked, the button gets disabled (or enabled). 
-        Now, it can be clicked and the vote can be submitted for the election.*/
-        radio0.setOnAction(e -> button.setDisable(false));
+        //When first brought up, the cast ballot is disabled. Click on a person to enable it.
+        button.setDisable(true);
         radio1.setOnAction(e -> button.setDisable(false));
         radio2.setOnAction(e -> button.setDisable(false));
         radio3.setOnAction(e -> button.setDisable(false));
+        radio4.setOnAction(e -> button.setDisable(false));
 
-        //When one choice is selected, it will be confrimed by telling the user what is in labelResponse.
-        button.setOnAction(e -> {
-        if(radio0.isSelected() || radio1.isSelected() || 
-        radio2.isSelected() || radio3.isSelected()) {
-            labelResponse.setText("Thank you for casting your vote.");
-            button.setDisable(true);
-        }});
+        //Create a somewhat nice layout.
+        VBox layout1 = new VBox(15, firstLabel, radio1, radio2, radio3, radio4, button);
+        layout1.setAlignment(Pos.CENTER);
 
-        //We create the layout and space out the options.
-        VBox layout = new VBox(20);
-        layout.getChildren().addAll(firstLabel, radio0, radio1, radio2, radio3, button, labelResponse);
+        VBox layout2 = new VBox(15, ResponseLabel);
+        layout2.setAlignment(Pos.CENTER);
+        thankYouScene = new Scene(layout2, 400, 250);
 
-        //Create the scene and size.
-        Scene sceneVoter = new Scene(layout, 500, 500);
-        voterStage.setScene(sceneVoter);
+        //Takes the user to the next scene.
+        button.setOnAction(e -> voterStage.setScene(thankYouScene));
 
-        voterStage.show();
-    }
+        //Vote scene
+        voteScene = new Scene(layout1, 400, 250);
 
-    public static Scene getScene() {
-
-        // Add the layout info here, then add it to the scene
-
-        return scene;
-    }
+        return voteScene;
+    } 
 }
