@@ -41,10 +41,10 @@ public class VoterOptions extends Application {
         Button button = new Button("Cast Ballot");
 
         //Displays the candidates. Note: how to pull from database.
-        RadioButton radio1 = new RadioButton("Candidate Information");
-        RadioButton radio2 = new RadioButton("Candidate Information");
-        RadioButton radio3 = new RadioButton("Candidate Information");
-        RadioButton radio4 = new RadioButton("Candidate Information");
+        RadioButton radio1 = new RadioButton("Candidate Information, Political Party");
+        RadioButton radio2 = new RadioButton("Candidate Information, Political Party");
+        RadioButton radio3 = new RadioButton("Candidate Information, Political Party");
+        RadioButton radio4 = new RadioButton("Candidate Information, Political Party");
 
         //Changes the font and size.
         radio1.setFont(new Font("Arial", 18));
