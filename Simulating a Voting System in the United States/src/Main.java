@@ -41,6 +41,24 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Welcome to the US elections!");
+
+		/*HEY YOU LOOK HERE!!! Okay, since the login window is not linked yet. 
+		When you run, it will only display the login screen. If you wish to see 
+		if your FX stuff is working with this project just edit these parts.
+		
+		primaryStage.setScene(YOURCLASS.getScene(primaryStage));
+		primaryStage.setScene(VoterOptions.getScene(primaryStage));
+
+		Then if you still see the login screen. Comment this part 
+		out until you are done and restore it afterwards.
+
+		"primaryStage.setScene(VoterOptions.getScene(primaryStage));"
+		and
+		"primaryStage.setScene(AdministratorOptions.getScene(primaryStage));"
+
+		Then you should be able to test your FX.
+		
+		*/
 		primaryStage.setScene(LoginWindow.getScene(primaryStage));
 		primaryStage.show();
 
