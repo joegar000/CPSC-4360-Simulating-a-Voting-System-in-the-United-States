@@ -20,8 +20,7 @@ public class VoterOptions extends Application {
     Going from login screen to here.
     How to make Voter and VoterOptions work together.
     Fetching the candidate list. Then, fitting it in.
-    Recording each vote, exiting/going back to the start for a new user.
-    */
+    Recording each vote, exiting/going back to the start for a new user.*/
 
     @Override
     public void start(Stage voterStage) throws Exception {
@@ -29,6 +28,7 @@ public class VoterOptions extends Application {
     }
 
     public static Scene getScene(Stage voterStage) {
+        //Creates two scenes that are linked together.
         Scene voteScene, thankYouScene;
 
         //Displays instructions to the voter. Also, changes text font and size.
