@@ -53,7 +53,7 @@ public class Main extends Application {
    		// Have empty fields for user to input credentials
 
    		// Take firstName, lastName, and password from javaFX fields
-   		if (password.equals("")) {
+   		if (password.equals(Voter.VoterPassword)) {
    			  // Compare firstName and lastName with database objects, if there is
    			  // a match sign the user in, if no match, give not registered error
 
