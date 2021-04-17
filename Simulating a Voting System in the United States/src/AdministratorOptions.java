@@ -8,6 +8,7 @@ Fix errors
 implement code for different scenes 
 */
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -47,10 +48,13 @@ public class AdministratorOptions extends Application {
         //Layout
         VBox layout1 = new VBox(20, label1, btn1, btn2, btn3, btn4);
         layout1.setAlignment(Pos.CENTER);
+        layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 400, 400);
         
         //REGISTRATION SCENE
         //Labels
+        Label regSceneTitle = new Label("Voter Registration");
+        regSceneTitle.setFont(new Font("Arial", 25));
         Label firstNameLabel = new Label("Enter First Name");
         Label lastNameLabel = new Label("Enter last Name");
         Label ageLabel = new Label("Enter Age");
@@ -67,10 +71,11 @@ public class AdministratorOptions extends Application {
         Button goBack1 = new Button("Go Back");
         goBack1.setOnAction(e -> administratorStage.setScene(OptionsScene));
         //Layout
-        VBox layout2 = new VBox(20, firstNameLabel, fnTextField, lastNameLabel, 
+        VBox layout2 = new VBox(20, regSceneTitle, firstNameLabel, fnTextField, lastNameLabel, 
         lnTextField, ageLabel, ageTextField, stateLabel, stateTextField, ssnLabel, 
         ssnTextField, regVoter, goBack1);
         layout2.setAlignment(Pos.CENTER);
+        layout2.setPadding(new Insets(10, 10, 10, 10));
         RegScene = new Scene(layout2, 600, 600);
 
         //VALIDATIONS SCENE
@@ -84,6 +89,7 @@ public class AdministratorOptions extends Application {
         //Layout
         VBox layout3 = new VBox(20, label3, validateBtn, goBack2);
         layout3.setAlignment(Pos.CENTER);
+        layout3.setPadding(new Insets(10, 10, 10, 10));
         ValScene = new Scene(layout3, 320, 240);
 
         //DISPLAY VOTER DATABASE SCENE
@@ -96,6 +102,7 @@ public class AdministratorOptions extends Application {
         //Layout
         VBox layout4 = new VBox(20, label4, goBack3);
         layout4.setAlignment(Pos.CENTER);
+        layout4.setPadding(new Insets(10, 10, 10, 10));
         VoterDBScene = new Scene(layout4, 320, 240);
 
         //DISPLAY CANDIDATE DATABASE SCENE
@@ -108,6 +115,7 @@ public class AdministratorOptions extends Application {
         //Layout
         VBox layout5 = new VBox(20, label5, goBack4);
         layout5.setAlignment(Pos.CENTER);
+        layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 320, 240);
 
         /*Option scene button actions.
