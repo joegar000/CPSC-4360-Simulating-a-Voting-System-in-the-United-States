@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class VoterOptions extends Application {
 
@@ -20,20 +21,21 @@ public class VoterOptions extends Application {
     How to make Voter and VoterOptions work together.
     Fetching the candidate list. Then, fitting it in.
     Recording each vote, exiting/going back to the start for a new user.
-    Ensuring that a person cannot constantly vote over and over again.
     */
-
-    private static Scene scene;
 
     @Override
     public void start(Stage voterStage) throws Exception {
         //Ignore this
     }
 
-    public static Scene getScene() {
-        //Displays instructions to the voter.
+    public static Scene getScene(Stage voterStage) {
+        Scene voteScene, thankYouScene;
+
+        //Displays instructions to the voter. Also, changes text font and size.
         Label firstLabel = new Label("Please select the person you support.");
-        Label ResponseLabel = new Label();
+        firstLabel.setFont(new Font("Arial", 18));
+        Label ResponseLabel = new Label("You have casted your ballot!");
+        ResponseLabel.setFont(new Font("Arial", 18));
 
         //Informs the voter that their ballot has been casted when clicked.
         Button button = new Button("Cast Ballot");
@@ -44,6 +46,12 @@ public class VoterOptions extends Application {
         RadioButton radio3 = new RadioButton("Candidate Information");
         RadioButton radio4 = new RadioButton("Candidate Information");
 
+        //Changes the font and size.
+        radio1.setFont(new Font("Arial", 18));
+        radio2.setFont(new Font("Arial", 18));
+        radio3.setFont(new Font("Arial", 18));
+        radio4.setFont(new Font("Arial", 18));
+
         //Groups the radio buttons.
         ToggleGroup CandidateList = new ToggleGroup();
         radio1.setToggleGroup(CandidateList);
@@ -51,29 +59,27 @@ public class VoterOptions extends Application {
         radio3.setToggleGroup(CandidateList);
         radio4.setToggleGroup(CandidateList);
 
-        //
+        //When first brought up, the cast ballot is disabled. Click on a person to enable it.
         button.setDisable(true);
         radio1.setOnAction(e -> button.setDisable(false));
         radio2.setOnAction(e -> button.setDisable(false));
         radio3.setOnAction(e -> button.setDisable(false));
         radio4.setOnAction(e -> button.setDisable(false));
 
-        //Once the voter casted their vote, the next thing they see is what is in ResponseLabel.
-        button.setOnAction(e -> {
-            if (radio1.isSelected() || radio2.isSelected() || 
-            radio3.isSelected() || radio4.isSelected()) {
-                ResponseLabel.setText("You have casted your ballot!");
-                button.setDisable(true);
-            }           
-        });
-
         //Create a somewhat nice layout.
-        VBox layout = new VBox(15);
-        layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(firstLabel, radio1, radio2, radio3, radio4, button, ResponseLabel);
+        VBox layout1 = new VBox(15, firstLabel, radio1, radio2, radio3, radio4, button);
+        layout1.setAlignment(Pos.CENTER);
 
-        Scene scene = new Scene(layout, 400, 250);
+        VBox layout2 = new VBox(15, ResponseLabel);
+        layout2.setAlignment(Pos.CENTER);
+        thankYouScene = new Scene(layout2, 400, 250);
 
-        return scene;
+        //Takes the user to the next scene.
+        button.setOnAction(e -> voterStage.setScene(thankYouScene));
+
+        //Vote scene
+        voteScene = new Scene(layout1, 400, 250);
+
+        return voteScene;
     } 
 }
