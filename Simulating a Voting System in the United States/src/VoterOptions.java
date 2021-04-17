@@ -75,19 +75,5 @@ public class VoterOptions extends Application {
         Scene scene = new Scene(layout, 400, 250);
 
         return scene;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    } 
 }
