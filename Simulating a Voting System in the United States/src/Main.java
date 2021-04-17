@@ -28,6 +28,7 @@ import javafx.stage.*;
 
 
 public class Main extends Application {
+	
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
@@ -55,13 +56,12 @@ public class Main extends Application {
 		primaryStage.setScene(LoginWindow.getScene(primaryStage));
 		primaryStage.show();
 
-		String firstName = "";
-		String lastName = "";
-		String SSN = "";
-		String password = "";
-   		
-		// Set up JavaFX window 'n stuff
-   		// Have empty fields for user to input credentials
+
+   		// Return to login screen
+	}
+	
+	// I had to make a separate method for checking the password in order for logging in to work properly, we can make all the next steps within this method
+	public static void checkPassword(String password, String firstName, String lastName, String SSN, Stage primaryStage) {
 
    		// Take firstName, lastName, and password from javaFX fields
    		if (password.equals(Voter.VoterPassword)) {
@@ -93,7 +93,5 @@ public class Main extends Application {
 			primaryStage.setScene(AdministratorOptions.getScene(primaryStage));// Take user to new JavaFX screen with the administrator options
    			// The different buttons will be user.method() using setOnClickListeners
    		}
-
-   		// Return to login screen
 	}
 }
