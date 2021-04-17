@@ -41,7 +41,9 @@ public class LoginWindow extends Application {
         VBox layout1 = new VBox(15, firstLabel);
         layout1.setAlignment(Pos.CENTER);
         
+        //Basic login button
         Button loginButton = new Button("Login");
+        loginButton.setFont(new Font("Arial", 18));
 
         layout1.setPadding(new Insets(10, 10, 10, 10));
         layout1.getChildren().addAll(
@@ -63,7 +65,6 @@ public class LoginWindow extends Application {
 
         return loginScene;
     }
-    
     
     public static String getFirstName() {
     	return firstName.getText();
