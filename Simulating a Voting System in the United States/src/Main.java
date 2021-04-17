@@ -10,13 +10,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import java.util.*;
-
-// David Garcia
-// COSC 1174
-// 3/19/2019
-// The purpose of this program is to display a 3 by 3 grid with the horizontal lines being blue and the vertical lines being red. The horizontal lines will always remain
-// 1/3 of the Scene's height from the side closest to them. Likewise, the vertical will always remain 1/3 of the Scene's width from the side closest to them.
-
   
 /*public class Main {
   public static void main(String[] args) throws Exception {        
