@@ -30,6 +30,7 @@ import java.util.*;
 
 import javafx.application.*;
 import javafx.scene.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.*;
 
 
@@ -78,7 +79,7 @@ public class Main extends Application {
 
    		  	//Administrator user = administrator pulled from database with SSN acting as the key;
 
-			primaryStage.setScene(AdministratorOptions.getScene());// Take user to new JavaFX screen with the administrator options
+			primaryStage.setScene(AdministratorOptions.getScene(primaryStage));// Take user to new JavaFX screen with the administrator options
    			// The different buttons will be user.method() using setOnClickListeners
    		}
 
