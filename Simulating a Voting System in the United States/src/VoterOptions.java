@@ -1,5 +1,6 @@
-/* This class will contain the method for setting the JavaFX scene to the voter options
-   I (David) have tested setting JavaFX scenes this way and it works */
+/*
+Alejandro Figueroa, 4/2/2021
+*/
 
 import javafx.application.Application;
 import javafx.geometry.Pos;

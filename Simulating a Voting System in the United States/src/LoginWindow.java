@@ -1,5 +1,5 @@
-/* This class will contain the method for setting the JavaFX scene to the login screen
-   I (David) have tested setting JavaFX scenes this way and it works */
+/* I (Alejandro) have wrote a basic window for the login window.
+I do not really know how to link them to lead into the correct scenes yet.*/
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -11,14 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class LoginWindow extends Application {
     private static StackPane root = new StackPane();
