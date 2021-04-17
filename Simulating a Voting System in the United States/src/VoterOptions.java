@@ -37,8 +37,11 @@ public class VoterOptions extends Application {
         Label ResponseLabel = new Label("You have casted your ballot!");
         ResponseLabel.setFont(new Font("Arial", 18));
 
-        //Informs the voter that their ballot has been casted when clicked.
+        //Informs the voter that their ballot has been casted when clicked As well as a button to return to login.
         Button button = new Button("Cast Ballot");
+        button.setFont(new Font("Arial", 18));
+        Button button2 = new Button("Return to login screen");
+        button2.setFont(new Font("Arial", 18));
 
         //Displays the candidates. Note: how to pull from database.
         RadioButton radio1 = new RadioButton("Candidate Information, Political Party");
@@ -70,12 +73,16 @@ public class VoterOptions extends Application {
         VBox layout1 = new VBox(15, firstLabel, radio1, radio2, radio3, radio4, button);
         layout1.setAlignment(Pos.CENTER);
 
-        VBox layout2 = new VBox(15, ResponseLabel);
+        //Displays a screen to thank the user.
+        VBox layout2 = new VBox(15, ResponseLabel, button2);
         layout2.setAlignment(Pos.CENTER);
+
+        //Creates the thank you screen that tells the user they have finished.
         thankYouScene = new Scene(layout2, 400, 250);
 
         //Takes the user to the next scene.
         button.setOnAction(e -> voterStage.setScene(thankYouScene));
+        button2.setOnMouseClicked(e -> voterStage.setScene(LoginWindow.getScene(voterStage)));
 
         //Vote scene
         voteScene = new Scene(layout1, 400, 250);
