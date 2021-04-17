@@ -59,7 +59,7 @@ public class Main extends Application {
 
    			  //Voter user = //voter pulled from database with SSN acting as the key;
 
-   			  primaryStage.setScene(VoterOptions.getScene());
+   			  primaryStage.setScene(VoterOptions.getScene(primaryStage));
    			  // The different buttons will be user.method() using setOnClickListeners
    		}
 
