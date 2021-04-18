@@ -60,7 +60,7 @@ public class LoginWindow extends Application {
                 password,
                 loginButton);
 
-        loginScene = new Scene(layout1, 950, 800);
+        loginScene = new Scene(layout1, 950, 700);
         
         loginButton.setOnMouseClicked(e -> {
         	Main.checkPassword(getPassword(), getFirstName(), getLastName(), getSSN(), stage);
