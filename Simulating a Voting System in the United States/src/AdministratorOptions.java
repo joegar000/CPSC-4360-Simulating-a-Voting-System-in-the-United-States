@@ -40,13 +40,16 @@ public class AdministratorOptions extends Application {
         Label label1 = new Label("Administrator Options");
         label1.setFont(new Font("Arial", 25));
         //TextFields
-        //Buttons
+        //Buttons & Button Actions
         Button btn1 = new Button("Register Voter");
         Button btn2 = new Button("Validate Votes");
         Button btn3 = new Button("Display Voter Database");
         Button btn4 = new Button("Display Candidate Database");
+        Button logoutBtn = new Button("Log out");
+        logoutBtn.setOnMouseClicked(e -> administratorStage.close());
+
         //Layout
-        VBox layout1 = new VBox(20, label1, btn1, btn2, btn3, btn4);
+        VBox layout1 = new VBox(20, label1, btn1, btn2, btn3, btn4, logoutBtn);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 400, 400);
@@ -70,10 +73,12 @@ public class AdministratorOptions extends Application {
         Button regVoter = new Button("Register");    //does nothing right now
         Button goBack1 = new Button("Go Back");
         goBack1.setOnAction(e -> administratorStage.setScene(OptionsScene));
+        Button logoutBtn1 = new Button("Log out");
+        logoutBtn1.setOnMouseClicked(e -> administratorStage.close());
         //Layout
         VBox layout2 = new VBox(20, regSceneTitle, firstNameLabel, fnTextField, lastNameLabel, 
         lnTextField, ageLabel, ageTextField, stateLabel, stateTextField, ssnLabel, 
-        ssnTextField, regVoter, goBack1);
+        ssnTextField, regVoter, goBack1, logoutBtn1);
         layout2.setAlignment(Pos.CENTER);
         layout2.setPadding(new Insets(10, 10, 10, 10));
         RegScene = new Scene(layout2, 600, 600);
@@ -86,8 +91,10 @@ public class AdministratorOptions extends Application {
         Button validateBtn = new Button("Validate Vote");
         Button goBack2 = new Button("Go Back");
         goBack2.setOnAction(e -> administratorStage.setScene(OptionsScene));  //does nothing right now
+        Button logoutBtn2 = new Button("Log out");
+        logoutBtn2.setOnMouseClicked(e -> administratorStage.close());
         //Layout
-        VBox layout3 = new VBox(20, label3, validateBtn, goBack2);
+        VBox layout3 = new VBox(20, label3, validateBtn, goBack2, logoutBtn2);
         layout3.setAlignment(Pos.CENTER);
         layout3.setPadding(new Insets(10, 10, 10, 10));
         ValScene = new Scene(layout3, 320, 240);
@@ -99,8 +106,10 @@ public class AdministratorOptions extends Application {
         //Buttons & Button Actions
         Button goBack3 = new Button("Go Back");
         goBack3.setOnAction(e -> administratorStage.setScene(OptionsScene));
+        Button logoutBtn3 = new Button("Log out");
+        logoutBtn3.setOnMouseClicked(e -> administratorStage.close());
         //Layout
-        VBox layout4 = new VBox(20, label4, goBack3);
+        VBox layout4 = new VBox(20, label4, goBack3, logoutBtn3);
         layout4.setAlignment(Pos.CENTER);
         layout4.setPadding(new Insets(10, 10, 10, 10));
         VoterDBScene = new Scene(layout4, 320, 240);
@@ -113,7 +122,7 @@ public class AdministratorOptions extends Application {
         Button goBack4 = new Button("Go Back");
         goBack4.setOnAction(e -> administratorStage.setScene(OptionsScene));
         //Layout
-        VBox layout5 = new VBox(20, label5, goBack4);
+        VBox layout5 = new VBox(20, label5, goBack4, logoutBtn);
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 320, 240);
