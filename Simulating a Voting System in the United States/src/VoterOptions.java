@@ -78,14 +78,14 @@ public class VoterOptions extends Application {
         layout2.setAlignment(Pos.CENTER);
 
         //Creates the thank you screen that tells the user they have finished.
-        thankYouScene = new Scene(layout2, 400, 250);
+        thankYouScene = new Scene(layout2, 950, 700);
 
         //Takes the user to the next scene.
         button.setOnAction(e -> voterStage.setScene(thankYouScene));
         button2.setOnMouseClicked(e -> voterStage.setScene(LoginWindow.getScene(voterStage)));
 
         //Vote scene
-        voteScene = new Scene(layout1, 400, 250);
+        voteScene = new Scene(layout1, 950, 700);
 
         return voteScene;
     } 

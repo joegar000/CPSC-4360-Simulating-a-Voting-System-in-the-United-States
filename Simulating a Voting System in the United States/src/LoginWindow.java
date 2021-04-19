@@ -8,10 +8,13 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -57,7 +60,7 @@ public class LoginWindow extends Application {
                 password,
                 loginButton);
 
-        loginScene = new Scene(layout1, 800, 750);
+        loginScene = new Scene(layout1, 950, 700);
         
         loginButton.setOnMouseClicked(e -> {
         	Main.checkPassword(getPassword(), getFirstName(), getLastName(), getSSN(), stage);

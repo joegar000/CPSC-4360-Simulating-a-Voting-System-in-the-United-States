@@ -52,7 +52,7 @@ public class AdministratorOptions extends Application {
         VBox layout1 = new VBox(20, label1, btn1, btn2, btn3, btn4, logoutBtn);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
-        OptionsScene = new Scene(layout1, 400, 400);
+        OptionsScene = new Scene(layout1, 950, 700);
         
         //REGISTRATION SCENE
         //Labels
@@ -81,7 +81,7 @@ public class AdministratorOptions extends Application {
         ssnTextField, regVoter, goBack1, logoutBtn1);
         layout2.setAlignment(Pos.CENTER);
         layout2.setPadding(new Insets(10, 10, 10, 10));
-        RegScene = new Scene(layout2, 600, 600);
+        RegScene = new Scene(layout2, 950, 700);
 
         //VALIDATIONS SCENE
         //Labels
@@ -97,7 +97,7 @@ public class AdministratorOptions extends Application {
         VBox layout3 = new VBox(20, label3, validateBtn, goBack2, logoutBtn2);
         layout3.setAlignment(Pos.CENTER);
         layout3.setPadding(new Insets(10, 10, 10, 10));
-        ValScene = new Scene(layout3, 320, 240);
+        ValScene = new Scene(layout3, 950, 700);
 
         //DISPLAY VOTER DATABASE SCENE
         //Labels
@@ -112,7 +112,7 @@ public class AdministratorOptions extends Application {
         VBox layout4 = new VBox(20, label4, goBack3, logoutBtn3);
         layout4.setAlignment(Pos.CENTER);
         layout4.setPadding(new Insets(10, 10, 10, 10));
-        VoterDBScene = new Scene(layout4, 320, 240);
+        VoterDBScene = new Scene(layout4, 950, 700);
 
         //DISPLAY CANDIDATE DATABASE SCENE
         //Labels
@@ -125,7 +125,7 @@ public class AdministratorOptions extends Application {
         VBox layout5 = new VBox(20, label5, goBack4, logoutBtn);
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
-        CandidateDBScene = new Scene(layout5, 320, 240);
+        CandidateDBScene = new Scene(layout5, 950, 700);
 
         /*Option scene button actions.
           Had to put these down here for some reason. 
