@@ -7,6 +7,9 @@ TODO:
 Fix errors
 implement code for different scenes 
 */
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -62,22 +66,6 @@ public class AdministratorOptions extends Application {
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 950, 700);
-
-        //ACCOUNT REGISTRATION SCENE
-        //Labels
-       /* Label accSceneTitle = new Label("Account Registration");
-        accSceneTitle.setFont(new Font("Arial", 25));
-        //Text Fields
-        //Buttons & Button Actions
-        Button voterBtn = new Button("Register Voter");
-        Button adminBtn = new Button("Register Administrator");
-        Button pollworkerBtn = new Button("Register Poll Worker");
-        Button candidateBtn = new Button("Register Candidate");
-        //Layout
-        VBox accLayout = new VBox(20, accSceneTitle, voterBtn, adminBtn, pollworkerBtn, candidateBtn);
-        accLayout.setAlignment(Pos.CENTER);
-        accLayout.setPadding(new Insets(10, 10, 10, 10));
-        accScene = new Scene(accLayout, 950, 700);*/
 
         //VOTER REGISTRATION SCENE
         //Labels
@@ -279,14 +267,14 @@ public class AdministratorOptions extends Application {
         VoterDBScene = new Scene(layout4, 950, 700);
 
         //DISPLAY CANDIDATE DATABASE SCENE
-        //Labels
-        Label label5 = new Label("This is where the voter registration scene will appear");
+        ArrayList<String[]> candidates = Database.getAllCandidates();
+        Iterator<String[]> i = candidates.iterator();
         //TextFields
         //Buttons & Button Actions
-        Button goBack4 = new Button("Go Back");
-        goBack4.setOnAction(e -> administratorStage.setScene(OptionsScene));
-        Button logoutBtn4 = new Button("Log out");
-        logoutBtn4.setOnMouseClicked(e -> {
+        Button candidateDBgoBack = new Button("Go Back");
+        candidateDBgoBack.setOnAction(e1 -> administratorStage.setScene(OptionsScene));
+        Button candidateDBlogoutBtn = new Button("Log out");
+        candidateDBlogoutBtn.setOnMouseClicked(e2 -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
             LoginWindow.firstName.clear();
             LoginWindow.lastName.clear();
@@ -294,7 +282,18 @@ public class AdministratorOptions extends Application {
             LoginWindow.password.clear();
         });
         //Layout
-        VBox layout5 = new VBox(20, label5, goBack4, logoutBtn4);
+
+        VBox layout5 = new VBox(20, candidateDBgoBack, candidateDBlogoutBtn);
+        Label fName, lName, party;
+
+        while(i.hasNext()) {
+            String[] candidate = i.next();
+            fName = new Label("First Name: " + candidate[0]);
+            lName = new Label("Last Name: " + candidate[1]);
+            party = new Label("Party: " + candidate[2]);
+            layout5.getChildren().add(new HBox(20, fName, lName, party));
+        }
+
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 950, 700);
