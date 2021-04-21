@@ -130,6 +130,7 @@ public class Main extends Application {
 
 			if (info[1].equals(firstName) && info[2].equals(lastName)) {
 				Administrator admin = new Administrator(info[0], info[1], info[2]);
+				primaryStage.setScene(AdministratorOptions.getScene(primaryStage));
 			}
 
 			else {
@@ -140,7 +141,7 @@ public class Main extends Application {
 
    		  	//Administrator user = administrator pulled from database with SSN acting as the key;
 
-			primaryStage.setScene(AdministratorOptions.getScene(primaryStage));// Take user to new JavaFX screen with the administrator options
+			// Take user to new JavaFX screen with the administrator options
    			// The different buttons will be user.method() using setOnClickListeners
    		}
 	}
