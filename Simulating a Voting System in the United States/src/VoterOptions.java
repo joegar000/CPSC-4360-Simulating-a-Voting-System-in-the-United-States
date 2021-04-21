@@ -1,6 +1,8 @@
 /* This class will contain the method for setting the JavaFX scene to the voter options
    I (David) have tested setting JavaFX scenes this way and it works */
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -35,17 +38,19 @@ public class VoterOptions extends Application {
         firstLabel.setFont(new Font("Arial", 18));
         Label ResponseLabel = new Label("You have casted your ballot!");
         ResponseLabel.setFont(new Font("Arial", 18));
+        Label firstName, lastName, partyName;
 
         //Informs the voter that their ballot has been casted when clicked As well as a button to return to login.
-        Button button = new Button("Cast Ballot");
-        button.setFont(new Font("Arial", 18));
+        Button buttonCast = new Button("Cast Ballot");
+        buttonCast.setFont(new Font("Arial", 18));
         Button button2 = new Button("Return to login screen");
         button2.setFont(new Font("Arial", 18));
 
+        /*
         //Displays the candidates. Note: how to pull from database.
-        RadioButton radio1 = new RadioButton("Candidate Information, Political Party");
-        RadioButton radio2 = new RadioButton("Candidate Information, Political Party");
-        RadioButton radio3 = new RadioButton("Candidate Information, Political Party");
+        RadioButton radio1 = new RadioButton();
+        RadioButton radio2 = new RadioButton();
+        RadioButton radio3 = new RadioButton();
         RadioButton radio4 = new RadioButton("Candidate Information, Political Party");
 
         //Changes the font and size.
@@ -67,9 +72,26 @@ public class VoterOptions extends Application {
         radio2.setOnAction(e -> button.setDisable(false));
         radio3.setOnAction(e -> button.setDisable(false));
         radio4.setOnAction(e -> button.setDisable(false));
+        */
 
         //Create a somewhat nice layout.
-        VBox layout1 = new VBox(15, firstLabel, radio1, radio2, radio3, radio4, button);
+        VBox layout1 = new VBox(15, firstLabel /*radio1, radio2, radio3, radio4,*//*, buttonCast*/);
+        layout1.setAlignment(Pos.CENTER);
+
+        ArrayList<String[]> Candidates = Database.getAllCandidates();
+        Iterator<String[]> plus = Candidates.iterator();
+
+        while(plus.hasNext()) {
+            String[] Candidate = plus.next();
+            firstName = new Label(Candidate[0]);
+            lastName = new Label(", " + Candidate[1]);
+            partyName = new Label(": " + Candidate[2]);
+            
+            layout1.getChildren().add(new HBox(firstName, lastName, partyName));
+            layout1.getChildren().add(new Button());
+        }
+
+        layout1.getChildren().add(new VBox(buttonCast));
         layout1.setAlignment(Pos.CENTER);
 
         //Displays a screen to thank the user.
@@ -80,7 +102,7 @@ public class VoterOptions extends Application {
         thankYouScene = new Scene(layout2, 950, 700);
 
         //Takes the user to the next scene.
-        button.setOnAction(e -> voterStage.setScene(thankYouScene));
+        buttonCast.setOnAction(e -> voterStage.setScene(thankYouScene));
         button2.setOnMouseClicked(e -> {
             voterStage.setScene(LoginWindow.getScene(voterStage));
             LoginWindow.firstName.clear();
