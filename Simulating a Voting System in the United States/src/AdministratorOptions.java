@@ -124,7 +124,7 @@ public class AdministratorOptions extends Application {
         //Buttons & Button Actions
         Button regAdmin = new Button("Register");
         regAdmin.setOnAction(e ->{
-            Database.registerAdministrator(adminFNTextField.getText(), adminLNTextField.getText(), adminSSNTextField.getText());
+            Database.registerAdministrator(adminSSNTextField.getText(), adminFNTextField.getText(), adminLNTextField.getText());
             adminFNTextField.clear();
             adminLNTextField.clear();
             adminSSNTextField.clear();
@@ -160,7 +160,7 @@ public class AdministratorOptions extends Application {
         //Buttons & Button Actions
         Button regPollworker = new Button("Register");
         regPollworker.setOnAction(e ->{
-            Database.registerPollWorker(pollworkerFNTextField.getText(), pollworkerLNTextField.getText(), pollworkerSSNTextField.getText());
+            Database.registerPollWorker(pollworkerSSNTextField.getText(), pollworkerFNTextField.getText(), pollworkerLNTextField.getText());
             pollworkerFNTextField.clear();
             pollworkerLNTextField.clear();
             pollworkerSSNTextField.clear();
