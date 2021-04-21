@@ -28,13 +28,10 @@ public class Main extends Application {
 		Database.setUpCandidates();
 
 		Database.registerPollWorker("987654321", "David", "Garcia");
-<<<<<<< HEAD
 		Database.registerCandidate("Donald", "Trump", "Republican", 0);
 		Database.registerCandidate("Joe", "Biden", "Democrat", 0);
 		Database.registerCandidate("Mary", "Jane", "Independent", 0);
-=======
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
->>>>>>> 0d7726018305066dc89aa73bf395087e87943292
 
 		Application.launch(args);
 	}
