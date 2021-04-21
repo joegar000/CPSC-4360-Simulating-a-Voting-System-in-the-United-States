@@ -83,6 +83,9 @@ public class VoterOptions extends Application {
         button.setOnAction(e -> voterStage.setScene(thankYouScene));
         button2.setOnMouseClicked(e -> {
             voterStage.setScene(LoginWindow.getScene(voterStage));
+            LoginWindow.firstName.clear();
+            LoginWindow.lastName.clear();
+            LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
 
