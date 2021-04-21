@@ -166,9 +166,9 @@ public abstract class Database {
 
     // This returns an arraylist of string arrays for display the entire voter database, I assume
     // you could write javafx code that loops through and gets all the voter information
-    public static ArrayList<String> getAllVoterInformation() {
+    public static ArrayList<String[]> getAllVoterInformation() {
         String sql = "SELECT ssn, first_name, last_name, age, state, voted FROM voters";
-        ArrayList<String> allVoters = new ArrayList<>();
+        ArrayList<String[]> allVoters = new ArrayList<>();
 
         try (Statement stmt = voterConn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)) {
@@ -181,7 +181,7 @@ public abstract class Database {
                 info[3] = rs.getString("age");
                 info[4] = rs.getString("state");
                 info[5] = rs.getString("voted");
-                allVoters.addAll(Arrays.asList(info));
+                allVoters.add(info);
             }
         }
         catch(SQLException e) {
@@ -315,9 +315,9 @@ public abstract class Database {
 
     // This returns an arraylist of string arrays for display the entire candidate database, I assume
     // you could write javafx code that loops through and gets all the candidate information
-    public static ArrayList<String> getAllCandidates() {
+    public static ArrayList<String[]> getAllCandidates() {
         String sql = "SELECT first_name, last_name, party FROM candidates";
-        ArrayList<String> allCandidates = new ArrayList<>();
+        ArrayList<String[]> allCandidates = new ArrayList<>();
 
             try (Statement stmt = candidatesConn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
@@ -328,7 +328,7 @@ public abstract class Database {
                     info[1] = rs.getString("last_name");
                     info[2] = rs.getString("party");
                     info[3] = rs.getString("votes");
-                    allCandidates.addAll(Arrays.asList(info));
+                    allCandidates.add(info);
             }
     
         }

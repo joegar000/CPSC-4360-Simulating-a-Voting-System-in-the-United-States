@@ -31,7 +31,7 @@ public class PollWorker {
         return Database.getVoterInformation(SSN);
     }
 
-    public ArrayList<String> displayVoterDatabase() {
+    public ArrayList<String[]> displayVoterDatabase() {
         return Database.getAllVoterInformation();
     }
 
