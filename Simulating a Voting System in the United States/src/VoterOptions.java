@@ -17,7 +17,6 @@ public class VoterOptions extends Application {
     /*This is a vauge idea of how I thought of doing it.
     
     Issues:
-    Going from login screen to here.
     How to make Voter and VoterOptions work together.
     Fetching the candidate list. Then, fitting it in.
     Recording each vote, exiting/going back to the start for a new user.
@@ -82,7 +81,10 @@ public class VoterOptions extends Application {
 
         //Takes the user to the next scene.
         button.setOnAction(e -> voterStage.setScene(thankYouScene));
-        button2.setOnMouseClicked(e -> voterStage.setScene(LoginWindow.getScene(voterStage)));
+        button2.setOnMouseClicked(e -> {
+            voterStage.setScene(LoginWindow.getScene(voterStage));
+            LoginWindow.password.clear();
+        });
 
         //Vote scene
         voteScene = new Scene(layout1, 950, 700);
