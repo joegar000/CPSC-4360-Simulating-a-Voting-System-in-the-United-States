@@ -48,6 +48,9 @@ public class AdministratorOptions extends Application {
         Button logoutBtn = new Button("Log out");
         logoutBtn.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
+            LoginWindow.firstName.clear();
+            LoginWindow.lastName.clear();
+            LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
 
@@ -73,12 +76,23 @@ public class AdministratorOptions extends Application {
         TextField stateTextField = new TextField();
         TextField ssnTextField = new TextField();
         //Buttons & Button Actions
-        Button regVoter = new Button("Register");    //does nothing right now
+        Button regVoter = new Button("Register");
+        regVoter.setOnAction(e -> {
+            Database.registerVoter(ssnTextField.getText(), fnTextField.getText(), lnTextField.getText(), ageTextField.getText(), stateTextField.getText(), false);
+            ssnTextField.clear();
+            fnTextField.clear();
+            lnTextField.clear();
+            ageTextField.clear();
+            stateTextField.clear();
+        });    //does nothing right now
         Button goBack1 = new Button("Go Back");
         goBack1.setOnAction(e -> administratorStage.setScene(OptionsScene));
         Button logoutBtn1 = new Button("Log out");
         logoutBtn1.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
+            LoginWindow.firstName.clear();
+            LoginWindow.lastName.clear();
+            LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
         //Layout
@@ -100,6 +114,9 @@ public class AdministratorOptions extends Application {
         Button logoutBtn2 = new Button("Log out");
         logoutBtn2.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
+            LoginWindow.firstName.clear();
+            LoginWindow.lastName.clear();
+            LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
         //Layout
@@ -118,6 +135,9 @@ public class AdministratorOptions extends Application {
         Button logoutBtn3 = new Button("Log out");
         logoutBtn3.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
+            LoginWindow.firstName.clear();
+            LoginWindow.lastName.clear();
+            LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
         //Layout
@@ -136,6 +156,9 @@ public class AdministratorOptions extends Application {
         Button logoutBtn4 = new Button("Log out");
         logoutBtn4.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
+            LoginWindow.firstName.clear();
+            LoginWindow.lastName.clear();
+            LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
         //Layout
