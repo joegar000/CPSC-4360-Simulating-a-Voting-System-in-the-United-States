@@ -316,7 +316,7 @@ public abstract class Database {
     // This returns an arraylist of string arrays for display the entire candidate database, I assume
     // you could write javafx code that loops through and gets all the candidate information
     public static ArrayList<String[]> getAllCandidates() {
-        String sql = "SELECT first_name, last_name, party FROM candidates";
+        String sql = "SELECT first_name, last_name, party, votes FROM candidates";
         ArrayList<String[]> allCandidates = new ArrayList<>();
 
             try (Statement stmt = candidatesConn.createStatement();

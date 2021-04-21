@@ -1,19 +1,20 @@
 /* This class will contain the method for setting the JavaFX scene to the poll worker options
    I (David) have tested setting JavaFX scenes this way and it works */
 
-   import javafx.application.Application;
-   import javafx.geometry.Insets;
-   import javafx.geometry.Pos;
-   import javafx.scene.Scene;
-   import javafx.scene.control.Button;
-   import javafx.scene.control.Label;
-   import javafx.scene.control.TextField;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-   import javafx.scene.text.Font;
-   import javafx.stage.Stage;
-
-public class PollWorkerOptions extends Application {
+import javafx.scene.text.Font;
+import javafx.stage.Stage;public class PollWorkerOptions extends Application {
 
     private static Scene scene;
 
@@ -138,18 +139,32 @@ public class PollWorkerOptions extends Application {
 
         //DISPLAY CANDIDATE DATABASE SCENE
         //Labels
-        Label label5 = new Label("This is where the candidate database scene will appear");
+
+
+        ArrayList<String[]> candidates = Database.getAllCandidates();
+        Iterator<String[]> i = candidates.iterator();
         //TextFields
         //Buttons & Button Actions
         Button goBack4 = new Button("Go Back");
-        goBack4.setOnAction(e -> pollWorkerStage.setScene(OptionsScene));
+        goBack4.setOnAction(e1 -> pollWorkerStage.setScene(OptionsScene));
         Button logoutBtn4 = new Button("Log out");
-        logoutBtn4.setOnMouseClicked(e -> {
+        logoutBtn4.setOnMouseClicked(e2 -> {
             pollWorkerStage.setScene(LoginWindow.getScene(pollWorkerStage));
             LoginWindow.password.clear();
         });
         //Layout
-        VBox layout5 = new VBox(20, label5, goBack4, logoutBtn4);
+
+        VBox layout5 = new VBox(20, goBack4, logoutBtn4);
+        Label fName, lName, party;
+
+        while(i.hasNext()) {
+            String[] candidate = i.next();
+            fName = new Label("First Name: " + candidate[0]);
+            lName = new Label("Last Name: " + candidate[1]);
+            party = new Label("Party: " + candidate[2]);
+            layout5.getChildren().add(new HBox(20, fName, lName, party));
+        }
+
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 950, 700);

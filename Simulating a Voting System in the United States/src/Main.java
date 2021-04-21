@@ -28,6 +28,9 @@ public class Main extends Application {
 		Database.setUpCandidates();
 
 		Database.registerPollWorker("987654321", "David", "Garcia");
+		Database.registerCandidate("Donald", "Trump", "Republican", 0);
+		Database.registerCandidate("Joe", "Biden", "Democrat", 0);
+		Database.registerCandidate("Mary", "Jane", "Independent", 0);
 
 		Application.launch(args);
 	}
@@ -104,6 +107,8 @@ public class Main extends Application {
 
 			if (info[1].equals(firstName) && info[2].equals(lastName)) {
 				PollWorker pollWorker = new PollWorker(info[0], info[1], info[2]);
+				primaryStage.setScene(PollWorkerOptions.getScene(primaryStage));
+
 			}
 
 			else {
@@ -115,7 +120,6 @@ public class Main extends Application {
 
    		 	 //PollWorker user = pollw worker pulled from database with SSN acting as the key;
 
-   		 	 primaryStage.setScene(PollWorkerOptions.getScene(primaryStage));
    		 	 // The different buttons will be user.method() using setOnClickListeners
    		}
 
