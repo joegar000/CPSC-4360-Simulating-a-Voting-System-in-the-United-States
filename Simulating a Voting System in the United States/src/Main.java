@@ -28,9 +28,13 @@ public class Main extends Application {
 		Database.setUpCandidates();
 
 		Database.registerPollWorker("987654321", "David", "Garcia");
+<<<<<<< HEAD
 		Database.registerCandidate("Donald", "Trump", "Republican", 0);
 		Database.registerCandidate("Joe", "Biden", "Democrat", 0);
 		Database.registerCandidate("Mary", "Jane", "Independent", 0);
+=======
+		Database.registerAdministrator("431765289", "Kaden", "Carter");
+>>>>>>> 0d7726018305066dc89aa73bf395087e87943292
 
 		Application.launch(args);
 	}
@@ -124,6 +128,16 @@ public class Main extends Application {
    		}
 
    		else if (password.equals(Administrator.adminPassword)) {
+
+			String[] info = Database.getAdministratorInformation(SSN);
+
+			if (info[1].equals(firstName) && info[2].equals(lastName)) {
+				Administrator admin = new Administrator(info[0], info[1], info[2]);
+			}
+
+			else {
+				// display some kind of error, the pollworker's first and last name do not match the ssn
+			}
    		  	// Compare firstName and lastName with database objects, if there is
    		  	// a match sign the user in, if no match, give not registered error
 
