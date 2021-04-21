@@ -28,9 +28,9 @@ public class Main extends Application {
 		Database.setUpCandidates();
 
 		Database.registerPollWorker("987654321", "David", "Garcia");
-		Database.registerCandidate("Donald", "Trump", "Republican", 0);
-		Database.registerCandidate("Joe", "Biden", "Democrat", 0);
-		Database.registerCandidate("Mary", "Jane", "Independent", 0);
+		Database.registerCandidate("Donald", "Trump", "Republican", 1);
+		Database.registerCandidate("Joe", "Biden", "Democrat", 1);
+		Database.registerCandidate("Mary", "Jane", "Independent", 1);
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
 
 		Application.launch(args);

@@ -36,7 +36,7 @@ public class AdministratorOptions extends Application {
 
     public static Scene getScene(Stage administratorStage) {
         //Scenes initialized
-        Scene OptionsScene, voterRegScene, adminRegScene, pollworkerRegScene, candidateRegScene, ValScene, VoterDBScene, CandidateDBScene;
+        Scene OptionsScene, voterRegScene, adminRegScene, pollworkerRegScene, candidateRegScene, ValScene, VoterDBScene, CandidateDBScene, CandidateDRScene;
 
         //OPTIONS SCENE
         //Labels
@@ -51,6 +51,7 @@ public class AdministratorOptions extends Application {
         Button btn5 = new Button("Administrator Registration");
         Button btn6 = new Button("Pollworker Registration");
         Button btn7 = new Button("Candidate Registration");
+        Button btn8 = new Button("Candidate Results");
         Button logoutBtn = new Button("Log out");
         logoutBtn.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
@@ -61,7 +62,7 @@ public class AdministratorOptions extends Application {
         });
 
         //Layout
-        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn2, btn3, btn4, logoutBtn);
+        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn2, btn3, btn4, btn8, logoutBtn);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 950, 700);
@@ -92,6 +93,7 @@ public class AdministratorOptions extends Application {
             ageTextField.clear();
             stateTextField.clear();
         });
+        
         Button goBack1 = new Button("Go Back");
         goBack1.setOnAction(e -> administratorStage.setScene(OptionsScene));
         Button logoutBtn1 = new Button("Log out");
@@ -296,6 +298,14 @@ public class AdministratorOptions extends Application {
         layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 950, 700);
 
+        //DISPLAY CANDIDATE RESULTS SCENE - (if questions, ask Daniel)
+        CandidateResultsDisplay display = new CandidateResultsDisplay();
+        display.showResults();
+        display.enableGoBack(administratorStage, OptionsScene);
+        display.setAlignment(Pos.CENTER);
+        display.setPadding(new Insets(10, 10, 10, 10));
+        CandidateDRScene = new Scene (display, 950, 700);
+
         /*Option scene button actions.
           Had to put these down here for some reason. 
           Wouldn't work when placed with the buttons on the Options scene class.
@@ -307,7 +317,8 @@ public class AdministratorOptions extends Application {
         btn7.setOnAction(e -> administratorStage.setScene(candidateRegScene));
         btn2.setOnAction(e -> administratorStage.setScene(ValScene));
         btn3.setOnAction(e -> administratorStage.setScene(VoterDBScene));
-        btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene));      
+        btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene)); 
+        btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));       
         
         
 
