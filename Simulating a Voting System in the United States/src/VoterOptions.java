@@ -85,12 +85,12 @@ public class VoterOptions extends Application {
         Without two or more sharing the same variables.*/
         while(plus.hasNext()) {
             String[] Candidate = plus.next();
+            RadioButton vBtn = new RadioButton();
             firstName = new Label(Candidate[0]);
             lastName = new Label(", " + Candidate[1]);
             partyName = new Label(": " + Candidate[2]);
             
-            layout1.getChildren().add(new HBox(firstName, lastName, partyName));
-            layout1.getChildren().add(new Button());
+            layout1.getChildren().add(new HBox(vBtn, firstName, lastName, partyName));
         }
 
         layout1.getChildren().add(new VBox(buttonCast));
