@@ -194,7 +194,7 @@ public abstract class Database {
     public static void voterVoted(String ssn) {
         String sql = "UPDATE voters SET voted = ? WHERE ssn LIKE ?";
         
-            try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
+            try (PreparedStatement stmt = voterConn.prepareStatement(sql)) {
                 String voted = "TRUE";
                 stmt.setString(1, voted);
                 stmt.setString(2, ssn);
