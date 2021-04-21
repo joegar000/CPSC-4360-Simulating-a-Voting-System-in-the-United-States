@@ -3,12 +3,6 @@ Project: Voting System
 CPSC - 4360 - 01, Spring 2021
 
 */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 import java.util.*;
   
 /*public class Main {
@@ -22,14 +16,17 @@ import java.util.*;
 
 
 import javafx.application.*;
-import javafx.scene.*;
-import javafx.scene.layout.GridPane;
 import javafx.stage.*;
 
 
 public class Main extends Application {
 	
 	public static void main(String[] args) {
+		Database.setUpVoters();
+		Database.setUpPollWorkers();
+		Database.setUpAdministrators();
+		Database.setUpCandidates();
+
 		Application.launch(args);
 	}
 
@@ -80,7 +77,7 @@ public class Main extends Application {
 
    		 	 //PollWorker user = pollw worker pulled from database with SSN acting as the key;
 
-   		 	 primaryStage.setScene(PollWorkerOptions.getScene());
+   		 	 primaryStage.setScene(PollWorkerOptions.getScene(primaryStage));
    		 	 // The different buttons will be user.method() using setOnClickListeners
    		}
 

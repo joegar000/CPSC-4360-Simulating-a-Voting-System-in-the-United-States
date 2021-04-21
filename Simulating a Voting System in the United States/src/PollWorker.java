@@ -1,13 +1,12 @@
 /*
 David Garcia
+
+Poll workers can register voters, display saved voter information,
+and display the candidate database
+
 */
 
-// For JDBC
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 
 public class PollWorker {
     
@@ -16,11 +15,6 @@ public class PollWorker {
     private String lastName;
     public static String password = "1234";
     private boolean loggedIn = false;
-
-    public PollWorker(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
     /* If the username and password are incorrect, then try to log them in as a voter */
     public void logIn(String firstName, String lastName, String password) {
@@ -42,12 +36,7 @@ public class PollWorker {
         }
     }
 
-    public void registerVoter(String VoterFirstName, String VoterLastName, int VoterAge, String VoterState, String VoterSSN, boolean ifVoted, boolean isRegistered) {
-        Voter voter = new Voter(VoterFirstName, VoterLastName, VoterAge, VoterState, VoterSSN, ifVoted, isRegistered);
-        /* Add the voter object to the database */
-    }
-
-    public void printSuccess() {
-        System.out.println("it worked");
+    public void registerVoter(String ssn, String first_name, String last_name, String age, String state, boolean hasVoted) {
+        Database.registerVoter(ssn, first_name, last_name, age, state, hasVoted);
     }
 }
