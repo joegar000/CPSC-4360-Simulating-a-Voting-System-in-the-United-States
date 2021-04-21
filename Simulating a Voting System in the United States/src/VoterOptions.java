@@ -81,6 +81,8 @@ public class VoterOptions extends Application {
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
 
+        /*Unsure as to how to create more radio buttons everytime a new candidate is made. 
+        Without two or more sharing the same variables.*/
         while(plus.hasNext()) {
             String[] Candidate = plus.next();
             firstName = new Label(Candidate[0]);
