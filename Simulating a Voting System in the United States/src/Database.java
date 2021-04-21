@@ -38,7 +38,7 @@ public abstract class Database {
     public static void createNewVoterTable() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS voters (\n"
-                + "	ssn text PRIMARY KEY,\n"
+                + "	ssn text PRIMARY KEY UNIQUE,\n"
                 + "	first_name text NOT NULL,\n"
                 + "	last_name text NOT NULL,\n"
                 + "	age text NOT NULL,\n"
@@ -57,7 +57,7 @@ public abstract class Database {
     public static void createNewPollWorkerTable() {        
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS pollworkers (\n"
-                + "	ssn text PRIMARY KEY,\n"
+                + "	ssn text PRIMARY KEY UNIQUE,\n"
                 + "	first_name text NOT NULL,\n"
                 + "	last_name text NOT NULL\n"
                 + ");";
@@ -73,7 +73,7 @@ public abstract class Database {
     public static void createNewAdministratorTable() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS administrators (\n"
-                + "	ssn text PRIMARY KEY,\n"
+                + "	ssn text PRIMARY KEY UNIQUE,\n"
                 + "	first_name text NOT NULL,\n"
                 + "	last_name text NOT NULL\n"
                 + ");";
@@ -114,7 +114,6 @@ public abstract class Database {
                 votes = Integer.toString(voteCount);
                 stmt.setString(1, votes);
                 stmt.setString(2, party);
-
                 stmt.executeUpdate();
         }
         catch(SQLException e) {
@@ -138,7 +137,7 @@ public abstract class Database {
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage() + "insertvoter");
+            System.out.println(e.getMessage() + "registervoter");
         }
     }
 
@@ -167,13 +166,12 @@ public abstract class Database {
 
     // This returns an arraylist of string arrays for display the entire voter database, I assume
     // you could write javafx code that loops through and gets all the voter information
-    public static ArrayList<String> displayAllVoterInformation(String ssn) {
+    public static ArrayList<String> getAllVoterInformation() {
         String sql = "SELECT ssn, first_name, last_name, age, state, voted FROM voters";
         ArrayList<String> allVoters = new ArrayList<>();
 
-        try (PreparedStatement stmt = voterConn.prepareStatement(sql)) {
-            stmt.setString(1,ssn);
-            ResultSet rs = stmt.executeQuery();
+        try (Statement stmt = voterConn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)) {
                 
             while (rs.next()) {
                 String[] info = new String[6];
@@ -191,6 +189,22 @@ public abstract class Database {
         }
         return allVoters;
     }
+
+
+    public static void voterVoted(String ssn) {
+        String sql = "UPDATE voters SET voted = ? WHERE ssn LIKE ?";
+        
+            try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
+                String voted = "TRUE";
+                stmt.setString(1, voted);
+                stmt.setString(2, ssn);
+                stmt.executeUpdate();
+        }
+        catch(SQLException e) {
+            System.out.println(e.getMessage() + "votervoted");
+        }
+    }
+
 
     public static void registerPollWorker(String ssn, String first_name, String last_name) {
         String sql = "INSERT INTO pollworkers(ssn,first_name,last_name) VALUES(?,?,?)";
@@ -301,13 +315,12 @@ public abstract class Database {
 
     // This returns an arraylist of string arrays for display the entire candidate database, I assume
     // you could write javafx code that loops through and gets all the candidate information
-    public static ArrayList<String> displayAllCandidates(String party) {
+    public static ArrayList<String> getAllCandidates() {
         String sql = "SELECT first_name, last_name, party FROM candidates";
         ArrayList<String> allCandidates = new ArrayList<>();
 
-            try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
-                stmt.setString(1,party);
-                ResultSet rs = stmt.executeQuery();
+            try (Statement stmt = candidatesConn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
                 
             while (rs.next()) {
                     String[] info = new String[4];

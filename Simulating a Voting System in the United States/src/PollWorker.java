@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
 David Garcia
 
@@ -13,27 +15,24 @@ public class PollWorker {
     // username and password is the same for all pollworkers
     private String firstName;
     private String lastName;
+    private String SSN;
     public static String password = "1234";
-    private boolean loggedIn = false;
 
-    /* If the username and password are incorrect, then try to log them in as a voter */
-    public void logIn(String firstName, String lastName, String password) {
-        if (this.password.equals(password)) {
-            this.loggedIn = true;
-        }
-        else {
-            System.out.println("The input name and/or password is incorrect.");
-        }
+    public PollWorker() {
     }
 
-    public void logOut() {
-        this.loggedIn = false;
+    public PollWorker(String ssn, String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.SSN = ssn;
     }
 
-    public void displayVoterInfo() {
-        if (loggedIn == true) {
-            /* Pull data from database to display it */
-        }
+    public String[] getVoterInfo(String SSN) {
+        return Database.getVoterInformation(SSN);
+    }
+
+    public ArrayList<String> displayVoterDatabase() {
+        return Database.getAllVoterInformation();
     }
 
     public void registerVoter(String ssn, String first_name, String last_name, String age, String state, boolean hasVoted) {

@@ -31,27 +31,25 @@ public class Voter {
     */
     private String VoterFirstName;
     private String VoterLastName;
-    private int VoterAge;
+    private String VoterAge;
     private String VoterState;
     private String VoterSSN;
-    private boolean ifVoted;
-    private boolean isRegistered;
+    private boolean hasVoted;
     public static String VoterPassword = "2468";
-    private boolean VoterlogIn = false;
+    private boolean isRegistered = false;
 
     //Default constructor
     public Voter() {
     }
 
     //Constructor with the arguements.
-    public Voter(String VoterFirstName, String VoterLastName, int VoterAge, 
-    String VoterState, String VoterSSN, boolean ifVoted, boolean isRegistered) {
-        this.VoterFirstName = VoterFirstName;
-        this.VoterLastName = VoterLastName;
-        this.VoterAge = VoterAge;
-        this.VoterState = VoterState;
-        this.ifVoted = ifVoted;
-        this.isRegistered = isRegistered;
+    public Voter(String ssn, String firstName, String lastName, 
+    String age, String state, boolean hasVoted) {
+        this.VoterFirstName = firstName;
+        this.VoterLastName = lastName;
+        this.VoterAge = age;
+        this.VoterState = state;
+        this.hasVoted = hasVoted;
     }
 
     //User either gets or sets the persons first name.
@@ -71,10 +69,10 @@ public class Voter {
     }
 
     //User either gets or sets the persons Age.
-    public void setVoterAge(int newVoterAge) {
+    public void setVoterAge(String newVoterAge) {
         this.VoterAge = newVoterAge;
     }
-    public int getVoterAge() {
+    public String getVoterAge() {
         return VoterAge;
     }
 
@@ -94,34 +92,21 @@ public class Voter {
         return VoterSSN;
     }
 
-
-    //Checks to see if the person voted.
-    public boolean getIfVoted() {
-        return ifVoted;
-    }
-
     //Checks to see if the person is registered.
     public boolean getisRegistered() {
+    
+        String[] info = Database.getVoterInformation(VoterSSN);
+        isRegistered = true;
+        for (int x = 0; x < info.length; x++) {
+            if (info[x] != null) continue;
+            else isRegistered = false;
+        }
+
         return isRegistered;
     }
 
-    //If the given login information is incorrect, then the user is not let into vote.
-    public void logIn(String FirstName, String LastName, String Password) {
-        if(this.VoterPassword.equals(Password)) {
-            this.VoterlogIn = true;
-        } else {
-            System.out.println("The given input is incorrect, please try again.");
-        }
-    }
-
-    public void logOut() {
-        this.VoterlogIn = false;
-    }
-
     public void displayCandidateList() {
-        if (VoterlogIn == true) {
             //Later pull the list from the database.
-        }
     }
 
 

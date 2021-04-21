@@ -8,7 +8,8 @@
    import javafx.scene.control.Button;
    import javafx.scene.control.Label;
    import javafx.scene.control.TextField;
-   import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
    import javafx.scene.text.Font;
    import javafx.stage.Stage;
 
@@ -65,7 +66,15 @@ public class PollWorkerOptions extends Application {
         TextField ssnTextField = new TextField();
         //Buttons & Button Actions
         Button regVoter = new Button("Register");    //does nothing right now
-        // Add to database
+        regVoter.setOnAction(e -> {
+            // The false is because a voter that just registered cannot have already voted
+            Database.registerVoter(ssnTextField.getText(), fnTextField.getText(), lnTextField.getText(), ageTextField.getText(), stateTextField.getText(), false);
+            ssnTextField.clear();
+            fnTextField.clear();
+            lnTextField.clear();
+            ageTextField.clear();
+            stateTextField.clear();
+        });
 
 
         Button goBack1 = new Button("Go Back");
@@ -86,9 +95,32 @@ public class PollWorkerOptions extends Application {
 
         //DISPLAY VOTER INFORMATION SCENE
         //Labels
-        Label label4 = new Label("This is where the voter information scene will appear");
+        Label label4 = new Label("Please enter the voter's SSN");
         //Text Fields
+        TextField voterSSN = new TextField();
         //Buttons & Button Actions
+        Button goBack5 = new Button("Go Back");
+        Button getInformation = new Button("Get Voter Information");
+
+        getInformation.setOnAction(e -> {
+            String[] info = Database.getVoterInformation(voterSSN.getText());
+            Label firstName = new Label("First Name: " + info[1]);
+            Label lastName = new Label("Last Name: " + info[2]);
+            Label age = new Label("Age: " + info[3]);
+            Label state = new Label("State: " + info[4]);
+
+            HBox layout6 = new HBox(20, firstName, lastName, age, state);
+            layout6.setAlignment(Pos.CENTER);
+            VBox layout7 = new VBox(20, layout6, goBack5);
+            layout7.setAlignment(Pos.CENTER);
+            layout7.setPadding(new Insets(10, 10, 10, 10));
+            Scene InfoDisplayScene = new Scene(layout7, 950, 700);
+            pollWorkerStage.setScene(InfoDisplayScene);
+        });
+
+        goBack5.setOnAction(e -> pollWorkerStage.setScene(OptionsScene));
+
+
         Button goBack3 = new Button("Go Back");
         goBack3.setOnAction(e -> pollWorkerStage.setScene(OptionsScene));
         Button logoutBtn3 = new Button("Log out");
@@ -97,7 +129,7 @@ public class PollWorkerOptions extends Application {
             LoginWindow.password.clear();
         });
         //Layout
-        VBox layout4 = new VBox(20, label4, goBack3, logoutBtn3);
+        VBox layout4 = new VBox(20, label4, voterSSN, getInformation, goBack3, logoutBtn3);
         layout4.setAlignment(Pos.CENTER);
         layout4.setPadding(new Insets(10, 10, 10, 10));
         InfoScene = new Scene(layout4, 950, 700);
@@ -106,7 +138,7 @@ public class PollWorkerOptions extends Application {
 
         //DISPLAY CANDIDATE DATABASE SCENE
         //Labels
-        Label label5 = new Label("This is where the voter registration scene will appear");
+        Label label5 = new Label("This is where the candidate database scene will appear");
         //TextFields
         //Buttons & Button Actions
         Button goBack4 = new Button("Go Back");
