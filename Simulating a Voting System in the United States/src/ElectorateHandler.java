@@ -16,6 +16,7 @@ public class ElectorateHandler extends Application {
         Scene resultsScene;
 
         CandidateResultsDisplay display = new CandidateResultsDisplay();
+        display.showResults();
         display.enableLogOut(stage);
         //display.enableAnnounce(stage);
         display.setAlignment(Pos.CENTER);

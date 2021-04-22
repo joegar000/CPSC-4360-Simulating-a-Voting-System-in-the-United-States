@@ -105,8 +105,8 @@ public abstract class Database {
                 + "	last_name text NOT NULL,\n"
                 + " party text NOT NULL,\n"
                 + " position text NOT NULL,\n"
-                + " runningmate text,\n"
-                + " votes text NOT NULL\n"
+                + " votes text,\n"
+                + " runningmate text NOT NULL\n"
                 + ");";
         
         try (Statement stmt = candidatesConn.createStatement()) {
@@ -325,7 +325,7 @@ public abstract class Database {
     }
 
     public static void registerCandidate(String first_name, String last_name, String party, String position, int vote) {
-        String sql = "INSERT INTO candidates(first_name,last_name,party,position,runningmate,votes) VALUES(?,?,?,?,NULL,?)";
+        String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,NULL,?)";
         String votes = Integer.toString(vote);
     
         try (PreparedStatement pstmt = candidatesConn.prepareStatement(sql)) {
@@ -340,8 +340,8 @@ public abstract class Database {
         }
     }
 
-    public static void registerCandidate(String first_name, String last_name, String party, String position, String runningMate, int vote) {
-        String sql = "INSERT INTO candidates(first_name,last_name,party,position,runningmate,votes) VALUES(?,?,?,?,?,?)";
+    public static void registerCandidate(String first_name, String last_name, String party, String position, int vote, String runningMate) {
+        String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,?,?)";
 
         String votes = Integer.toString(vote);
     
@@ -350,8 +350,8 @@ public abstract class Database {
             pstmt.setString(2, last_name);
             pstmt.setString(3, party);
             pstmt.setString(4, position);
-            pstmt.setString(5, runningMate);
-            pstmt.setString(6, votes);
+            pstmt.setString(5, votes);
+            pstmt.setString(6, runningMate);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "registercandidate2");
@@ -359,7 +359,7 @@ public abstract class Database {
     }
 
     public static String[] getCandidate(String party, String position) {
-        String sql = "SELECT first_name, last_name, party, position, runningmate, votes FROM candidates WHERE party LIKE ? and position LIKE ?";
+        String sql = "SELECT first_name, last_name, party, position, votes, runningmate FROM candidates WHERE party LIKE ? and position LIKE ?";
         ArrayList<String> info = new ArrayList<String>();
             try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
                 stmt.setString(1,party);
@@ -379,8 +379,9 @@ public abstract class Database {
                     info.add(rs.getString("last_name"));
                     info.add(rs.getString("party"));
                     info.add(rs.getString("position"));
-                    info.add(rs.getString("runningmate"));
                     info.add(rs.getString("votes"));
+                    info.add(rs.getString("runningmate"));
+                    
                 }
             }
     
@@ -395,7 +396,7 @@ public abstract class Database {
     // This returns an arraylist of string arrays for display the entire candidate database, I assume
     // you could write javafx code that loops through and gets all the candidate information
     public static ArrayList<String[]> getAllCandidates() {
-        String sql = "SELECT first_name, last_name, party, position, runningmate, votes FROM candidates";
+        String sql = "SELECT first_name, last_name, party, position, votes, runningmate FROM candidates";
         ArrayList<String[]> allCandidates = new ArrayList<>();
 
             try (Statement stmt = candidatesConn.createStatement();
@@ -417,8 +418,8 @@ public abstract class Database {
                     info[1] = rs.getString("last_name");
                     info[2] = rs.getString("party");
                     info[3] = rs.getString("position");
-                    info[4] = rs.getString("runningmate");
-                    info[5] = rs.getString("votes");
+                    info[4] = rs.getString("votes");
+                    info[5] = rs.getString("runningmate");
                     allCandidates.add(info);
                 }
             }

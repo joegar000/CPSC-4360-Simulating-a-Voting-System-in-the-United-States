@@ -16,6 +16,7 @@ public class PressHandler extends Application {
         Scene resultsScene;
 
         CandidateResultsDisplay display = new CandidateResultsDisplay();
+        display.showResults();
         display.enableLogOut(stage);
         display.setAlignment(Pos.CENTER);
         display.setPadding(new Insets(10, 10, 10, 10));
