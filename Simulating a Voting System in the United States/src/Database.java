@@ -39,12 +39,12 @@ public abstract class Database {
 
     public static void setUpElectorate() {
         electorateConn = Database.connect("jdbc:sqlite:electorate.db");
-        Database.createNewCandidatesTable();
+        Database.createNewElectorateTable();
     }
 
     public static void setUpPress() {
         pressConn = Database.connect("jdbc:sqlite:press.db");
-        Database.createNewCandidatesTable();
+        Database.createNewPressTable();
     }
 
     public static void createNewVoterTable() {
