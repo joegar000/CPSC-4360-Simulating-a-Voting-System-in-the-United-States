@@ -168,6 +168,7 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
                 temp.setAlignment(Pos.CENTER);
                 layout5.getChildren().add(temp);
             }
+            
             else {
                 Name = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 party = new Label("Party: " + candidate[2]);
