@@ -28,7 +28,6 @@ public class Main extends Application {
 		Database.setUpCandidates();
 		Database.setUpElectorate();
 		Database.setUpPress();
-		Database.createNewElectorateTable();
 
 		Database.registerPollWorker("987654321", "David", "Garcia");
 		Database.registerCandidate("Donald", "Trump", "Republican", "President", "Mike Pence", 1);
