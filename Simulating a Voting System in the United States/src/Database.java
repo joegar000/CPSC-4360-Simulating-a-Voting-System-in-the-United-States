@@ -121,7 +121,7 @@ public abstract class Database {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS electorate (\n"
                 + "	ssn text PRIMARY KEY UNIQUE,\n"
-                + " state text NOT NULL"
+                + " state text NOT NULL,"
                 + "	first_name text NOT NULL,\n"
                 + "	last_name text NOT NULL\n"
                 + ");";
