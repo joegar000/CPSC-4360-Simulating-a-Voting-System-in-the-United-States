@@ -103,9 +103,9 @@ public abstract class Database {
         String sql = "CREATE TABLE IF NOT EXISTS candidates (\n"
                 + "	first_name text NOT NULL,\n"
                 + "	last_name text NOT NULL,\n"
-                + " party text PRIMARY KEY NOT NULL,\n"
+                + " party text NOT NULL,\n"
                 + " position text NOT NULL,\n"
-                + " runningmate text NULL,\n"
+                + " runningmate text,\n"
                 + " votes text NOT NULL\n"
                 + ");";
         
@@ -325,8 +325,8 @@ public abstract class Database {
     }
 
     public static void registerCandidate(String first_name, String last_name, String party, String position, int vote) {
-        String sql = "INSERT INTO candidates(first_name,last_name,party,position,runningmate,votes) VALUES(?,?,?,?,?)";
-
+        String sql = "INSERT INTO candidates(first_name,last_name,party,position,runningmate,votes) VALUES(?,?,?,?,NULL,?)";
+        String runningMate = null;
         String votes = Integer.toString(vote);
     
         try (PreparedStatement pstmt = candidatesConn.prepareStatement(sql)) {
@@ -334,11 +334,10 @@ public abstract class Database {
             pstmt.setString(2, last_name);
             pstmt.setString(3, party);
             pstmt.setString(4, position);
-            pstmt.setString(5, null);
-            pstmt.setString(6, votes);
+            pstmt.setString(5, votes);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage() + "registercandidate");
+            System.out.println(e.getMessage() + "registercandidate1");
         }
     }
 
@@ -356,7 +355,7 @@ public abstract class Database {
             pstmt.setString(6, votes);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage() + "registercandidate");
+            System.out.println(e.getMessage() + "registercandidate2");
         }
     }
 
