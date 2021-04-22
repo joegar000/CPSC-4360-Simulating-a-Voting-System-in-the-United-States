@@ -2,39 +2,43 @@
     
 */
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class Press {
-    private boolean viewCompletion;
-    private String nameOfPress;
+    private String SSN, firstName, lastName;
+    public static String ePassword = "15";
 
     //Default constructor
     public Press() {
     }
 
     //Constructor with the arguements.
-    public Press(boolean viewCompletion, String nameOfPress) {
-        this.viewCompletion = viewCompletion;
-        this.nameOfPress = nameOfPress;
+    public Press(String SSN, String firstName, String lastName) {
+        this.SSN = SSN;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    //User either gets or sets the Press name.
-    public void setPressName(String newName) {
-        this.nameOfPress = newName;
+    //User either gets or sets the Elector SSN.
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
     }
-    public String getPressName() {
-        return nameOfPress;
+    public String getSSN() {
+        return SSN;
     }
-    //User either gets or sets the viewCompletion
-    public void setCompletion(boolean completion) {
-        this.viewCompletion = completion;
+
+    //User either gets or sets the Elector SSN.
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    public boolean getCompletion() {
-        return viewCompletion;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    //User either gets or sets the Elector SSN.
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getLastName() {
+        return lastName;
     }
     
 }

@@ -26,12 +26,16 @@ public class Main extends Application {
 		Database.setUpPollWorkers();
 		Database.setUpAdministrators();
 		Database.setUpCandidates();
+		Database.setUpElectorate();
+		Database.setUpPress();
+		Database.createNewElectorateTable();
 
 		Database.registerPollWorker("987654321", "David", "Garcia");
-		Database.registerCandidate("Donald", "Trump", "Republican", 1);
-		Database.registerCandidate("Joe", "Biden", "Democrat", 1);
-		Database.registerCandidate("Mary", "Jane", "Independent", 1);
+		Database.registerCandidate("Donald", "Trump", "Republican", "President", "Mike Pence", 1);
+		Database.registerCandidate("Joe", "Biden", "Democrat", "President", "Kamala Harris", 1);
+		Database.registerCandidate("Mary", "Jane", "Independent", "President", 1);
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
+		Database.registerElector("12","Texas","D","I");
 
 		Application.launch(args);
 	}
@@ -143,6 +147,20 @@ public class Main extends Application {
 
 			// Take user to new JavaFX screen with the administrator options
    			// The different buttons will be user.method() using setOnClickListeners
+   		}
+
+		else if (password.equals(Electorate.ePassword)) {
+
+			String[] info = Database.getElectorInformation(SSN);
+
+			if (info[2].equals(firstName) && info[3].equals(lastName)) {
+				Electorate elec = new Electorate(info[0], info[1], info[2], info[3]);
+				primaryStage.setScene(PressAndElectorateHandler.getScene(primaryStage));
+			}
+
+			else {
+			
+			}
    		}
 	}
 }

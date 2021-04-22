@@ -154,17 +154,31 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
         });
         //Layout
 
-        VBox layout5 = new VBox(20, goBack4, logoutBtn4);
-        Label fName, lName, party;
+        VBox layout5 = new VBox(20);
+        Label Name, party, position, runningMate;
 
         while(i.hasNext()) {
             String[] candidate = i.next();
-            fName = new Label("First Name: " + candidate[0]);
-            lName = new Label("Last Name: " + candidate[1]);
-            party = new Label("Party: " + candidate[2]);
-            layout5.getChildren().add(new HBox(20, fName, lName, party));
+            System.out.println(candidate[0]);
+            if (candidate.length == 5) {
+                Name = new Label("Name: " + candidate[0] + " " + candidate[1]);
+                party = new Label("Party: " + candidate[2]);
+                position = new Label("Position: " + candidate[3]);
+                HBox temp = new HBox(20, Name, party, position);
+                temp.setAlignment(Pos.CENTER);
+                layout5.getChildren().add(temp);
+            }
+            else {
+                Name = new Label("Name: " + candidate[0] + " " + candidate[1]);
+                party = new Label("Party: " + candidate[2]);
+                position = new Label("Position: " + candidate[3]);
+                runningMate = new Label("Running Mate: " + candidate[4]);
+                HBox temp = new HBox(20, Name, party, position, runningMate);
+                temp.setAlignment(Pos.CENTER);
+                layout5.getChildren().add(temp);
+            }
         }
-
+        layout5.getChildren().addAll(goBack4, logoutBtn4);
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 950, 700);

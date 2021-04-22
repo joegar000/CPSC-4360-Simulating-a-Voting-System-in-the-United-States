@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+
 import javax.lang.model.util.ElementScanner6;
 
 import javafx.scene.Scene;
@@ -43,9 +45,10 @@ class CandidateResultsDisplay extends VBox {
 
     /* to be called wherever this Display is used */
     public void showResults() {
-        int totalVotes = getNumAllCurrentVotes();
-        for (int i = 0; i < partys.length; i++) {
-            String[] tempCandidate = Database.getCandidate(partys[i]);
+        ArrayList<String[]> candidates = Database.getAllCandidates();
+        int totalVotes = getNumAllCurrentVotes(candidates);
+        for (int i = 0; i < candidates.size(); i++){
+            String[] tempCandidate = candidates.get(i);
             int votes = Integer.parseInt(tempCandidate[3]);
             double result;
             if (votes!=0)
@@ -59,10 +62,10 @@ class CandidateResultsDisplay extends VBox {
     }
 
     /* to get all of the current Votes */
-    public int getNumAllCurrentVotes(){
+    public int getNumAllCurrentVotes(ArrayList<String[]> candidates){
         int votes = 0;
-        for (int i = 0; i < partys.length; i++) {
-            String[] tempCandidate = Database.getCandidate(partys[i]);
+        for (int i = 0; i < candidates.size(); i++) {
+            String[] tempCandidate = candidates.get(i);
             int candidateVotes = Integer.parseInt(tempCandidate[3]);
             votes+=candidateVotes;
         }

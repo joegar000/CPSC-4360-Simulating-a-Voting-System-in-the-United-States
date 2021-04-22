@@ -1,26 +1,10 @@
 /*
 
 */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class Electorate {
-    private boolean viewCompletion;
-    private String nameOfUser;
-    enum State { // Not sure if this is the best way to do this, but does limit the input
-        Alabama, Alaska, Arizona, Arkansas, California, Colorado, 
-        Connecticut, Delaware, DistrictOfColumbia, Florida, Georgia, 
-        Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, 
-        Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, 
-        Missouri, Montana, Nebraska, Nevada, NewHampshire, NewJersey, NewMexico, 
-        NewYork, NorthCarolina, NorthDakota, Ohio, Oklahoma, Oregon, Pennsylvania, 
-        RhodeIsland, SouthCarolina, SouthDakota, Tennessee, Texas, Utah, 
-        Vermont, Virginia, Washington, WestVirginia, Wisconsin, Wyoming
-    };
-    private State userState;
+    private String SSN, state, firstName, lastName;
+    public static String ePassword = "13";
 
     //Default constructor
     public Electorate() {
@@ -28,34 +12,43 @@ public class Electorate {
     }
 
     //Constructor with the arguements.
-    public Electorate(boolean viewCompletion, String nameOfUser, State theState) {
-        this.viewCompletion = viewCompletion;
-        this.nameOfUser = nameOfUser;
-        this.userState = theState;
-        
+    public Electorate(String SSN, String state, String firstName, String lastName) {
+        this.SSN = SSN;
+        this.state = state;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    //User either gets or sets the Electorate name.
-    public void setUserName(String newName) {
-        this.nameOfUser = newName;
+    //User either gets or sets the Elector SSN.
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
     }
-    public String getUserName() {
-        return nameOfUser;
-    }
-
-    //User either gets or sets the viewCompletion
-    public void setCompletion(boolean completion) {
-        this.viewCompletion = completion;
-    }
-    public boolean getCompletion() {
-        return viewCompletion;
+    public String getSSN() {
+        return SSN;
     }
 
-    //User either gets or sets the State the user is from
-    public void setState(State theState) {
-        this.userState = theState;
+    //User either gets or sets the Elector SSN.
+    public void setState(String state) {
+        this.state = state;
     }
-    public State getState() {
-        return userState;
+    public String getState() {
+        return state;
     }
+
+    //User either gets or sets the Elector SSN.
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    //User either gets or sets the Elector SSN.
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    
 }
