@@ -30,8 +30,8 @@ public class Main extends Application {
 		Database.setUpPress();
 
 		Database.registerPollWorker("987654321", "David", "Garcia");
-		Database.registerCandidate("Donald", "Trump", "Republican", "President", "Mike Pence", 1);
-		Database.registerCandidate("Joe", "Biden", "Democrat", "President", "Kamala Harris", 1);
+		Database.registerCandidate("Donald", "Trump", "Republican", "President", 1, "Mike Pence");
+		Database.registerCandidate("Joe", "Biden", "Democrat", "President", 1, "Kamala Harris");
 		Database.registerCandidate("Mary", "Jane", "Independent", "President", 1);
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
 		Database.registerElector("12","Texas","D","I");
@@ -147,15 +147,23 @@ public class Main extends Application {
 
 			// Take user to new JavaFX screen with the administrator options
    			// The different buttons will be user.method() using setOnClickListeners
-   		}
-
-		else if (password.equals(Electorate.ePassword)) {
+   		} else if (password.equals(Electorate.ePassword)) {
 
 			String[] info = Database.getElectorInformation(SSN);
 
 			if (info[2].equals(firstName) && info[3].equals(lastName)) {
 				Electorate elec = new Electorate(info[0], info[1], info[2], info[3]);
-				primaryStage.setScene(PressAndElectorateHandler.getScene(primaryStage));
+				primaryStage.setScene(ElectorateHandler.getScene(primaryStage));
+			} else {
+				
+			}
+   		} else if (password.equals(Press.ePassword)) {
+
+			String[] info = Database.getPressInformation(SSN);
+
+			if (info[2].equals(firstName) && info[3].equals(lastName)) {
+				Press p = new Press(info[0], info[1], info[2]);
+				primaryStage.setScene(PressHandler.getScene(primaryStage));
 			}
 
 			else {
