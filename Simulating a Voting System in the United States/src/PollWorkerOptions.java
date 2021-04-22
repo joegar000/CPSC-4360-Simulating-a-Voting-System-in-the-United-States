@@ -15,9 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;public class PollWorkerOptions extends Application {
-
-    private static Scene scene;
-
     
     @Override
     public void start(Stage pollWorkerStage) throws Exception {
