@@ -326,7 +326,6 @@ public abstract class Database {
 
     public static void registerCandidate(String first_name, String last_name, String party, String position, int vote) {
         String sql = "INSERT INTO candidates(first_name,last_name,party,position,runningmate,votes) VALUES(?,?,?,?,NULL,?)";
-        String runningMate = null;
         String votes = Integer.toString(vote);
     
         try (PreparedStatement pstmt = candidatesConn.prepareStatement(sql)) {

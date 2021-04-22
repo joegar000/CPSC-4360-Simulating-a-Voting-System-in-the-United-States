@@ -75,7 +75,7 @@ public class Main extends Application {
 			String[] info = Database.getVoterInformation(SSN);
 			boolean voted;
 
-			if (info[5].equals("true") || info[5].equals("TRUE") || info[5].equals("false") || info[5].equals("FALSE")) voted = true;
+			if (info[5].equals("true") || info[5].equals("TRUE")) voted = true;
 			else voted = false;
 
 			//Voter user = //voter pulled from database with SSN acting as the key;
@@ -84,7 +84,7 @@ public class Main extends Application {
 
    			// Compare firstName and lastName with database objects, if there is
    			// a match sign the user in, if no match, give not registered error
-			if (info[1].equals(firstName) && info[2].equals(lastName)) {
+			if (info[1].equals(firstName) && info[2].equals(lastName) && !voted) {
 				voter = new Voter(info[0], info[1], info[2], info[3], info[4], voted);
 			}
 
