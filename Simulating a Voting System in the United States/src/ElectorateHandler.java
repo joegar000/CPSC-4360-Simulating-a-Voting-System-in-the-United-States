@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class PressAndElectorateHandler extends Application {  
+public class ElectorateHandler extends Application {  
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -17,6 +17,7 @@ public class PressAndElectorateHandler extends Application {
 
         CandidateResultsDisplay display = new CandidateResultsDisplay();
         display.enableLogOut(stage);
+        //display.enableAnnounce(stage);
         display.setAlignment(Pos.CENTER);
         display.setPadding(new Insets(10, 10, 10, 10));
         resultsScene = new Scene(display, 950, 700);
