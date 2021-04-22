@@ -246,14 +246,14 @@ public class AdministratorOptions extends Application {
         ValScene = new Scene(layout3, 950, 700);
 
         //DISPLAY VOTER DATABASE SCENE
-        //Labels
-        Label label4 = new Label("This is where the voter database scene will appear");
-        //Text Fields
+        ArrayList<String[]> voters = Database.getAllVoterInformation();
+        Iterator<String[]> i = voters.iterator();
+        //TextFields
         //Buttons & Button Actions
-        Button goBack3 = new Button("Go Back");
-        goBack3.setOnAction(e -> administratorStage.setScene(OptionsScene));
-        Button logoutBtn3 = new Button("Log out");
-        logoutBtn3.setOnMouseClicked(e -> {
+        Button voterDBgoBack = new Button("Go Back");
+        voterDBgoBack.setOnAction(e1 -> administratorStage.setScene(OptionsScene));
+        Button voterDBlogoutBtn = new Button("Log out");
+        voterDBlogoutBtn.setOnMouseClicked(e2 -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
             LoginWindow.firstName.clear();
             LoginWindow.lastName.clear();
@@ -261,14 +261,28 @@ public class AdministratorOptions extends Application {
             LoginWindow.password.clear();
         });
         //Layout
-        VBox layout4 = new VBox(20, label4, goBack3, logoutBtn3);
-        layout4.setAlignment(Pos.CENTER);
-        layout4.setPadding(new Insets(10, 10, 10, 10));
-        VoterDBScene = new Scene(layout4, 950, 700);
+
+        VBox voterDBLayout = new VBox(20, voterDBgoBack, voterDBlogoutBtn);
+        Label vfName, vlName, age, state;
+
+        while(i.hasNext()) {
+            String[] voter = i.next();
+            //vSSN = new Label("SSN: " + voter[0]); - did not know if this should be displayed as this should be private information.
+            vfName = new Label("First Name: " + voter[1]);
+            vlName = new Label("Last Name: " + voter[2]);
+            age = new Label("Age: " + voter[3]);
+            state = new Label("State: " + voter[4]);
+            voterDBLayout.getChildren().add(new HBox(20, vfName, vlName, age, state));
+            
+        }
+
+        voterDBLayout.setAlignment(Pos.CENTER);
+        voterDBLayout.setPadding(new Insets(10, 10, 10, 10));
+        VoterDBScene = new Scene(voterDBLayout, 950, 700);
 
         //DISPLAY CANDIDATE DATABASE SCENE
         ArrayList<String[]> candidates = Database.getAllCandidates();
-        Iterator<String[]> i = candidates.iterator();
+        Iterator<String[]> j = candidates.iterator();
         //TextFields
         //Buttons & Button Actions
         Button candidateDBgoBack = new Button("Go Back");
@@ -284,14 +298,15 @@ public class AdministratorOptions extends Application {
         //Layout
 
         VBox layout5 = new VBox(20, candidateDBgoBack, candidateDBlogoutBtn);
-        Label fName, lName, party;
+        Label cfName, clName, party;
 
-        while(i.hasNext()) {
-            String[] candidate = i.next();
-            fName = new Label("First Name: " + candidate[0]);
-            lName = new Label("Last Name: " + candidate[1]);
+        while(j.hasNext()) {
+            String[] candidate = j.next();
+            cfName = new Label("First Name: " + candidate[0]);
+            clName = new Label("Last Name: " + candidate[1]);
             party = new Label("Party: " + candidate[2]);
-            layout5.getChildren().add(new HBox(20, fName, lName, party));
+            layout5.getChildren().add(new HBox(20, cfName, clName, party));
+            
         }
 
         layout5.setAlignment(Pos.CENTER);

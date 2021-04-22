@@ -71,7 +71,7 @@ class CandidateResultsDisplay extends VBox {
 
     public class CandidateResult extends Label {
         public CandidateResult(String firstName, String lastName, String party, double result) {
-            this.setText(firstName + " " + lastName + " Part: " + party + " Resulting Percentage: " + result);
+            this.setText(firstName + " " + lastName + " Party: " + party + " Resulting Percentage: " + result);
         }
     }
 
