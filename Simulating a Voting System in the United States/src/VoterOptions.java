@@ -59,9 +59,9 @@ public class VoterOptions extends Application {
         radio3.setFont(new Font("Arial", 18));
         radio4.setFont(new Font("Arial", 18));
 
-        //Groups the radio buttons.
+        //Groups the radio buttons. */
         ToggleGroup CandidateList = new ToggleGroup();
-        radio1.setToggleGroup(CandidateList);
+        /*radio1.setToggleGroup(CandidateList);
         radio2.setToggleGroup(CandidateList);
         radio3.setToggleGroup(CandidateList);
         radio4.setToggleGroup(CandidateList);
@@ -86,6 +86,7 @@ public class VoterOptions extends Application {
         while(plus.hasNext()) {
             String[] Candidate = plus.next();
             RadioButton vBtn = new RadioButton();
+            vBtn.setToggleGroup(CandidateList);
             firstName = new Label(Candidate[0]);
             lastName = new Label(", " + Candidate[1]);
             partyName = new Label(": " + Candidate[2]);
