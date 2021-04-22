@@ -14,6 +14,8 @@ public abstract class Database {
     private static Connection pollWorkerConn = null;
     private static Connection administratorConn = null;
     private static Connection candidatesConn = null;
+    private static Connection electorateConn = null;
+    private static Connection pressConn = null;
 
     public static void setUpVoters() {
         voterConn = Database.connect("jdbc:sqlite:voters.db");
@@ -32,6 +34,16 @@ public abstract class Database {
 
     public static void setUpCandidates() {
         candidatesConn = Database.connect("jdbc:sqlite:candidates.db");
+        Database.createNewCandidatesTable();
+    }
+
+    public static void setUpElectorate() {
+        electorateConn = Database.connect("jdbc:sqlite:electorate.db");
+        Database.createNewCandidatesTable();
+    }
+
+    public static void setUpPress() {
+        pressConn = Database.connect("jdbc:sqlite:press.db");
         Database.createNewCandidatesTable();
     }
 
@@ -100,6 +112,39 @@ public abstract class Database {
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "candidate table");
+        }
+    }
+
+    public static void createNewElectorateTable() {
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS electorate (\n"
+                + "	ssn text PRIMARY KEY UNIQUE,\n"
+                + " state text NOT NULL"
+                + "	first_name text NOT NULL,\n"
+                + "	last_name text NOT NULL\n"
+                + ");";
+        
+        try (Statement stmt = electorateConn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "electorate table");
+        }
+    }
+
+    public static void createNewPressTable() {
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS press (\n"
+                + "	ssn text PRIMARY KEY UNIQUE,\n"
+                + "	first_name text NOT NULL,\n"
+                + "	last_name text NOT NULL\n"
+                + ");";
+        
+        try (Statement stmt = pressConn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "presstable");
         }
     }
 
@@ -339,7 +384,75 @@ public abstract class Database {
         return allCandidates;
     }
 
+    public static void registerElector(String ssn, String state, String first_name, String last_name) {
+        String sql = "INSERT INTO electorate(ssn,state,first_name,last_name) VALUES(?,?,?,?)";
 
+        try (PreparedStatement pstmt = electorateConn.prepareStatement(sql)) {
+            pstmt.setString(1, ssn);
+            pstmt.setString(2, state);
+            pstmt.setString(3, first_name);
+            pstmt.setString(4, last_name);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static String[] getElectorInformation(String ssn) {
+        String sql = "SELECT ssn, state, first_name, last_name FROM electorate WHERE ssn LIKE ?";
+        String[] info = new String[4];
+            try (PreparedStatement stmt = electorateConn.prepareStatement(sql)) {
+                stmt.setString(1,ssn);
+                ResultSet rs = stmt.executeQuery();
+                
+            while (rs.next()) {
+                    info[0] = rs.getString("ssn");
+                    info[1] = rs.getString("state");
+                    info[2] = rs.getString("first_name");
+                    info[3] = rs.getString("last_name");
+            }
+    
+        }
+        catch(SQLException e) {
+            System.out.println(e.getMessage() + "getelector");
+        }
+    
+        return info;
+    }
+
+    public static void registerPress(String ssn, String first_name, String last_name) {
+        String sql = "INSERT INTO press(ssn,first_name,last_name) VALUES(?,?,?,?)";
+
+        try (PreparedStatement pstmt = pressConn.prepareStatement(sql)) {
+            pstmt.setString(1, ssn);
+            pstmt.setString(2, first_name);
+            pstmt.setString(3, last_name);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "press register");
+        }
+    }
+
+    public static String[] getPressInformation(String ssn) {
+        String sql = "SELECT ssn, first_name, last_name FROM press WHERE ssn LIKE ?";
+        String[] info = new String[3];
+            try (PreparedStatement stmt = pressConn.prepareStatement(sql)) {
+                stmt.setString(1,ssn);
+                ResultSet rs = stmt.executeQuery();
+                
+            while (rs.next()) {
+                    info[0] = rs.getString("ssn");
+                    info[1] = rs.getString("first_name");
+                    info[2] = rs.getString("last_name");
+            }
+    
+        }
+        catch(SQLException e) {
+            System.out.println(e.getMessage() + "getpress");
+        }
+    
+        return info;
+    }
 
 
 
