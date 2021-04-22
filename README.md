@@ -1,6 +1,8 @@
 # CPSC-4360-Simulating-a-Voting-System-in-the-United-States
 Lamar University Software Engineering Project
+
 Written in VSCode
+
 Authors: Alejandro Figueroa, Daniel Iles, Kaden Carter, David Garcia
 
 
