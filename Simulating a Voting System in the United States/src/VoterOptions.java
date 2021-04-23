@@ -59,8 +59,7 @@ public class VoterOptions extends Application {
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
 
-        /*Unsure as to how to create more radio buttons everytime a new candidate is made. 
-        Without two or more sharing the same variables.*/
+        //Will loop to display each party for a stright ticket approach.
         while(plus.hasNext()) {
             String[] candidate = plus.next();
             
@@ -127,9 +126,10 @@ public class VoterOptions extends Application {
             LoginWindow.password.clear();
         });
 
-        //Vote scene
+        //Vote scene.
         voteScene = new Scene(layout1, 950, 700);
 
+        //Returns vote scene.
         return voteScene;
     } 
 }
