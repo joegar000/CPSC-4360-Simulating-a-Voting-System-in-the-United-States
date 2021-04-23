@@ -280,9 +280,9 @@ public class AdministratorOptions extends Application {
         Button validateBtn = new Button("Validate Vote");
         validateBtn.setOnAction(e -> {
 
-        });
+        });//does nothing right now
         Button goBack2 = new Button("Go Back");
-        goBack2.setOnAction(e -> administratorStage.setScene(OptionsScene));  //does nothing right now
+        goBack2.setOnAction(e -> administratorStage.setScene(OptionsScene));  
         Button logoutBtn2 = new Button("Log out");
         logoutBtn2.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));

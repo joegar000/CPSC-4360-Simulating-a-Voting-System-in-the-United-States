@@ -33,7 +33,6 @@ public class Main extends Application {
 		Database.registerCandidate("Donald", "Trump", "Republican", "President", 0, "Mike Pence");
 		Database.registerCandidate("Joe", "Biden", "Democrat", "President", 0, "Kamala Harris");
 		Database.registerCandidate("Mary", "Jane", "Independent", "President", 0);
-		Database.registerCandidate("John", "Wick", "Bull Moose", "Senate", 0);
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
 		Database.registerElector("12","Texas","D","I");
 		Database.registerVoter("12","D","I","21","Texas",false);
