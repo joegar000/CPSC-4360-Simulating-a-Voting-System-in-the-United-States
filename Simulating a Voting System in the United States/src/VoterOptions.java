@@ -21,8 +21,8 @@ public class VoterOptions extends Application {
     
     Issues:
     How to make Voter and VoterOptions work together.
-    Fetching the candidate list. Then, fitting it in.
-    Recording each vote, exiting/going back to the start for a new user.
+    Fetching the candidate list that will include senate and house.
+    Recording each vote.
     */
 
     @Override
@@ -46,86 +46,69 @@ public class VoterOptions extends Application {
         Button button2 = new Button("Return to login screen");
         button2.setFont(new Font("Arial", 18));
 
-        /*
-        //Displays the candidates. Note: how to pull from database.
-        RadioButton radio1 = new RadioButton();
-        RadioButton radio2 = new RadioButton();
-        RadioButton radio3 = new RadioButton();
-        RadioButton radio4 = new RadioButton("Candidate Information, Political Party");
-
-        //Changes the font and size.
-        radio1.setFont(new Font("Arial", 18));
-        radio2.setFont(new Font("Arial", 18));
-        radio3.setFont(new Font("Arial", 18));
-        radio4.setFont(new Font("Arial", 18));
-
-        //Groups the radio buttons. */
+        //Creates a toggle group for the radio button.
         ToggleGroup CandidateList = new ToggleGroup();
-        /*radio1.setToggleGroup(CandidateList);
-        radio2.setToggleGroup(CandidateList);
-        radio3.setToggleGroup(CandidateList);
-        radio4.setToggleGroup(CandidateList);
 
-        //When first brought up, the cast ballot is disabled. Click on a person to enable it.
-        button.setDisable(true);
-        radio1.setOnAction(e -> button.setDisable(false));
-        radio2.setOnAction(e -> button.setDisable(false));
-        radio3.setOnAction(e -> button.setDisable(false));
-        radio4.setOnAction(e -> button.setDisable(false));
-        */
+        //Disables cast button on login.
+        buttonCast.setDisable(true);
 
         //Create a somewhat nice layout.
         VBox layout1 = new VBox(15, firstLabel /*radio1, radio2, radio3, radio4,*//*, buttonCast*/);
         layout1.setAlignment(Pos.CENTER);
 
+        //Fetches the database information and creates an arraylist to later display.
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
 
-        /*Unsure as to how to create more radio buttons everytime a new candidate is made. 
-        Without two or more sharing the same variables.*/
-        /*
-        while(plus.hasNext()) {
-            String[] Candidate = plus.next();
-            RadioButton vBtn = new RadioButton();
-            vBtn.setToggleGroup(CandidateList);
-            firstName = new Label(Candidate[0]);
-            lastName = new Label(", " + Candidate[1]);
-            partyName = new Label(": " + Candidate[2]);
-            
-            layout1.getChildren().add(new HBox(vBtn, firstName, lastName, partyName));
-        }*/
-        
+        //Will loop to display each party for a stright ticket approach.
         while(plus.hasNext()) {
             String[] candidate = plus.next();
             
+            //Checks to see if the person is running for President or Congress.
             if (candidate.length == 5) {
+
+                //Creates the radio button to vote and assigns it to the toggle group.
                 RadioButton pickButton = new RadioButton();
                 pickButton.setToggleGroup(CandidateList);
+
+                //Enables cast button once selected.
+                pickButton.setOnAction(e -> buttonCast.setDisable(false));
             
+                //Displays the candidates information.
                 fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label("Position: " + candidate[3]);
 
+                //Creates HBox and centers information.
                 HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle);
                 temp.setAlignment(Pos.CENTER);
                 layout1.getChildren().add(temp);
             } else {
+
+                //Creates the radio button to vote and assigns it to the toggle group.
                 RadioButton pickButton = new RadioButton();
                 pickButton.setToggleGroup(CandidateList);
 
+                //Enables cast button once selected.
+                pickButton.setOnAction(e -> buttonCast.setDisable(false));
+
+                //Displays the candidates information.
                 fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label("Position: " + candidate[3]);
                 runningMate = new Label("Running Mate: " + candidate[5]);
                 
+                //Creates HBox and centers information.
                 HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle, runningMate);
                 temp.setAlignment(Pos.CENTER);
                 layout1.getChildren().add(temp);
             }
         }
 
-        layout1.getChildren().add(new VBox(buttonCast));
-        layout1.setAlignment(Pos.CENTER);
+        //Centers the cast button.
+        VBox castBox = new VBox(buttonCast);
+        castBox.setAlignment(Pos.CENTER);
+        layout1.getChildren().add(castBox);
 
         //Displays a screen to thank the user.
         VBox layout2 = new VBox(15, ResponseLabel, button2);
@@ -144,9 +127,10 @@ public class VoterOptions extends Application {
             LoginWindow.password.clear();
         });
 
-        //Vote scene
+        //Vote scene.
         voteScene = new Scene(layout1, 950, 700);
 
+        //Returns vote scene.
         return voteScene;
     } 
 }
