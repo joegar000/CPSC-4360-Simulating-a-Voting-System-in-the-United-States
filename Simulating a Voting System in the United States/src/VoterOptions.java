@@ -38,7 +38,7 @@ public class VoterOptions extends Application {
         firstLabel.setFont(new Font("Arial", 18));
         Label ResponseLabel = new Label("You have casted your ballot!");
         ResponseLabel.setFont(new Font("Arial", 18));
-        Label firstName, lastName, partyName;
+        Label fullName, positionTitle, partyName, runningMate;
 
         //Informs the voter that their ballot has been casted when clicked As well as a button to return to login.
         Button buttonCast = new Button("Cast Ballot");
@@ -83,6 +83,7 @@ public class VoterOptions extends Application {
 
         /*Unsure as to how to create more radio buttons everytime a new candidate is made. 
         Without two or more sharing the same variables.*/
+        /*
         while(plus.hasNext()) {
             String[] Candidate = plus.next();
             RadioButton vBtn = new RadioButton();
@@ -92,6 +93,19 @@ public class VoterOptions extends Application {
             partyName = new Label(": " + Candidate[2]);
             
             layout1.getChildren().add(new HBox(vBtn, firstName, lastName, partyName));
+        }*/
+        
+        while(plus.hasNext()) {
+            String[] candidate = plus.next();
+            
+            fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
+            partyName = new Label("Party: " + candidate[2]);
+            positionTitle = new Label("Position: " + candidate[3]);
+            RadioButton pickButton = new RadioButton();
+            pickButton.setToggleGroup(CandidateList);
+            HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle);
+            temp.setAlignment(Pos.CENTER);
+            layout1.getChildren().add(temp);
         }
 
         layout1.getChildren().add(new VBox(buttonCast));
