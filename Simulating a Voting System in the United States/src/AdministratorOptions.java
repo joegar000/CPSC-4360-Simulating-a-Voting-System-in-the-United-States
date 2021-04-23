@@ -36,7 +36,8 @@ public class AdministratorOptions extends Application {
 
     public static Scene getScene(Stage administratorStage) {
         //Scenes initialized
-        Scene OptionsScene, voterRegScene, adminRegScene, pollworkerRegScene, candidateRegScene, ValScene, VoterDBScene, CandidateDBScene, CandidateDRScene;
+        Scene OptionsScene, voterRegScene, adminRegScene, pollworkerRegScene, candidateRegScene, elecRegScene, 
+        ValScene, VoterDBScene, CandidateDBScene, CandidateDRScene;
 
         //OPTIONS SCENE
         //Labels
@@ -51,6 +52,7 @@ public class AdministratorOptions extends Application {
         Button btn5 = new Button("Administrator Registration");
         Button btn6 = new Button("Pollworker Registration");
         Button btn7 = new Button("Candidate Registration");
+        Button btn9 = new Button("Electorate Registration");
         Button btn8 = new Button("Candidate Results");
         Button logoutBtn = new Button("Log out");
         logoutBtn.setOnMouseClicked(e -> {
@@ -62,7 +64,7 @@ public class AdministratorOptions extends Application {
         });
 
         //Layout
-        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn2, btn3, btn4, btn8, logoutBtn);
+        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn9, btn2, btn3, btn4, btn8, logoutBtn);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 950, 700);
@@ -206,6 +208,7 @@ public class AdministratorOptions extends Application {
             candidateFNTextField.clear();
             candidateLNTextField.clear();
             candidatePartyTextField.clear();
+            candidatePosTextField.clear();
         });
         Button candidateGoBack = new Button("Go Back");
         candidateGoBack.setOnAction(e -> administratorStage.setScene(OptionsScene));
@@ -225,12 +228,55 @@ public class AdministratorOptions extends Application {
         candidateLayout.setPadding(new Insets(10, 10, 10, 10));
         candidateRegScene = new Scene(candidateLayout, 950, 700);
 
+        //ELECTORATE REGISTRATION
+        //Labels
+        Label electorateSceneTitle = new Label("Electorate Registration");
+        electorateSceneTitle.setFont(new Font("Arial", 25));
+        Label electorateFNameLabel = new Label("Enter First Name");
+        Label electorateLNameLabel = new Label("Enter last Name");
+        Label electorateStateLabel = new Label("Enter State");
+        Label electorateSSNLabel = new Label("Enter SSN");
+        //Text Fields
+        TextField electorateFNTextField = new TextField();
+        TextField electorateLNTextField = new TextField();
+        TextField electorateStateTextField = new TextField();
+        TextField electorateSSNTextField = new TextField();
+        //Buttons & Button Actions
+        Button regElectorate = new Button("Register");
+        regElectorate.setOnAction(e ->{
+            Database.registerElector(electorateSSNTextField.getText(), electorateStateTextField.getText(), 
+            electorateFNTextField.getText(), electorateLNTextField.getText());
+            electorateFNTextField.clear();
+            electorateLNTextField.clear();
+            electorateStateTextField.clear();
+            electorateSSNTextField.clear();
+        });
+        Button electorateGoBack = new Button("Go Back");
+        electorateGoBack.setOnAction(e -> administratorStage.setScene(OptionsScene));
+        Button electorateLogoutBtn = new Button("Log out");
+        electorateLogoutBtn.setOnMouseClicked(e -> {
+            administratorStage.setScene(LoginWindow.getScene(administratorStage));
+            LoginWindow.firstName.clear();
+            LoginWindow.lastName.clear();
+            LoginWindow.SSN.clear();
+            LoginWindow.password.clear();
+        });
+        //Layout
+        VBox electorateLayout = new VBox(20, electorateSceneTitle, electorateFNameLabel, electorateFNTextField, electorateLNameLabel, electorateLNTextField, 
+        electorateStateLabel, electorateStateTextField, electorateSSNLabel, electorateSSNTextField, regElectorate, electorateGoBack, electorateLogoutBtn);
+        electorateLayout.setAlignment(Pos.CENTER);
+        electorateLayout.setPadding(new Insets(10, 10, 10, 10));
+        elecRegScene = new Scene(electorateLayout, 950, 700);
+
         //VALIDATIONS SCENE
         //Labels
         Label label3 = new Label("This is where the validate votes scene will appear");
         //Text Fields
         //Buttons & Button Actions
         Button validateBtn = new Button("Validate Vote");
+        validateBtn.setOnAction(e -> {
+            
+        });
         Button goBack2 = new Button("Go Back");
         goBack2.setOnAction(e -> administratorStage.setScene(OptionsScene));  //does nothing right now
         Button logoutBtn2 = new Button("Log out");
@@ -332,6 +378,7 @@ public class AdministratorOptions extends Application {
         btn5.setOnAction(e -> administratorStage.setScene(adminRegScene));
         btn6.setOnAction(e -> administratorStage.setScene(pollworkerRegScene));
         btn7.setOnAction(e -> administratorStage.setScene(candidateRegScene));
+        btn9.setOnAction(e -> administratorStage.setScene(elecRegScene));
         btn2.setOnAction(e -> administratorStage.setScene(ValScene));
         btn3.setOnAction(e -> administratorStage.setScene(VoterDBScene));
         btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene)); 
