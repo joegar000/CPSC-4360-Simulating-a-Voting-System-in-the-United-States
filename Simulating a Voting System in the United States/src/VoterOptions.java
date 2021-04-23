@@ -97,17 +97,31 @@ public class VoterOptions extends Application {
         
         while(plus.hasNext()) {
             String[] candidate = plus.next();
+            
+            if (candidate.length == 5) {
+                RadioButton pickButton = new RadioButton();
+                pickButton.setToggleGroup(CandidateList);
+            
+                fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
+                partyName = new Label("Party: " + candidate[2]);
+                positionTitle = new Label("Position: " + candidate[3]);
 
-            RadioButton pickButton = new RadioButton();
-            pickButton.setToggleGroup(CandidateList);
-            
-            fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
-            partyName = new Label("Party: " + candidate[2]);
-            positionTitle = new Label("Position: " + candidate[3]);
-            
-            HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle);
-            temp.setAlignment(Pos.CENTER);
-            layout1.getChildren().add(temp);
+                HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle);
+                temp.setAlignment(Pos.CENTER);
+                layout1.getChildren().add(temp);
+            } else {
+                RadioButton pickButton = new RadioButton();
+                pickButton.setToggleGroup(CandidateList);
+
+                fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
+                partyName = new Label("Party: " + candidate[2]);
+                positionTitle = new Label("Position: " + candidate[3]);
+                runningMate = new Label("Running Mate: " + candidate[5]);
+                
+                HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle, runningMate);
+                temp.setAlignment(Pos.CENTER);
+                layout1.getChildren().add(temp);
+            }
         }
 
         layout1.getChildren().add(new VBox(buttonCast));
