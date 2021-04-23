@@ -411,6 +411,7 @@ public abstract class Database {
                     info[3] = rs.getString("position");
                     info[4] = rs.getString("votes");
                     allCandidates.add(info);
+                    break;
                 }
                 else {
                     String[] info = new String[6];
