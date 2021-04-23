@@ -192,15 +192,17 @@ public class AdministratorOptions extends Application {
         Label candidateFNameLabel = new Label("Enter First Name");
         Label candidateLNameLabel = new Label("Enter last Name");
         Label candidatePartyLabel = new Label("Enter Party");
+        Label candidatePosLabel = new Label("Enter Position");
         //Text Fields
         TextField candidateFNTextField = new TextField();
         TextField candidateLNTextField = new TextField();
         TextField candidatePartyTextField = new TextField();
+        TextField candidatePosTextField = new TextField();
         //Buttons & Button Actions
         Button regCandidate = new Button("Register");
         regCandidate.setOnAction(e ->{
             Database.registerCandidate(candidateFNTextField.getText(), candidateLNTextField.getText(), 
-            candidatePartyTextField.getText(), 0);
+            candidatePartyTextField.getText(), candidatePosTextField.getText(), 0);
             candidateFNTextField.clear();
             candidateLNTextField.clear();
             candidatePartyTextField.clear();
@@ -218,7 +220,7 @@ public class AdministratorOptions extends Application {
         //Layout
         VBox candidateLayout = new VBox(20, candidateSceneTitle, candidateFNameLabel, candidateFNTextField, 
         candidateLNameLabel, candidateLNTextField, candidatePartyLabel, candidatePartyTextField, 
-        regCandidate, candidateGoBack, candidateLogoutBtn);
+        candidatePosLabel, candidatePosTextField, regCandidate, candidateGoBack, candidateLogoutBtn);
         candidateLayout.setAlignment(Pos.CENTER);
         candidateLayout.setPadding(new Insets(10, 10, 10, 10));
         candidateRegScene = new Scene(candidateLayout, 950, 700);
