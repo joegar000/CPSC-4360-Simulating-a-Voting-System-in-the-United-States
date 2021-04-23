@@ -80,6 +80,7 @@ public class VoterOptions extends Application {
 
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
+        int arrayCanSize = 0;
 
         /*Unsure as to how to create more radio buttons everytime a new candidate is made. 
         Without two or more sharing the same variables.*/
@@ -108,6 +109,9 @@ public class VoterOptions extends Application {
             HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle);
             temp.setAlignment(Pos.CENTER);
             layout1.getChildren().add(temp);
+            
+            break;
+            
         }
 
         layout1.getChildren().add(new VBox(buttonCast));
