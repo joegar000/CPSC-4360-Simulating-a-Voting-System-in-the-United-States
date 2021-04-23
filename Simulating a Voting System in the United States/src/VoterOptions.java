@@ -21,8 +21,8 @@ public class VoterOptions extends Application {
     
     Issues:
     How to make Voter and VoterOptions work together.
-    Fetching the candidate list. Then, fitting it in.
-    Recording each vote, exiting/going back to the start for a new user.
+    Fetching the candidate list that will include senate and house.
+    Recording each vote.
     */
 
     @Override
@@ -56,6 +56,7 @@ public class VoterOptions extends Application {
         VBox layout1 = new VBox(15, firstLabel /*radio1, radio2, radio3, radio4,*//*, buttonCast*/);
         layout1.setAlignment(Pos.CENTER);
 
+        //Fetches the database information and creates an arraylist to later display.
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
 
