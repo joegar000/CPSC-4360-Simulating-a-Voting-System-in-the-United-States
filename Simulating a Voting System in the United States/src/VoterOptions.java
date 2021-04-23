@@ -1,5 +1,13 @@
-/* This class will contain the method for setting the JavaFX scene to the voter options
-   I (David) have tested setting JavaFX scenes this way and it works */
+/* 
+Alejandro Figueroa, 4/2/2021
+
+Comments, edits, questions, suggestions, or concerns are welcomed!
+
+Todo list/Issues:
+How to make Voter and VoterOptions work together.
+    Fetching the candidate list that will include senate and house.
+    Recording each vote.
+*/
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,14 +25,6 @@ import javafx.scene.text.Font;
 
 public class VoterOptions extends Application {
 
-    /*This is a vauge idea of how I thought of doing it.
-    
-    Issues:
-    How to make Voter and VoterOptions work together.
-    Fetching the candidate list that will include senate and house.
-    Recording each vote.
-    */
-
     @Override
     public void start(Stage voterStage) throws Exception {
         //Ignore this
@@ -33,7 +33,7 @@ public class VoterOptions extends Application {
     public static Scene getScene(Stage voterStage) {
         Scene voteScene, thankYouScene;
 
-        //Displays instructions to the voter. Also, changes text font and size.
+        //Displays instructions to the voter. Also, changes text font and size. Create labels for candidates.
         Label firstLabel = new Label("Please select the person you support.");
         firstLabel.setFont(new Font("Arial", 18));
         Label ResponseLabel = new Label("You have casted your ballot!");
