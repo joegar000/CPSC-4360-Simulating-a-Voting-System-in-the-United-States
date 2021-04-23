@@ -8,24 +8,20 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class LoginWindow extends Application {
 	
+    //Create variable text fields for the login window.
     public static TextField firstName = new TextField();
     public static TextField lastName = new TextField();
     public static TextField SSN = new TextField();
     public static TextField password = new TextField();
-
 
     @Override
     public void start(Stage arg0) throws Exception {
@@ -44,10 +40,11 @@ public class LoginWindow extends Application {
         VBox layout1 = new VBox(15, firstLabel);
         layout1.setAlignment(Pos.CENTER);
         
-        //Basic login button
+        //Creates a login button with set font and size.
         Button loginButton = new Button("Login");
         loginButton.setFont(new Font("Arial", 18));
 
+        //Creates the display that the user will see and enter their information on.
         layout1.setPadding(new Insets(10, 10, 10, 10));
         layout1.getChildren().addAll(
                 new Label("Please enter your first name"),
@@ -59,28 +56,35 @@ public class LoginWindow extends Application {
                 new Label("Please enter your password"),
                 password,
                 loginButton);
-
-        loginScene = new Scene(layout1, 950, 700);
+                
+                //Creates lgin scene size.
+                loginScene = new Scene(layout1, 950, 700);
         
+        //On mouse click, it will either let the user enter the system or not.
         loginButton.setOnMouseClicked(e -> {
         	Main.checkPassword(getPassword(), getFirstName(), getLastName(), getSSN(), stage);
         });
 
+        //Returns the login scene.
         return loginScene;
     }
     
+    //Gets the first name to see if it is within the database.
     public static String getFirstName() {
     	return firstName.getText();
     }
     
+    //Gets the last name to see if it is within the database.
     public static String getLastName() {
     	return lastName.getText();
     }
     
+    //Gets the SSN to see if it is within the database.
     public static String getSSN() {
     	return SSN.getText();
     }
     
+    //Gets the password to see if it matches.
     public static String getPassword() {
     	return password.getText();
     }
