@@ -195,20 +195,23 @@ public class AdministratorOptions extends Application {
         Label candidateLNameLabel = new Label("Enter last Name");
         Label candidatePartyLabel = new Label("Enter Party");
         Label candidatePosLabel = new Label("Enter Position");
+        Label candidateRMLabel  = new Label("Enter Running Mate ");
         //Text Fields
         TextField candidateFNTextField = new TextField();
         TextField candidateLNTextField = new TextField();
         TextField candidatePartyTextField = new TextField();
         TextField candidatePosTextField = new TextField();
+        TextField candidateRMTextField = new TextField();
         //Buttons & Button Actions
         Button regCandidate = new Button("Register");
         regCandidate.setOnAction(e ->{
             Database.registerCandidate(candidateFNTextField.getText(), candidateLNTextField.getText(), 
-            candidatePartyTextField.getText(), candidatePosTextField.getText(), 0);
+            candidatePartyTextField.getText(), candidatePosTextField.getText(), 0, candidateRMTextField.getText());
             candidateFNTextField.clear();
             candidateLNTextField.clear();
             candidatePartyTextField.clear();
             candidatePosTextField.clear();
+            candidateRMTextField.clear();
         });
         Button candidateGoBack = new Button("Go Back");
         candidateGoBack.setOnAction(e -> administratorStage.setScene(OptionsScene));
@@ -223,7 +226,8 @@ public class AdministratorOptions extends Application {
         //Layout
         VBox candidateLayout = new VBox(20, candidateSceneTitle, candidateFNameLabel, candidateFNTextField, 
         candidateLNameLabel, candidateLNTextField, candidatePartyLabel, candidatePartyTextField, 
-        candidatePosLabel, candidatePosTextField, regCandidate, candidateGoBack, candidateLogoutBtn);
+        candidatePosLabel, candidatePosTextField, candidateRMLabel, candidateRMTextField, regCandidate, 
+        candidateGoBack, candidateLogoutBtn);
         candidateLayout.setAlignment(Pos.CENTER);
         candidateLayout.setPadding(new Insets(10, 10, 10, 10));
         candidateRegScene = new Scene(candidateLayout, 950, 700);
@@ -275,7 +279,7 @@ public class AdministratorOptions extends Application {
         //Buttons & Button Actions
         Button validateBtn = new Button("Validate Vote");
         validateBtn.setOnAction(e -> {
-            
+
         });
         Button goBack2 = new Button("Go Back");
         goBack2.setOnAction(e -> administratorStage.setScene(OptionsScene));  //does nothing right now
@@ -310,7 +314,7 @@ public class AdministratorOptions extends Application {
         });
         //Layout
 
-        VBox voterDBLayout = new VBox(20, voterDBgoBack, voterDBlogoutBtn);
+        VBox voterDBLayout = new VBox(20);
         Label vfName, vlName, age, state;
 
         while(i.hasNext()) {
@@ -320,10 +324,14 @@ public class AdministratorOptions extends Application {
             vlName = new Label("Last Name: " + voter[2]);
             age = new Label("Age: " + voter[3]);
             state = new Label("State: " + voter[4]);
-            voterDBLayout.getChildren().add(new HBox(20, vfName, vlName, age, state));
+
+            HBox vTemp = new HBox(20, vfName, vlName, age, state);
+            vTemp.setAlignment(Pos.CENTER);
+            voterDBLayout.getChildren().add(vTemp);
             
         }
 
+        voterDBLayout.getChildren().addAll(voterDBgoBack, voterDBlogoutBtn);
         voterDBLayout.setAlignment(Pos.CENTER);
         voterDBLayout.setPadding(new Insets(10, 10, 10, 10));
         VoterDBScene = new Scene(voterDBLayout, 950, 700);
@@ -346,14 +354,30 @@ public class AdministratorOptions extends Application {
         //Layout
 
         VBox layout5 = new VBox(20, candidateDBgoBack, candidateDBlogoutBtn);
-        Label cfName, clName, party;
+        Label cfName, clName, party, position, rMate;
 
         while(j.hasNext()) {
             String[] candidate = j.next();
-            cfName = new Label("First Name: " + candidate[0]);
-            clName = new Label("Last Name: " + candidate[1]);
-            party = new Label("Party: " + candidate[2]);
-            layout5.getChildren().add(new HBox(20, cfName, clName, party));
+            if(candidate.length == 5){
+                cfName = new Label("First Name: " + candidate[0]);
+                clName = new Label("Last Name: " + candidate[1]);
+                party = new Label("Party: " + candidate[2]);
+                position = new Label ("Position: " + candidate[3]);
+                layout5.getChildren().add(new HBox(20, cfName, clName, 
+                party, position)); 
+            }
+
+            else{
+                cfName = new Label("First Name: " + candidate[0]);
+                clName = new Label("Last Name: " + candidate[1]);
+                party = new Label("Party: " + candidate[2]);
+                position = new Label ("Position: " + candidate[3]);
+                rMate = new Label ("Running Mate: " + candidate[5]);
+                layout5.getChildren().add(new HBox(20, cfName, clName, 
+                party, position, rMate)); 
+
+            }
+            
             
         }
 

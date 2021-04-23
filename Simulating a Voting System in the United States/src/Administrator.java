@@ -68,7 +68,7 @@ public class Administrator {
     }
 
     //log in and log out methods
-    public void logIn(String adminFirstName, String adminLastName, String adminPassword) {
+   /* public void logIn(String adminFirstName, String adminLastName, String adminPassword) {
         if (this.adminPassword.equals(adminPassword)) {
             this.adminLoggedIn = true;
         }
@@ -79,30 +79,10 @@ public class Administrator {
 
     public void logOut() {
         this.adminLoggedIn = false;
-    }
+    }*/
 
     public void registerVoter(String VoterSSN, String VoterFirstName, String VoterLastName, String VoterAge, String VoterState, boolean hasVoted) {
         Database.registerVoter(VoterSSN, VoterFirstName, VoterLastName, VoterAge, VoterState, hasVoted);
-    }
-
-    /*
-    These will be the methods for validating votes, displaying voter database, and displaying candidate database.
-    public ... ValidateVotes(){
-        ...
-    }
-
-    public ... DisplayVoterDB(){
-        ...
-    }
-
-    public ... DisplayCandidateDB(){
-        ...
-    }
-    */
-    
-    //prints success
-    public void printSuccess() {
-        System.out.println("it worked");
     }
     
 }
