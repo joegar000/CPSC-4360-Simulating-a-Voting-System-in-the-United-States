@@ -97,12 +97,14 @@ public class VoterOptions extends Application {
         
         while(plus.hasNext()) {
             String[] candidate = plus.next();
+
+            RadioButton pickButton = new RadioButton();
+            pickButton.setToggleGroup(CandidateList);
             
             fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
             partyName = new Label("Party: " + candidate[2]);
             positionTitle = new Label("Position: " + candidate[3]);
-            RadioButton pickButton = new RadioButton();
-            pickButton.setToggleGroup(CandidateList);
+            
             HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle);
             temp.setAlignment(Pos.CENTER);
             layout1.getChildren().add(temp);
