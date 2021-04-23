@@ -195,7 +195,7 @@ public class AdministratorOptions extends Application {
         Label candidateLNameLabel = new Label("Enter last Name");
         Label candidatePartyLabel = new Label("Enter Party");
         Label candidatePosLabel = new Label("Enter Position");
-        Label candidateRMLabel  = new Label("Enter Running Mate ");
+        Label candidateRMLabel  = new Label("Enter Running Mate");
         //Text Fields
         TextField candidateFNTextField = new TextField();
         TextField candidateLNTextField = new TextField();
@@ -353,7 +353,7 @@ public class AdministratorOptions extends Application {
         });
         //Layout
 
-        VBox layout5 = new VBox(20, candidateDBgoBack, candidateDBlogoutBtn);
+        VBox layout5 = new VBox(20);
         Label cfName, clName, party, position, rMate;
 
         while(j.hasNext()) {
@@ -365,6 +365,10 @@ public class AdministratorOptions extends Application {
                 position = new Label ("Position: " + candidate[3]);
                 layout5.getChildren().add(new HBox(20, cfName, clName, 
                 party, position)); 
+                
+                HBox cTemp = new HBox(20, cfName, clName, party, position);
+                cTemp.setAlignment(Pos.CENTER);
+                layout5.getChildren().add(cTemp);
             }
 
             else{
@@ -376,11 +380,16 @@ public class AdministratorOptions extends Application {
                 layout5.getChildren().add(new HBox(20, cfName, clName, 
                 party, position, rMate)); 
 
+                HBox cTemp = new HBox(20, cfName, clName, party, position, rMate);
+                cTemp.setAlignment(Pos.CENTER);
+                layout5.getChildren().add(cTemp);
+
             }
             
             
         }
 
+        layout5.getChildren().addAll(candidateDBgoBack, candidateDBlogoutBtn);
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 950, 700);
