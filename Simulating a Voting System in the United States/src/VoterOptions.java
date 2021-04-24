@@ -43,8 +43,8 @@ public class VoterOptions extends Application {
         //Informs the voter that their ballot has been casted when clicked As well as a button to return to login.
         Button buttonCast = new Button("Cast Ballot");
         buttonCast.setFont(new Font("Arial", 18));
-        Button button2 = new Button("Return to login screen");
-        button2.setFont(new Font("Arial", 18));
+        Button Logout = new Button("Return to login screen");
+        Logout.setFont(new Font("Arial", 18));
 
         //Creates a toggle group for the radio button.
         ToggleGroup CandidateList = new ToggleGroup();
@@ -53,7 +53,7 @@ public class VoterOptions extends Application {
         buttonCast.setDisable(true);
 
         //Create a somewhat nice layout.
-        VBox layout1 = new VBox(15, firstLabel /*radio1, radio2, radio3, radio4,*//*, buttonCast*/);
+        VBox layout1 = new VBox(15, firstLabel);
         layout1.setAlignment(Pos.CENTER);
 
         //Fetches the database information and creates an arraylist to later display.
@@ -79,6 +79,13 @@ public class VoterOptions extends Application {
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label("Position: " + candidate[3]);
 
+                /*50-50 chance this works. Untested since I can't yet see a screen where votes are counted.*/
+                buttonCast.setOnAction(e -> {
+                    if(pickButton.isSelected() == true){
+                        Database.vote(candidate[2], candidate[3]);    
+                    }
+                });
+
                 //Creates HBox and centers information.
                 HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle);
                 temp.setAlignment(Pos.CENTER);
@@ -97,6 +104,13 @@ public class VoterOptions extends Application {
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label("Position: " + candidate[3]);
                 runningMate = new Label("Running Mate: " + candidate[5]);
+
+                /*50-50 chance this works. Untested since I can't yet see a screen where votes are counted.*/
+                buttonCast.setOnAction(e -> {
+                    if(pickButton.isSelected() == true){
+                        Database.vote(candidate[2], candidate[3]);   
+                    }
+                });
                 
                 //Creates HBox and centers information.
                 HBox temp = new HBox(20, pickButton, fullName, partyName, positionTitle, runningMate);
@@ -111,15 +125,19 @@ public class VoterOptions extends Application {
         layout1.getChildren().add(castBox);
 
         //Displays a screen to thank the user.
-        VBox layout2 = new VBox(15, ResponseLabel, button2);
+        VBox layout2 = new VBox(15, ResponseLabel, Logout);
         layout2.setAlignment(Pos.CENTER);
 
         //Creates the thank you screen that tells the user they have finished.
         thankYouScene = new Scene(layout2, 950, 700);
 
         //Takes the user to the next scene.
-        buttonCast.setOnAction(e -> voterStage.setScene(thankYouScene));
-        button2.setOnMouseClicked(e -> {
+        buttonCast.setOnAction(e -> {
+            
+            
+            voterStage.setScene(thankYouScene);
+        });
+        Logout.setOnMouseClicked(e -> {
             voterStage.setScene(LoginWindow.getScene(voterStage));
             LoginWindow.firstName.clear();
             LoginWindow.lastName.clear();
