@@ -276,6 +276,8 @@ public class AdministratorOptions extends Application {
         elecRegScene = new Scene(electorateLayout, 950, 700);
 
         //VALIDATIONS SCENE
+        ArrayList<String[]> candidateVal = Database.getAllCandidates();
+        Iterator<String[]> j = candidateVal.iterator();
         //Labels
         Label label3 = new Label("This is where the validate votes scene will appear");
         //Text Fields
@@ -295,7 +297,46 @@ public class AdministratorOptions extends Application {
             LoginWindow.password.clear();
         });
         //Layout
-        VBox layout3 = new VBox(20, label3, validateBtn, goBack2, logoutBtn2);
+
+        VBox layout3 = new VBox(20);
+        Label cvfName, cvlName, cvparty, cvposition, cvRMate, cvotes;
+
+        while(j.hasNext()) {
+            String[] candidate = j.next();
+            if(candidate.length == 4){
+                cvfName = new Label("First Name: " + candidate[0]);
+                cvlName = new Label("Last Name: " + candidate[1]);
+                cvparty = new Label("Party: " + candidate[2]);
+                cvposition = new Label ("Position: " + candidate[3]);
+                cvotes = new Label ("Votes: " + candidate[4]);
+                layout3.getChildren().add(new HBox(20, cvfName, cvlName, 
+                cvparty, cvposition, cvotes)); 
+                
+                HBox cTemp = new HBox(20, cvfName, cvlName, cvparty, cvposition, cvotes);
+                cTemp.setAlignment(Pos.CENTER);
+                layout3.getChildren().add(cTemp);
+            }
+
+            else{
+                cvfName = new Label("First Name: " + candidate[0]);
+                cvlName = new Label("Last Name: " + candidate[1]);
+                cvparty = new Label("Party: " + candidate[2]);
+                cvposition = new Label ("Position: " + candidate[3]);
+                cvRMate = new Label ("Running Mate: " + candidate[5]);
+                cvotes = new Label ("Votes: " + candidate[4]);
+                layout3.getChildren().add(new HBox(20, cvfName, cvlName, 
+                cvparty, cvposition, cvRMate)); 
+
+                HBox cTemp = new HBox(20, cvfName, cvlName, cvparty, cvposition, cvRMate, cvotes);
+                cTemp.setAlignment(Pos.CENTER);
+                layout3.getChildren().add(cTemp);
+
+            }
+            
+            
+        }
+
+        layout3.getChildren().addAll(goBack2, logoutBtn2);
         layout3.setAlignment(Pos.CENTER);
         layout3.setPadding(new Insets(10, 10, 10, 10));
         ValScene = new Scene(layout3, 950, 700);
@@ -341,7 +382,7 @@ public class AdministratorOptions extends Application {
         
         //DISPLAY CANDIDATE DATABASE SCENE
         ArrayList<String[]> candidates = Database.getAllCandidates();
-        Iterator<String[]> j = candidates.iterator();
+        Iterator<String[]> k = candidates.iterator();
         //TextFields
         //Buttons & Button Actions
         Button candidateDBgoBack = new Button("Go Back");
@@ -359,8 +400,8 @@ public class AdministratorOptions extends Application {
         VBox layout5 = new VBox(20);
         Label cfName, clName, party, position, rMate;
 
-        while(j.hasNext()) {
-            String[] candidate = j.next();
+        while(k.hasNext()) {
+            String[] candidate = k.next();
             if(candidate.length == 4){
                 cfName = new Label("First Name: " + candidate[0]);
                 clName = new Label("Last Name: " + candidate[1]);
