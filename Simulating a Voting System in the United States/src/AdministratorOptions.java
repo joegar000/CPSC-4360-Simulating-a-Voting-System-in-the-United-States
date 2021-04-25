@@ -69,6 +69,7 @@ public class AdministratorOptions extends Application {
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 950, 700);
 
+        
         //VOTER REGISTRATION SCENE
         //Labels
         Label voterRegSceneTitle = new Label("Voter Registration");
@@ -113,6 +114,7 @@ public class AdministratorOptions extends Application {
         layout2.setAlignment(Pos.CENTER);
         layout2.setPadding(new Insets(10, 10, 10, 10));
         voterRegScene = new Scene(layout2, 950, 700);
+
 
         //ADMINISTRATOR REGISTRATION SCENE
         //Labels
@@ -186,6 +188,7 @@ public class AdministratorOptions extends Application {
         pollworkerLayout.setAlignment(Pos.CENTER);
         pollworkerLayout.setPadding(new Insets(10, 10, 10, 10));
         pollworkerRegScene = new Scene(pollworkerLayout, 950, 700);
+
 
         //CANDIDATE REGISTRATION SCENE
         //Labels
@@ -335,7 +338,7 @@ public class AdministratorOptions extends Application {
         voterDBLayout.setAlignment(Pos.CENTER);
         voterDBLayout.setPadding(new Insets(10, 10, 10, 10));
         VoterDBScene = new Scene(voterDBLayout, 950, 700);
-
+        
         //DISPLAY CANDIDATE DATABASE SCENE
         ArrayList<String[]> candidates = Database.getAllCandidates();
         Iterator<String[]> j = candidates.iterator();
@@ -358,7 +361,7 @@ public class AdministratorOptions extends Application {
 
         while(j.hasNext()) {
             String[] candidate = j.next();
-            if(candidate.length == 5){
+            if(candidate.length == 4){
                 cfName = new Label("First Name: " + candidate[0]);
                 clName = new Label("Last Name: " + candidate[1]);
                 party = new Label("Party: " + candidate[2]);
@@ -394,19 +397,28 @@ public class AdministratorOptions extends Application {
         layout5.setPadding(new Insets(10, 10, 10, 10));
         CandidateDBScene = new Scene(layout5, 950, 700);
 
+     
         //DISPLAY CANDIDATE RESULTS SCENE - (if questions, ask Daniel)
-        CandidateResultsDisplay display = new CandidateResultsDisplay();
-        display.showResults();
-        display.enableGoBack(administratorStage, OptionsScene);
-        display.setAlignment(Pos.CENTER);
-        display.setPadding(new Insets(10, 10, 10, 10));
-        CandidateDRScene = new Scene (display, 950, 700);
+      
+        CandidateResultsDisplay candidateResultsDisplay = new CandidateResultsDisplay();
+        //candidateResultsDisplay.showResults();
+        candidateResultsDisplay.enableGoBack(administratorStage, OptionsScene);
+        candidateResultsDisplay.setAlignment(Pos.CENTER);
+        candidateResultsDisplay.setPadding(new Insets(10, 10, 10, 10));
+        CandidateDRScene = new Scene(candidateResultsDisplay, 950, 700);
+    
 
         /*Option scene button actions.
           Had to put these down here for some reason. 
           Wouldn't work when placed with the buttons on the Options scene class.
           Also couldn't put the rest of the Options scene statements down here.
         */
+        
+        
+        
+        
+         
+           
         btn1.setOnAction(e -> administratorStage.setScene(voterRegScene));
         btn5.setOnAction(e -> administratorStage.setScene(adminRegScene));
         btn6.setOnAction(e -> administratorStage.setScene(pollworkerRegScene));
@@ -414,11 +426,8 @@ public class AdministratorOptions extends Application {
         btn9.setOnAction(e -> administratorStage.setScene(elecRegScene));
         btn2.setOnAction(e -> administratorStage.setScene(ValScene));
         btn3.setOnAction(e -> administratorStage.setScene(VoterDBScene));
-        btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene)); 
-        btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));       
-        
-        
-
+        btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene));
+        btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));
         return OptionsScene;
     }
 
