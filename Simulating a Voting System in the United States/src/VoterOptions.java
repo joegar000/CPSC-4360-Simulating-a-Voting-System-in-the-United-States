@@ -80,7 +80,7 @@ public class VoterOptions extends Application {
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label("Position: " + candidate[3]);
 
-                /*50-50 chance this works. Untested since I can't yet see a screen where votes are counted.*/
+                /*50-50 chance this works. unsure if the vote is acutally casted or not.*/
                 buttonCast.setOnAction(e -> {
                     if(pickButton.isSelected() == true){
                         Database.vote(candidate[2], candidate[3]);    
@@ -106,7 +106,7 @@ public class VoterOptions extends Application {
                 positionTitle = new Label("Position: " + candidate[3]);
                 runningMate = new Label("Running Mate: " + candidate[5]);
 
-                /*50-50 chance this works. Untested since I can't yet see a screen where votes are counted.*/
+                /*50-50 chance this works. unsure if the vote is acutally casted or not.*/
                 buttonCast.setOnAction(e -> {
                     if(pickButton.isSelected() == true){
                         Database.vote(candidate[2], candidate[3]);
