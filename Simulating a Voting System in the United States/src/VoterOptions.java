@@ -59,6 +59,7 @@ public class VoterOptions extends Application {
         //Fetches the database information and creates an arraylist to later display.
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
+        int canSize = Candidates.size();
 
         //Will loop to display each party for a stright ticket approach.
         while(plus.hasNext()) {
@@ -67,13 +68,13 @@ public class VoterOptions extends Application {
             //Checks to see if the person is running for President or Congress.
             if (candidate.length == 5) {
 
-                //Creates the radio button to vote and assigns it to the toggle group.
+                //Creates the radio button to vote. Assigns it to the toggle group.
                 RadioButton pickButton = new RadioButton();
                 pickButton.setToggleGroup(CandidateList);
 
                 //Enables cast button once selected.
                 pickButton.setOnAction(e -> buttonCast.setDisable(false));
-            
+
                 //Displays the candidates information.
                 fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 partyName = new Label("Party: " + candidate[2]);
@@ -92,7 +93,7 @@ public class VoterOptions extends Application {
                 layout1.getChildren().add(temp);
             } else {
 
-                //Creates the radio button to vote and assigns it to the toggle group.
+                //Creates the radio button to vote. Assigns it to the toggle group.
                 RadioButton pickButton = new RadioButton();
                 pickButton.setToggleGroup(CandidateList);
 
@@ -108,7 +109,7 @@ public class VoterOptions extends Application {
                 /*50-50 chance this works. Untested since I can't yet see a screen where votes are counted.*/
                 buttonCast.setOnAction(e -> {
                     if(pickButton.isSelected() == true){
-                        Database.vote(candidate[2], candidate[3]);   
+                        Database.vote(candidate[2], candidate[3]);
                     }
                 });
                 
