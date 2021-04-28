@@ -70,27 +70,26 @@ public class Main extends Application {
 			//Voter user = //voter pulled from database with SSN acting as the key;
 			Voter voter;
 
-
    			// Compare firstName and lastName with database objects, if there is
    			// a match sign the user in, if no match, give not registered error
 			if (info[1].equals(firstName) && info[2].equals(lastName) && !voted) {
 				voter = new Voter(info[0], info[1], info[2], info[3], info[4], voted);
-			}
+				primaryStage.setScene(VoterOptions.getScene(primaryStage));
 
+			} 
+			
+			//If the user has already voted, then they will stay in the login screen.
 			else if (voted) {
-				// display some kind of error, the voter has already voted
-			}
+				primaryStage.setScene(LoginWindow.getScene(primaryStage));
+				LoginWindow.error.setText("You've already voted.");
 
-			else {
-				// display some kind of error because their firstName and lastName did not match
-				// the corressponding SSN
+			} else if (!info[0].equals(SSN) && !info[1].equals(firstName) && !info[2].equals(lastName)) {
+				
+				LoginWindow.error.setText("Yu fat");
 			}
 
 
 			Database.voterVoted(SSN);	// AFTER THE VOTER VOTES, CALL Database.voterVoted() TO UPDATE THEIR VOTE STATUS TO TRUE
-
-
-   			  primaryStage.setScene(VoterOptions.getScene(primaryStage));
    			  // The different buttons will be user.method() using setOnClickListeners
    		}
 
