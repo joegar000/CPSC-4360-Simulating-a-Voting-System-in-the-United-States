@@ -159,7 +159,7 @@ public abstract class Database {
                 String votes = votesArr[votesArr.length-1];
                 int voteCount = Integer.parseInt(votes);
                 //int newVoteCount = voteCount+1;
-                votes = Integer.toString(voteCount++);
+                votes = Integer.toString(++voteCount);
                 stmt.setString(1, votes);
                 stmt.setString(2, party);
                 stmt.setString(3, position);
