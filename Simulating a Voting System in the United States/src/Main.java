@@ -38,6 +38,7 @@ public class Main extends Application {
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
 		Database.registerElector("12","Texas","D","I");
 		Database.registerVoter("12","D","I","21","Texas", false);
+		Database.registerVoter("21","I","D","45","Texas", false);
 		
 
 		Application.launch(args);
