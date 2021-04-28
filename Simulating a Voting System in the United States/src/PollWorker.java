@@ -12,7 +12,7 @@ and display the candidate database
 
 public class PollWorker {
     
-    // username and password is the same for all pollworkers
+    // password is the same for all pollworkers
     private String firstName;
     private String lastName;
     private String SSN;
