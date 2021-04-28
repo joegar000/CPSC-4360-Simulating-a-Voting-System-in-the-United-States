@@ -10,6 +10,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -63,7 +65,7 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
         TextField stateTextField = new TextField();
         TextField ssnTextField = new TextField();
         //Buttons & Button Actions
-        Button regVoter = new Button("Register");    //does nothing right now
+        Button regVoter = new Button("Register");
         regVoter.setOnAction(e -> {
             // The false is because a voter that just registered cannot have already voted
             Database.registerVoter(ssnTextField.getText(), fnTextField.getText(), lnTextField.getText(), ageTextField.getText(), stateTextField.getText(), false);
@@ -100,23 +102,6 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
         Button goBack5 = new Button("Go Back");
         Button getInformation = new Button("Get Voter Information");
 
-        getInformation.setOnAction(e -> {
-            String[] info = Database.getVoterInformation(voterSSN.getText());
-            Label firstName = new Label("First Name: " + info[1]);
-            Label lastName = new Label("Last Name: " + info[2]);
-            Label age = new Label("Age: " + info[3]);
-            Label state = new Label("State: " + info[4]);
-
-            HBox layout6 = new HBox(20, firstName, lastName, age, state);
-            layout6.setAlignment(Pos.CENTER);
-            VBox layout7 = new VBox(20, layout6, goBack5);
-            layout7.setAlignment(Pos.CENTER);
-            layout7.setPadding(new Insets(10, 10, 10, 10));
-            Scene InfoDisplayScene = new Scene(layout7, 950, 700);
-            pollWorkerStage.setScene(InfoDisplayScene);
-        });
-
-        goBack5.setOnAction(e -> pollWorkerStage.setScene(OptionsScene));
 
 
         Button goBack3 = new Button("Go Back");
@@ -131,6 +116,28 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
         layout4.setAlignment(Pos.CENTER);
         layout4.setPadding(new Insets(10, 10, 10, 10));
         InfoScene = new Scene(layout4, 950, 700);
+
+
+
+
+        getInformation.setOnAction(e -> {
+            String[] info = Database.getVoterInformation(voterSSN.getText());
+            Label firstName = new Label("First Name: " + info[1]);
+            Label lastName = new Label("Last Name: " + info[2]);
+            Label age = new Label("Age: " + info[3]);
+            Label state = new Label("State: " + info[4]);
+
+            HBox layout6 = new HBox(20, firstName, lastName, age, state);
+            layout6.setAlignment(Pos.CENTER);
+            VBox layout7 = new VBox(20, layout6, goBack5);
+            layout7.setAlignment(Pos.CENTER);
+            layout7.setPadding(new Insets(10, 10, 10, 10));
+            voterSSN.clear();
+            Scene InfoDisplayScene = new Scene(layout7, 950, 700);
+            pollWorkerStage.setScene(InfoDisplayScene);
+        });
+
+        goBack5.setOnAction(e -> pollWorkerStage.setScene(InfoScene));
 
 
 
@@ -157,11 +164,12 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
         while(i.hasNext()) {
             String[] candidate = i.next();
             System.out.println(candidate[0]);
-            if (candidate.length == 5) {
+            if (candidate.length == 6) {
                 Name = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 party = new Label("Party: " + candidate[2]);
                 position = new Label("Position: " + candidate[3]);
-                HBox temp = new HBox(20, Name, party, position);
+                runningMate = new Label("Running Mate: " + candidate[5]);
+                HBox temp = new HBox(20, Name, party, position, runningMate);
                 temp.setAlignment(Pos.CENTER);
                 layout5.getChildren().add(temp);
             }
@@ -170,8 +178,7 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
                 Name = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 party = new Label("Party: " + candidate[2]);
                 position = new Label("Position: " + candidate[3]);
-                runningMate = new Label("Running Mate: " + candidate[4]);
-                HBox temp = new HBox(20, Name, party, position, runningMate);
+                HBox temp = new HBox(20, Name, party, position);
                 temp.setAlignment(Pos.CENTER);
                 layout5.getChildren().add(temp);
             }
@@ -179,7 +186,10 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
         layout5.getChildren().addAll(goBack4, logoutBtn4);
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
-        CandidateDBScene = new Scene(layout5, 950, 700);
+        ScrollPane scrollBar = new ScrollPane();
+        scrollBar.setContent(layout5);
+        scrollBar.setFitToWidth(true);
+        CandidateDBScene = new Scene(scrollBar, 950, 700);
 
         /*
           Option scene button actions.

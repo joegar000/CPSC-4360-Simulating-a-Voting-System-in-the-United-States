@@ -106,7 +106,7 @@ public abstract class Database {
                 + " party text NOT NULL,\n"
                 + " position text NOT NULL,\n"
                 + " votes text NOT NULL,\n"
-                + " runningmate text NOT NULL\n"
+                + " runningmate text NULL\n"
                 + ");";
         
         try (Statement stmt = candidatesConn.createStatement()) {
