@@ -4,9 +4,8 @@ Alejandro Figueroa, 4/2/2021
 Comments, edits, questions, suggestions, or concerns are welcomed!
 
 Todo list/Issues:
-How to make Voter and VoterOptions work together.
+    How to make Voter and VoterOptions work together.
     Fetching the candidate list that will include senate and house.
-    Recording each vote.
 */
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-
 
 public class VoterOptions extends Application {
 
@@ -85,14 +83,14 @@ public class VoterOptions extends Application {
         }
 
         //Creates labels for entering information.
-        Label candidateFNameLabel = new Label("Enter First Name");
-        Label candidateLNameLabel = new Label("Enter last Name");
+        //Label candidateFNameLabel = new Label("Enter First Name");
+        //Label candidateLNameLabel = new Label("Enter last Name");
         Label candidatePartyLabel = new Label("Enter Party");
         Label candidatePosLabel = new Label("Enter Position");
 
         //Creates text fields to enter information.
-        TextField candidateFNTextField = new TextField();
-        TextField candidateLNTextField = new TextField();
+        //TextField candidateFNTextField = new TextField();
+        //TextField candidateLNTextField = new TextField();
         TextField candidatePartyTextField = new TextField();
         TextField candidatePosTextField = new TextField();
 
@@ -114,11 +112,10 @@ public class VoterOptions extends Application {
         });
 
         //Centers the cast button.
-        VBox castBtn = new VBox(20, candidateFNameLabel, candidateFNTextField, candidateLNameLabel, 
-        candidateLNTextField, candidatePartyLabel, candidatePartyTextField, candidatePosLabel, candidatePosTextField, buttonCast);
+        VBox castBtn = new VBox(20, /*candidateFNameLabel, candidateFNTextField, candidateLNameLabel, 
+        candidateLNTextField,*/ candidatePartyLabel, candidatePartyTextField, candidatePosLabel, candidatePosTextField, buttonCast);
         castBtn.setAlignment(Pos.CENTER);
         layout1.getChildren().addAll(castBtn);
-        
 
         //Takes the user to the next scene.
         Logout.setOnMouseClicked(e -> {
