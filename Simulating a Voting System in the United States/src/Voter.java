@@ -108,6 +108,7 @@ public class Voter {
     public void displayCandidateList() {
             //Later pull the list from the database.
     }
+    
 
 
     /*
