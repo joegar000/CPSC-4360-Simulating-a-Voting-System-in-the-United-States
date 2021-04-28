@@ -105,7 +105,7 @@ public abstract class Database {
                 + "	last_name text NOT NULL,\n"
                 + " party text NOT NULL,\n"
                 + " position text NOT NULL,\n"
-                + " votes text,\n"
+                + " votes text NOT NULL,\n"
                 + " runningmate text NOT NULL\n"
                 + ");";
         
@@ -151,24 +151,37 @@ public abstract class Database {
     }
 
 
-    public static void vote(String party, String position) {
-        String sql = "UPDATE candidates SET votes = ? WHERE party LIKE ? and where position LIKE ?";
+    public static void vote(String party, String position, String vote) {
+        String sql = "UPDATE candidates SET votes = ? WHERE party = ? AND position = ?"; //AND position LIKE ?
         
             try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
-                String[] votesArr= Database.getCandidate(party, position);
+                String[] votesArr = Database.getCandidate(party, position);
                 String votes = votesArr[votesArr.length-1];
-                int voteCount = Integer.valueOf(votes);
-                voteCount++;
-                votes = Integer.toString(voteCount);
+                int voteCount = Integer.parseInt(votes);
+                //int newVoteCount = voteCount+1;
+                votes = Integer.toString(voteCount++);
                 stmt.setString(1, votes);
                 stmt.setString(2, party);
                 stmt.setString(3, position);
                 stmt.executeUpdate();
+            }
+            catch(SQLException e) {
+                System.out.println(e.getMessage() + "vote");
+            }
+            
+    }
+
+    /*public static String[] getVotes(String votes){
+        String sql = "SELECT vote FROM candidates WHERE vote LIKE?";
+        String[] info = new String[1];
+
+        try(PreparedStatement stmt = candidatesConn.prepareStatement(sql)){
+
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage() + "vote");
+            System.out.println(e.getMessage() + "getVotes");
         }
-    }
+    }*/
 
 
     public static void registerVoter(String ssn, String first_name, String last_name, String age, String state, boolean votedBool) {
@@ -324,33 +337,32 @@ public abstract class Database {
         return info;
     }
 
-    public static void registerCandidate(String first_name, String last_name, String party, String position, int vote) {
-        String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,NULL,?)";
-        String votes = Integer.toString(vote);
+    public static void registerCandidate(String first_name, String last_name, String party, String position, String vote) {
+        String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,?,NULL)";
     
         try (PreparedStatement pstmt = candidatesConn.prepareStatement(sql)) {
             pstmt.setString(1, first_name);
             pstmt.setString(2, last_name);
             pstmt.setString(3, party);
             pstmt.setString(4, position);
-            pstmt.setString(5, votes);
+            pstmt.setString(5, vote);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "registercandidate1");
         }
     }
 
-    public static void registerCandidate(String first_name, String last_name, String party, String position, int vote, String runningMate) {
+    public static void registerCandidate(String first_name, String last_name, String party, String position, String runningMate, String vote) {
         String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,?,?)";
 
-        String votes = Integer.toString(vote);
+        
     
         try (PreparedStatement pstmt = candidatesConn.prepareStatement(sql)) {
             pstmt.setString(1, first_name);
             pstmt.setString(2, last_name);
             pstmt.setString(3, party);
             pstmt.setString(4, position);
-            pstmt.setString(5, votes);
+            pstmt.setString(5, vote);
             pstmt.setString(6, runningMate);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -360,37 +372,38 @@ public abstract class Database {
 
     public static String[] getCandidate(String party, String position) {
         String sql = "SELECT first_name, last_name, party, position, votes, runningmate FROM candidates WHERE party LIKE ? and position LIKE ?";
-        ArrayList<String> info = new ArrayList<String>();
+        String[] info = new String[6];
             try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
                 stmt.setString(1,party);
                 stmt.setString(2,position);
                 ResultSet rs = stmt.executeQuery();
                 
-            while (rs.next()) {
-                if (rs.getString("runningmate") == null) {
-                    info.add(rs.getString("first_name"));
-                    info.add(rs.getString("last_name"));
-                    info.add(rs.getString("party"));
-                    info.add(rs.getString("position"));
-                    info.add(rs.getString("votes"));
+                while (rs.next()) {
+                    if (rs.getString("runningmate") == null) {
+                        info = new String[5];
+                        info[0] = rs.getString("first_name");
+                        info[1] = rs.getString("last_name");
+                        info[2] = rs.getString("party");
+                        info[3] = rs.getString("position");
+                        info[4] = rs.getString("votes");
+                    }
+                    else {
+                        info = new String[6];
+                        info[0] = rs.getString("first_name");
+                        info[1] = rs.getString("last_name");
+                        info[2] = rs.getString("party");
+                        info[3] = rs.getString("position");
+                        info[4] = rs.getString("runningmate");
+                        info[5] = rs.getString("votes");
+                    }
                 }
-                else {
-                    info.add(rs.getString("first_name"));
-                    info.add(rs.getString("last_name"));
-                    info.add(rs.getString("party"));
-                    info.add(rs.getString("position"));
-                    info.add(rs.getString("votes"));
-                    info.add(rs.getString("runningmate"));
-                    
-                }
+    
+            }
+            catch(SQLException e) {
+                System.out.println(e.getMessage() + "getcandidate");
             }
     
-        }
-        catch(SQLException e) {
-            System.out.println(e.getMessage() + "getcandidate");
-        }
-    
-        return (String[]) info.toArray();
+        return info;
     }
 
     // This returns an arraylist of string arrays for display the entire candidate database, I assume

@@ -209,7 +209,7 @@ public class AdministratorOptions extends Application {
         Button regCandidate = new Button("Register");
         regCandidate.setOnAction(e ->{
             Database.registerCandidate(candidateFNTextField.getText(), candidateLNTextField.getText(), 
-            candidatePartyTextField.getText(), candidatePosTextField.getText(), 0, candidateRMTextField.getText());
+            candidatePartyTextField.getText(), candidatePosTextField.getText(), "0", candidateRMTextField.getText());
             candidateFNTextField.clear();
             candidateLNTextField.clear();
             candidatePartyTextField.clear();
@@ -279,7 +279,7 @@ public class AdministratorOptions extends Application {
         ArrayList<String[]> candidateVal = Database.getAllCandidates();
         Iterator<String[]> j = candidateVal.iterator();
         //Labels
-        Label label3 = new Label("This is where the validate votes scene will appear");
+        //Label label3 = new Label("This is where the validate votes scene will appear");
         //Text Fields
         //Buttons & Button Actions
         Button validateBtn = new Button("Validate Vote");
@@ -303,7 +303,7 @@ public class AdministratorOptions extends Application {
 
         while(j.hasNext()) {
             String[] candidate = j.next();
-            if(candidate.length == 4){
+            if(candidate.length == 5){
                 cvfName = new Label("First Name: " + candidate[0]);
                 cvlName = new Label("Last Name: " + candidate[1]);
                 cvparty = new Label("Party: " + candidate[2]);
