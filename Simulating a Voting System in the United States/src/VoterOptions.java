@@ -56,26 +56,26 @@ public class VoterOptions extends Application {
         while(plus.hasNext()) {
             String[] candidate = plus.next();
             if(candidate.length == 5){
-                firstName = new Label("First Name: " + candidate[0]);
-                lastName = new Label("Last Name: " + candidate[1]);
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label ("Position: " + candidate[3]);
-                layout1.getChildren().add(new HBox(20, firstName, lastName, 
-                partyName, positionTitle)); 
+                firstName = new Label("First Name: " + candidate[0]);
+                lastName = new Label("Last Name: " + candidate[1]);
+                layout1.getChildren().add(new HBox(20, partyName, positionTitle, 
+                firstName, lastName)); 
                 
-                HBox cTemp = new HBox(20, firstName, lastName, partyName, positionTitle);
+                HBox cTemp = new HBox(20, partyName, positionTitle, firstName, lastName);
                 cTemp.setAlignment(Pos.CENTER);
                 layout1.getChildren().add(cTemp);
             } else {
-                firstName = new Label("First Name: " + candidate[0]);
-                lastName = new Label("Last Name: " + candidate[1]);
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label ("Position: " + candidate[3]);
+                firstName = new Label("First Name: " + candidate[0]);
+                lastName = new Label("Last Name: " + candidate[1]);
                 runningMate = new Label ("Running Mate: " + candidate[5]);
-                layout1.getChildren().add(new HBox(20, firstName, lastName, 
-                partyName, positionTitle, runningMate)); 
+                layout1.getChildren().add(new HBox(20, partyName, positionTitle, 
+                firstName, lastName, runningMate)); 
 
-                HBox cTemp = new HBox(20, firstName, lastName, partyName, positionTitle, runningMate);
+                HBox cTemp = new HBox(20, partyName, positionTitle, firstName, lastName, runningMate);
                 cTemp.setAlignment(Pos.CENTER);
                 layout1.getChildren().add(cTemp);
 
