@@ -68,9 +68,7 @@ public class VoterOptions extends Application {
                 HBox cTemp = new HBox(20, firstName, lastName, partyName, positionTitle);
                 cTemp.setAlignment(Pos.CENTER);
                 layout1.getChildren().add(cTemp);
-            }
-
-            else {
+            } else {
                 firstName = new Label("First Name: " + candidate[0]);
                 lastName = new Label("Last Name: " + candidate[1]);
                 partyName = new Label("Party: " + candidate[2]);
@@ -84,34 +82,33 @@ public class VoterOptions extends Application {
                 layout1.getChildren().add(cTemp);
 
             }
-            
-            
         }
 
-        //Labels
+        //Creates labels for entering information.
         Label candidateFNameLabel = new Label("Enter First Name");
         Label candidateLNameLabel = new Label("Enter last Name");
         Label candidatePartyLabel = new Label("Enter Party");
         Label candidatePosLabel = new Label("Enter Position");
 
-        //TextFields
+        //Creates text fields to enter information.
         TextField candidateFNTextField = new TextField();
         TextField candidateLNTextField = new TextField();
         TextField candidatePartyTextField = new TextField();
         TextField candidatePosTextField = new TextField();
 
+        //Creates a new VBox that contains the response and logout button.
         VBox layout2 = new VBox(15, ResponseLabel, Logout);
         layout2.setAlignment(Pos.CENTER);
 
+        //Thank you scene to be displayed after voting is done.
         thankYouScene = new Scene(layout2, 950, 700);
 
+        //Casting button.
         Button buttonCast = new Button("Cast Ballot");
         buttonCast.setFont(new Font("Arial", 18));
 
-        
-
+        //Once the button is pressed, the vote will go to that person and the thank you screen will appear.
         buttonCast.setOnAction(e -> {
-            //String[] info = Database.getCandidate(candidatePartyTextField.getText(), candidatePosTextField.getText());
             Database.vote(candidatePartyTextField.getText(), candidatePosTextField.getText(), "1");
             voterStage.setScene(thankYouScene);
         });
@@ -121,15 +118,9 @@ public class VoterOptions extends Application {
         candidateLNTextField, candidatePartyLabel, candidatePartyTextField, candidatePosLabel, candidatePosTextField, buttonCast);
         castBtn.setAlignment(Pos.CENTER);
         layout1.getChildren().addAll(castBtn);
-
-        //Displays a screen to thank the user.
-        
-
-        //Creates the thank you screen that tells the user they have finished.
         
 
         //Takes the user to the next scene.
-        
         Logout.setOnMouseClicked(e -> {
             voterStage.setScene(LoginWindow.getScene(voterStage));
             LoginWindow.firstName.clear();
