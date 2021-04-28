@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 
+
+
 import javax.lang.model.util.ElementScanner6;
 
 import javafx.scene.Scene;
@@ -42,7 +44,7 @@ class CandidateResultsDisplay extends VBox {
         this.getChildren().add(logoutBtn);
     };
 
-    /*public void enableAnnounce(Stage stage)  {
+    public void enableAnnounce(Stage stage)  {
         Button logoutBtn4 = new Button("Annouce");
         logoutBtn4.setOnMouseClicked(e -> {
             stage.setScene(LoginWindow.getScene(stage));
@@ -50,31 +52,55 @@ class CandidateResultsDisplay extends VBox {
             LoginWindow.lastName.clear();
             LoginWindow.SSN.clear();
             LoginWindow.password.clear();
-            //String[] winner = getWinner();
-            //LoginWindow.announce();
+            ArrayList<String[]> winner = getWinner();
+            String container = "";
+            if (winner.size()>1) {
+                container+="There was a tie between ";
+                for (int i = 0; i < winner.size(); i++) {
+                    if (i==0)
+                        container+=(""+winner.get(i)[0]);
+                    else if (i==winner.size()-1)
+                        container+=(", and "+winner.get(i)[0]+".");
+                    else 
+                        container+=(", "+winner.get(i)[0]);
+                }
+            } else if (winner.size()==0){
+                container = "There is no winner... there was an error.";
+            } else {
+                container+="The winner is "+ winner.get(0)[0]+".";
+            }
+            LoginWindow.announce(container);
         });
         this.getChildren().add(logoutBtn4);
-    };*/
+    };
 
     /* TODO must get the results from votes and reset the Database? */
-    public String[] getWinner() {
+    public ArrayList<String[]> getWinner() {
         ArrayList<String[]> candidates = Database.getAllCandidates();
-        String[] winner = null;
-        while(!candidates.isEmpty()) {
-
+        String[] winner = candidates.get(0);
+        ArrayList<String[]> winnerArrayList = new ArrayList<String[]>();
+        winnerArrayList.add(winner);
+        for (int i = 0; i < candidates.size(); i++ ) {
+            if (Integer.parseInt(winnerArrayList.get(0)[4]) == Integer.parseInt(candidates.get(i)[4])) {
+                winnerArrayList.add(candidates.get(i));
+            } else if (Integer.parseInt(winnerArrayList.get(0)[4]) < Integer.parseInt(candidates.get(i)[4])) {
+                winnerArrayList.clear();
+                winnerArrayList.add(candidates.get(i));
+            } 
         }
-        return winner;
+        return winnerArrayList;
     }
 
     /* to be called wherever this Display is used */
     public void showResults() {
         ArrayList<String[]> candidates = Database.getAllCandidates();
-        int totalVotes = getNumAllCurrentVotes(candidates);
+        double totalVotes = (double) getNumAllCurrentVotes(candidates);
         for (int i = 0; i < candidates.size(); i++){
             String[] tempCandidate = candidates.get(i);
             int votes = Integer.parseInt(tempCandidate[4]);
             double result;
             if (votes!=0)
+
                 result = Integer.parseInt(tempCandidate[4])/totalVotes;
             else 
                 result = 0;
@@ -97,7 +123,7 @@ class CandidateResultsDisplay extends VBox {
 
     public class CandidateResult extends Label {
         public CandidateResult(String firstName, String lastName, String party, String position, double result) {
-            this.setText(firstName + " " + lastName + " --- Party: " + party + " --- Position: " + position + " --- Resulting Percentage: " + result);
+            this.setText(firstName + " " + lastName + " --- Party: " + party + " --- Position: " + position + " --- Resulting Percentage: " + String.format("%.2f",result));
         }
     }
 
