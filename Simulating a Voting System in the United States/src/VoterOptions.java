@@ -66,7 +66,7 @@ public class VoterOptions extends Application {
         //Fetches the database information and creates an arraylist to later display.
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
-        int canSize = Candidates.size();
+        //int canSize = Candidates.size();
 
         Label cfName, clName, party, position, rMate;
 
@@ -165,13 +165,8 @@ public class VoterOptions extends Application {
             //Checks to see if the person is running for President or Congress.
             if (candidate.length == 5) {
 
-<<<<<<< HEAD
                 //Creates the radio button to vote and assigns it to the toggle group.
                 RadioButton pickButton = new RadioButton("Name: " + candidate[0] + " " + candidate[1] + "Party: " + candidate[2] + "Position: " + candidate[3]);
-=======
-                //Creates the radio button to vote. Assigns it to the toggle group.
-                RadioButton pickButton = new RadioButton();
->>>>>>> 88c23754db45f7a47d85238c603bed891514b34d
                 pickButton.setToggleGroup(CandidateList);
 
                 CandidateList.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
@@ -184,27 +179,18 @@ public class VoterOptions extends Application {
                     }
                 });
                 //Enables cast button once selected.
-<<<<<<< HEAD
                 pickButton.setOnAction(e -> {
                     buttonCast.setDisable(false);
                     //buttonCast.setOnAction(f -> Database.vote(candidate[2], candidate[3]));
                 });
             
-=======
-                pickButton.setOnAction(e -> buttonCast.setDisable(false));
-
->>>>>>> 88c23754db45f7a47d85238c603bed891514b34d
                 //Displays the candidates information.
                 fullName = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 partyName = new Label("Party: " + candidate[2]);
                 positionTitle = new Label("Position: " + candidate[3]);
 
-<<<<<<< HEAD
                 50-50 chance this works. Untested since I can't yet see a screen where votes are counted.
-=======
-                /*50-50 chance this works. unsure if the vote is acutally casted or not.*/
->>>>>>> 88c23754db45f7a47d85238c603bed891514b34d
-                buttonCast.setOnAction(e -> {
+                /*buttonCast.setOnAction(e -> {
                     CandidateList.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
                         public void changed(ObservableValue<? extends Toggle> ob, Toggle o, Toggle n){
                             RadioButton rb = (RadioButton)CandidateList.getSelectedToggle();
@@ -222,13 +208,8 @@ public class VoterOptions extends Application {
                 layout1.getChildren().add(temp);
             } else {
 
-<<<<<<< HEAD
                 //Creates the radio button to vote and assigns it to the toggle group.
                 RadioButton pickButton = new RadioButton("Name: " + candidate[0] + " " + candidate[1] + "Party: " + candidate[2] + "Position: " + candidate[3]);
-=======
-                //Creates the radio button to vote. Assigns it to the toggle group.
-                RadioButton pickButton = new RadioButton();
->>>>>>> 88c23754db45f7a47d85238c603bed891514b34d
                 pickButton.setToggleGroup(CandidateList);
 
                 //Enables cast button once selected.
@@ -240,7 +221,6 @@ public class VoterOptions extends Application {
                 positionTitle = new Label("Position: " + candidate[3]);
                 runningMate = new Label("Running Mate: " + candidate[5]);
 
-<<<<<<< HEAD
                 50-50 chance this works. Untested since I can't yet see a screen where votes are counted.
                 buttonCast.setOnAction(e -> {
                     CandidateList.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
@@ -252,13 +232,6 @@ public class VoterOptions extends Application {
                             }
                         }
                     });
-=======
-                /*50-50 chance this works. unsure if the vote is acutally casted or not.*/
-                buttonCast.setOnAction(e -> {
-                    if(pickButton.isSelected() == true){
-                        Database.vote(candidate[2], candidate[3]);
-                    }
->>>>>>> 88c23754db45f7a47d85238c603bed891514b34d
                 });
                 
                 //Creates HBox and centers information.
