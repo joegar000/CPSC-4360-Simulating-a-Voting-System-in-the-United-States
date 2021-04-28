@@ -37,7 +37,7 @@ public class AdministratorOptions extends Application {
     public static Scene getScene(Stage administratorStage) {
         //Scenes initialized
         Scene OptionsScene, voterRegScene, adminRegScene, pollworkerRegScene, candidateRegScene, elecRegScene, 
-        ValScene, VoterDBScene, CandidateDBScene, CandidateDRScene;
+        ValScene, VoterDBScene; /*CandidateDBScene, CandidateDRScene;*/
 
         //OPTIONS SCENE
         //Labels
@@ -46,14 +46,14 @@ public class AdministratorOptions extends Application {
         //TextFields
         //Buttons & Button Actions
         Button btn1 = new Button("Voter Registration");
-        Button btn2 = new Button("Validate Votes");
+        Button btn2 = new Button("Display Candidate Database");
         Button btn3 = new Button("Display Voter Database");
-        Button btn4 = new Button("Display Candidate Database");
+        //Button btn4 = new Button("Display Candidate Database");
         Button btn5 = new Button("Administrator Registration");
         Button btn6 = new Button("Pollworker Registration");
         Button btn7 = new Button("Candidate Registration");
         Button btn9 = new Button("Electorate Registration");
-        Button btn8 = new Button("Candidate Results");
+        //Button btn8 = new Button("Candidate Results");
         Button logoutBtn = new Button("Log out");
         logoutBtn.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
@@ -64,7 +64,7 @@ public class AdministratorOptions extends Application {
         });
 
         //Layout
-        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn9, btn2, btn3, btn4, btn8, logoutBtn);
+        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn9, btn2, btn3, logoutBtn);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 950, 700);
@@ -209,7 +209,7 @@ public class AdministratorOptions extends Application {
         Button regCandidate = new Button("Register");
         regCandidate.setOnAction(e ->{
             Database.registerCandidate(candidateFNTextField.getText(), candidateLNTextField.getText(), 
-            candidatePartyTextField.getText(), candidatePosTextField.getText(), "0", candidateRMTextField.getText());
+            candidatePartyTextField.getText(), candidatePosTextField.getText(), candidateRMTextField.getText(), "0");
             candidateFNTextField.clear();
             candidateLNTextField.clear();
             candidatePartyTextField.clear();
@@ -275,17 +275,15 @@ public class AdministratorOptions extends Application {
         electorateLayout.setPadding(new Insets(10, 10, 10, 10));
         elecRegScene = new Scene(electorateLayout, 950, 700);
 
-        //VALIDATIONS SCENE
+        //DISPLAY CANDIDATE DATABASE
         ArrayList<String[]> candidateVal = Database.getAllCandidates();
         Iterator<String[]> j = candidateVal.iterator();
         //Labels
-        //Label label3 = new Label("This is where the validate votes scene will appear");
+        Label cdLabel = new Label("Candidate Database");
+        cdLabel.setFont(new Font("Arial", 25));
+        Label cdWarning = new Label("MUST LOG OUT AND LOG BACK IN FOR DISPLAY TO UPDATE");
         //Text Fields
         //Buttons & Button Actions
-        Button validateBtn = new Button("Validate Vote");
-        validateBtn.setOnAction(e -> {
-
-        });//does nothing right now
         Button goBack2 = new Button("Go Back");
         goBack2.setOnAction(e -> administratorStage.setScene(OptionsScene));  
         Button logoutBtn2 = new Button("Log out");
@@ -300,6 +298,7 @@ public class AdministratorOptions extends Application {
 
         VBox layout3 = new VBox(20);
         Label cvfName, cvlName, cvparty, cvposition, cvRMate, cvotes;
+        layout3.getChildren().addAll(cdLabel, cdWarning);
 
         while(j.hasNext()) {
             String[] candidate = j.next();
@@ -344,6 +343,10 @@ public class AdministratorOptions extends Application {
         //DISPLAY VOTER DATABASE SCENE
         ArrayList<String[]> voters = Database.getAllVoterInformation();
         Iterator<String[]> i = voters.iterator();
+        //Labels
+        Label vdLabel = new Label("Voter Database");
+        vdLabel.setFont(new Font("Arial", 25));
+        Label vdWarning = new Label("MUST LOG OUT AND LOG BACK IN FOR DISPLAY TO UPDATE");
         //TextFields
         //Buttons & Button Actions
         Button voterDBgoBack = new Button("Go Back");
@@ -359,17 +362,18 @@ public class AdministratorOptions extends Application {
         //Layout
 
         VBox voterDBLayout = new VBox(20);
-        Label vfName, vlName, age, state;
+        Label vfName, vlName, age, state, vSSN;
+        voterDBLayout.getChildren().addAll(vdLabel, vdWarning);
 
         while(i.hasNext()) {
             String[] voter = i.next();
-            //vSSN = new Label("SSN: " + voter[0]); - did not know if this should be displayed as this should be private information.
+            vSSN = new Label("SSN: " + voter[0]);  //did not know if this should be displayed as this should be private information.
             vfName = new Label("First Name: " + voter[1]);
             vlName = new Label("Last Name: " + voter[2]);
             age = new Label("Age: " + voter[3]);
             state = new Label("State: " + voter[4]);
 
-            HBox vTemp = new HBox(20, vfName, vlName, age, state);
+            HBox vTemp = new HBox(20, vfName, vlName, age, state, vSSN);
             vTemp.setAlignment(Pos.CENTER);
             voterDBLayout.getChildren().add(vTemp);
             
@@ -380,6 +384,7 @@ public class AdministratorOptions extends Application {
         voterDBLayout.setPadding(new Insets(10, 10, 10, 10));
         VoterDBScene = new Scene(voterDBLayout, 950, 700);
         
+        /*
         //DISPLAY CANDIDATE DATABASE SCENE
         ArrayList<String[]> candidates = Database.getAllCandidates();
         Iterator<String[]> k = candidates.iterator();
@@ -467,8 +472,8 @@ public class AdministratorOptions extends Application {
         btn9.setOnAction(e -> administratorStage.setScene(elecRegScene));
         btn2.setOnAction(e -> administratorStage.setScene(ValScene));
         btn3.setOnAction(e -> administratorStage.setScene(VoterDBScene));
-        btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene));
-        btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));
+        //btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene));
+        //btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));
         return OptionsScene;
     }
 
