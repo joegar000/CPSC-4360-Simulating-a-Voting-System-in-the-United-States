@@ -402,7 +402,7 @@ public class AdministratorOptions extends Application {
 
         while(k.hasNext()) {
             String[] candidate = k.next();
-            if(candidate.length == 4){
+            if(candidate.length == 5){
                 cfName = new Label("First Name: " + candidate[0]);
                 clName = new Label("Last Name: " + candidate[1]);
                 party = new Label("Party: " + candidate[2]);
