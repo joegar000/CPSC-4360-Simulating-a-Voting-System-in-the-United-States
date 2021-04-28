@@ -442,7 +442,7 @@ public class AdministratorOptions extends Application {
         //DISPLAY CANDIDATE RESULTS SCENE - (if questions, ask Daniel)
       
         CandidateResultsDisplay candidateResultsDisplay = new CandidateResultsDisplay();
-        //candidateResultsDisplay.showResults();
+        candidateResultsDisplay.showResults();
         candidateResultsDisplay.enableGoBack(administratorStage, OptionsScene);
         candidateResultsDisplay.setAlignment(Pos.CENTER);
         candidateResultsDisplay.setPadding(new Insets(10, 10, 10, 10));
