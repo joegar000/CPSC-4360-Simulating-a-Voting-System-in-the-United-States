@@ -38,22 +38,15 @@ public class VoterOptions extends Application {
         firstLabel.setFont(new Font("Arial", 18));
         Label ResponseLabel = new Label("You have casted your ballot!");
         ResponseLabel.setFont(new Font("Arial", 18));
-        
 
         //Creates a logout button that retruns the user to the login screen.
         Button Logout = new Button("Return to login screen");
         Logout.setFont(new Font("Arial", 18));
 
         //Creates a somewhat nice layout.
-        //VBox layout1 = new VBox(15, firstLabel);
-        //layout1.setAlignment(Pos.CENTER);
-        //layout1.setPadding(new Insets(10, 10, 10, 10));
-        /*ScrollPane scrollBar = new ScrollPane();
-        scrollBar.setContent(layout1);
-        scrollBar.setFitToWidth(true);
-        voteScene = new Scene(scrollBar, 950, 700);*/
         VBox layout1 = new VBox(20);
         Label firstName, lastName, partyName, positionTitle, runningMate;
+
         //Fetches the database information and creates an arraylist to later display.
         ArrayList<String[]> Candidates = Database.getAllCandidates();
         Iterator<String[]> plus = Candidates.iterator();
@@ -89,14 +82,10 @@ public class VoterOptions extends Application {
         }
 
         //Creates labels for entering information.
-        //Label candidateFNameLabel = new Label("Enter First Name");
-        //Label candidateLNameLabel = new Label("Enter last Name");
         Label candidatePartyLabel = new Label("Enter Party");
         Label candidatePosLabel = new Label("Enter Position");
 
         //Creates text fields to enter information.
-        //TextField candidateFNTextField = new TextField();
-        //TextField candidateLNTextField = new TextField();
         TextField candidatePartyTextField = new TextField();
         TextField candidatePosTextField = new TextField();
 
@@ -121,11 +110,12 @@ public class VoterOptions extends Application {
         layout1.getChildren().addAll(firstLabel, candidatePartyLabel, candidatePartyTextField, candidatePosLabel, candidatePosTextField, buttonCast);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
+
+        //Creates a scroll bar for everything.
         ScrollPane scrollBar = new ScrollPane();
         scrollBar.setContent(layout1);
         scrollBar.setFitToWidth(true);
         voteScene = new Scene(scrollBar, 950, 700);
-        //layout1.getChildren().addAll(castBtn);
 
         //Takes the user to the next scene.
         Logout.setOnMouseClicked(e -> {
@@ -135,9 +125,6 @@ public class VoterOptions extends Application {
             LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
-
-        //Vote scene.
-        //voteScene = new Scene(layout1, 950, 700);
 
         //Returns vote scene.
         return voteScene;
