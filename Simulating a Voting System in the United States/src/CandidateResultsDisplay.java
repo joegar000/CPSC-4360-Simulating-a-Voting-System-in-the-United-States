@@ -67,7 +67,7 @@ class CandidateResultsDisplay extends VBox {
             } else if (winner.size()==0){
                 container = "There is no winner... there was an error.";
             } else {
-                container+="The winner is "+ winner.get(0)[0]+".";
+                container+="The winner is the "+ winner.get(2)[0]+" party.";
             }
             LoginWindow.announce(container);
         });
