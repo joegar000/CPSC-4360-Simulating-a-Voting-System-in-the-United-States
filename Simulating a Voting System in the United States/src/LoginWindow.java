@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -22,6 +23,10 @@ public class LoginWindow extends Application {
     public static TextField lastName = new TextField();
     public static TextField SSN = new TextField();
     public static TextField password = new TextField();
+    public static Label error = new Label();
+
+    public static VBox layout1;
+    public static Stage announcmentStage;
 
     @Override
     public void start(Stage arg0) throws Exception {
@@ -37,7 +42,7 @@ public class LoginWindow extends Application {
         firstLabel.setFont(new Font("Arial", 18));
 
         //Create a somewhat nice layout.
-        VBox layout1 = new VBox(15, firstLabel);
+        layout1 = new VBox(15, firstLabel);
         layout1.setAlignment(Pos.CENTER);
         
         //Creates a login button with set font and size.
@@ -55,6 +60,7 @@ public class LoginWindow extends Application {
                 SSN,
                 new Label("Please enter your password"),
                 password,
+                error,
                 loginButton);
                 
                 //Creates lgin scene size.
@@ -68,6 +74,40 @@ public class LoginWindow extends Application {
         //Returns the login scene.
         return loginScene;
     }
+
+    public static void announce(String winner) {
+        announcmentStage = new Stage();
+        VBox presentation = new VBox();
+        Label label = new Label(winner);
+        Button exit = new Button("Close");
+
+        presentation.setTranslateX(0); // change later
+        label.setFont(new Font("Arial", 25));
+
+        exit.setOnMouseClicked(e -> {
+                announcmentStage.close();
+            });
+        presentation.getChildren().addAll(label,exit);
+        presentation.setAlignment(Pos.CENTER);
+
+        Scene winScene = new Scene(presentation,950,700);
+        announcmentStage.setScene(winScene);
+        announcmentStage.show();
+    }
+
+    /*class Announcement extends HBox {
+        Label label;
+        Button exit;
+        public Announcement(String winner) {
+            this.setTranslateX(0); // change later
+            label.setFont(new Font("Arial", 25));
+            exit.setText("Close");
+            exit.setOnMouseClicked(e -> {
+                announcmentStage.close();
+            });
+            this.getChildren().addAll(label,exit);
+        }
+    }*/
     
     //Gets the first name to see if it is within the database.
     public static String getFirstName() {

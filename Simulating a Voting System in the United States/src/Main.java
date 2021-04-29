@@ -32,11 +32,14 @@ public class Main extends Application {
 		Database.registerPollWorker("987654321", "David", "Garcia");
 		Database.registerCandidate("Donald", "Trump", "Republican", "President", "Mike Pence", "0");
 		Database.registerCandidate("Joe", "Biden", "Democrat", "President", "Kamala Harris", "0");
-		Database.registerCandidate("Mary", "Jane", "Independent", "President", "Joe mama so fat", "0");
+		Database.registerCandidate("Mary", "Jane", "Independent", "President", "Mason Hoover", "0");
 		Database.registerCandidate("Matt", "Guy", "Green", "Senate", "0");
+		Database.registerCandidate("Matt", "Geatz", "Republican", "Senate", "0");
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
+		Database.registerAdministrator("12","D","I");
 		Database.registerElector("12","Texas","D","I");
 		Database.registerVoter("12","D","I","21","Texas", false);
+		Database.registerVoter("21","I","D","45","Texas", false);
 		
 
 		Application.launch(args);
@@ -44,7 +47,6 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Welcome to the US elections!");
-
 
 		primaryStage.setScene(LoginWindow.getScene(primaryStage));
 		primaryStage.show();
@@ -68,27 +70,26 @@ public class Main extends Application {
 			//Voter user = //voter pulled from database with SSN acting as the key;
 			Voter voter;
 
-
    			// Compare firstName and lastName with database objects, if there is
    			// a match sign the user in, if no match, give not registered error
 			if (info[1].equals(firstName) && info[2].equals(lastName) && !voted) {
 				voter = new Voter(info[0], info[1], info[2], info[3], info[4], voted);
-			}
+				primaryStage.setScene(VoterOptions.getScene(primaryStage));
 
+			} 
+			
+			//If the user has already voted, then they will stay in the login screen.
 			else if (voted) {
-				// display some kind of error, the voter has already voted
-			}
+				primaryStage.setScene(LoginWindow.getScene(primaryStage));
+				LoginWindow.error.setText("You've already voted.");
 
-			else {
-				// display some kind of error because their firstName and lastName did not match
-				// the corressponding SSN
+			} else if (!info[0].equals(SSN) && !info[1].equals(firstName) && !info[2].equals(lastName)) {
+				
+				LoginWindow.error.setText("Yu fat");
 			}
 
 
 			Database.voterVoted(SSN);	// AFTER THE VOTER VOTES, CALL Database.voterVoted() TO UPDATE THEIR VOTE STATUS TO TRUE
-
-
-   			  primaryStage.setScene(VoterOptions.getScene(primaryStage));
    			  // The different buttons will be user.method() using setOnClickListeners
    		}
 

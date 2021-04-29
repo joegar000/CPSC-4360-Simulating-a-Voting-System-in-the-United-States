@@ -101,47 +101,10 @@ public class Voter {
             if (info[x] != null) continue;
             else isRegistered = false;
         }
-
         return isRegistered;
     }
 
     public void displayCandidateList() {
             //Later pull the list from the database.
     }
-    
-
-
-    /*
-    Note #1: 
-    This is a vague idea of how to possibly check if someone is registered. 
-    I was unsure as how to do it, such as will the voters information will be saved in the database?
-
-    Makeshift Formula: 
-    "Registering" = VoterName + VoterAge =< 18 + VoterState + VoterSSN
-    IsRegistered = "Registering"
-    IfVoted = IsRegistered 
-    HasVoted = IfVoted + IsRegistered
-
-    public boolean CheckIsRegistered() {
-        if("Some how get the saved voter information.") {
-            ...
-        } else {
-            ...
-        }
-    }
-    public boolean CheckIfVoted() {
-        if(isRegistered) {
-            ...
-        } else {
-            ...
-        }
-    }
-    public boolean CheckHasVoted() {
-        if(IfVoted && isRegistered) {
-            ...
-        } else {
-            ...
-        }
-    }
-    */
 }
