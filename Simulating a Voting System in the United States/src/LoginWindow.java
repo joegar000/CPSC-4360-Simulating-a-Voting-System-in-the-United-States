@@ -58,7 +58,7 @@ public class LoginWindow extends Application {
                 lastName,
                 new Label("Please enter your SSN"),
                 SSN,
-                new Label("Please enter your password"),
+                new Label("Please enter your account type"),
                 password,
                 error,
                 loginButton);

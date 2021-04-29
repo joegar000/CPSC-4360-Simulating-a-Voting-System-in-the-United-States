@@ -83,11 +83,9 @@ public class VoterOptions extends Application {
 
         //Creates labels for entering information.
         Label candidatePartyLabel = new Label("Enter Party");
-        //Label candidatePosLabel = new Label("Enter Position");
 
         //Creates text fields to enter information.
         TextField candidatePartyTextField = new TextField();
-        //TextField candidatePosTextField = new TextField();
 
         //Creates a new VBox that contains the response and logout button.
         VBox layout2 = new VBox(15, ResponseLabel, Logout);

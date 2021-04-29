@@ -35,7 +35,7 @@ public class Voter {
     private String VoterState;
     private String VoterSSN;
     private boolean hasVoted;
-    public static String VoterPassword = "2468";
+    public static String VoterPassword = "Voter";
     private boolean isRegistered = false;
 
     //Default constructor
