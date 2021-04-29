@@ -94,6 +94,7 @@ class CandidateResultsDisplay extends VBox {
         ArrayList<String[]> candidates = Database.getAllCandidates();
         ArrayList<String[]> partyListResults = new ArrayList<String[]>();
 
+        //This block sorts all the votes into their respective parties and totals them
         for (int i = 0; i < candidates.size(); i++ ) {
             if (partyListResults.isEmpty()) {
                 String[] tempResult = {candidates.get(i)[2], candidates.get(i)[4]};
@@ -116,10 +117,12 @@ class CandidateResultsDisplay extends VBox {
             }
         } 
         
+        //This shows all the parties and respective total votes.
         for (int g = 0; g < partyListResults.size(); g++){
             System.out.println(" Party: "+partyListResults.get(g)[0]+" Votes: "+ partyListResults.get(g)[1]);
         }
 
+        // This block gets the party winner from the parties
         String[] winner = new String[2];
         List<String> tieHolder = new ArrayList<String>();
         for (int t = 0; t<partyListResults.size(); t++) {
@@ -141,6 +144,7 @@ class CandidateResultsDisplay extends VBox {
             }
         }
 
+        //This block gets all the candidates from the party(s) that win(s)
         ArrayList<String[]> candidatesCollection = Database.getAllCandidates();
         ArrayList<String[]> winnerArrayList = new ArrayList<String[]>();
         if (tieHolder.isEmpty()) {
@@ -162,8 +166,6 @@ class CandidateResultsDisplay extends VBox {
             }
         }
 
-        if (winnerArrayList.isEmpty())
-            System.out.println("no winners??");
         return winnerArrayList;
     }
 
