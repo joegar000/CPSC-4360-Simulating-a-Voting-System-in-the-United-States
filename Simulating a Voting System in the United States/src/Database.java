@@ -464,7 +464,7 @@ public abstract class Database {
     }
 
     public static void registerPress(String ssn, String first_name, String last_name) {
-        String sql = "INSERT INTO press(ssn,first_name,last_name) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO press(ssn,first_name,last_name) VALUES(?,?,?)";
 
         try (PreparedStatement pstmt = pressConn.prepareStatement(sql)) {
             pstmt.setString(1, ssn);
