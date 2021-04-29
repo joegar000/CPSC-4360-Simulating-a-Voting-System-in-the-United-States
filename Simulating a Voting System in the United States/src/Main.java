@@ -74,9 +74,8 @@ public class Main extends Application {
 				primaryStage.setScene(LoginWindow.getScene(primaryStage));
 				LoginWindow.error.setText("You've already voted.");
 
-			} else if (!info[0].equals(SSN) && !info[1].equals(firstName) && !info[2].equals(lastName)) {
+			} else {
 				
-				LoginWindow.error.setText("Yu fat");
 			}
 
 
