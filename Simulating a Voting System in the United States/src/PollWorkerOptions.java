@@ -12,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;public class PollWorkerOptions extends Application {
+import javafx.stage.Stage;
+
+public class PollWorkerOptions extends Application {
     
     @Override
     public void start(Stage pollWorkerStage) throws Exception {
