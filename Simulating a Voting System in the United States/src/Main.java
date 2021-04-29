@@ -74,11 +74,7 @@ public class Main extends Application {
 				primaryStage.setScene(LoginWindow.getScene(primaryStage));
 				LoginWindow.error.setText("You've already voted.");
 
-			} else {
-				
 			}
-
-
 			Database.voterVoted(SSN);	// AFTER THE VOTER VOTES, CALL Database.voterVoted() TO UPDATE THEIR VOTE STATUS TO TRUE
    			  // The different buttons will be user.method() using setOnClickListeners
    		}
@@ -92,11 +88,6 @@ public class Main extends Application {
 				primaryStage.setScene(PollWorkerOptions.getScene(primaryStage));
 
 			}
-
-			else {
-				// display some kind of error, the pollworker's first and last name do not match the ssn
-			}
-
    		 	 // Compare firstName and lastName with database objects, if there is
    			  // a match sign the user in, if no match, give not registered error
 
@@ -110,10 +101,6 @@ public class Main extends Application {
 			if (info[1].equals(firstName) && info[2].equals(lastName)) {
 				Administrator admin = new Administrator(info[0], info[1], info[2]);
 				primaryStage.setScene(AdministratorOptions.getScene(primaryStage));
-			}
-
-			else {
-				// display some kind of error, the pollworker's first and last name do not match the ssn
 			}
    		  	// Compare firstName and lastName with database objects, if there is
    		  	// a match sign the user in, if no match, give not registered error
@@ -129,8 +116,6 @@ public class Main extends Application {
 			if (info[2].equals(firstName) && info[3].equals(lastName)) {
 				Electorate elec = new Electorate(info[0], info[1], info[2], info[3]);
 				primaryStage.setScene(ElectorateHandler.getScene(primaryStage));
-			} else {
-				
 			}
    		} else if (password.equals(Press.ePassword)) {
 
@@ -139,10 +124,6 @@ public class Main extends Application {
 			if (info[2].equals(firstName) && info[3].equals(lastName)) {
 				Press p = new Press(info[0], info[1], info[2]);
 				primaryStage.setScene(PressHandler.getScene(primaryStage));
-			}
-
-			else {
-			
 			}
    		}
 	}
