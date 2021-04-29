@@ -4,7 +4,7 @@
 
 public class Press {
     private String SSN, firstName, lastName;
-    public static String ePassword = "15";
+    public static String ePassword = "Press";
 
     //Default constructor
     public Press() {
