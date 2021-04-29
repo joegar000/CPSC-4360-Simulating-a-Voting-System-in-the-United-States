@@ -78,16 +78,21 @@ public class LoginWindow extends Application {
     public static void announce(String winner) {
         announcmentStage = new Stage();
         VBox presentation = new VBox();
-        Label label = new Label(winner);
+        String[] results = winner.split("=");
+        Label[] labelArray = new Label[results.length];
+        for (int i = 1; i < results.length; i++) {
+            labelArray[i] = new Label(results[i]);
+            labelArray[i].setFont(new Font("Arial", 25));
+            presentation.getChildren().add(labelArray[i]);
+        }
         Button exit = new Button("Close");
 
         presentation.setTranslateX(0); // change later
-        label.setFont(new Font("Arial", 25));
 
         exit.setOnMouseClicked(e -> {
                 announcmentStage.close();
             });
-        presentation.getChildren().addAll(label,exit);
+        presentation.getChildren().add(exit);
         presentation.setAlignment(Pos.CENTER);
 
         Scene winScene = new Scene(presentation,950,700);

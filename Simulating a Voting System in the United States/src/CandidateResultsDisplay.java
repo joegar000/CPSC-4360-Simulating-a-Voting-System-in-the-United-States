@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
-
-
+import java.util.List;
 
 import javax.lang.model.util.ElementScanner6;
 
@@ -54,40 +53,115 @@ class CandidateResultsDisplay extends VBox {
             LoginWindow.password.clear();
             ArrayList<String[]> winner = getWinner();
             String container = "";
-            if (winner.size()>1) {
-                container+="There was a tie between ";
-                for (int i = 0; i < winner.size(); i++) {
-                    if (i==0)
-                        container+=(""+winner.get(i)[0]);
-                    else if (i==winner.size()-1)
-                        container+=(", and "+winner.get(i)[0]+".");
-                    else 
-                        container+=(", "+winner.get(i)[0]);
+            ArrayList<String> partyList = new ArrayList<String>();
+            for (int i = 0; i < winner.size(); i++){
+                if (partyList.size()<1) {
+                    partyList.add(winner.get(i)[2]);
+                } else if (!partyList.contains(winner.get(i)[2])) {
+                    partyList.add(winner.get(i)[2]);
                 }
-            } else if (winner.size()==0){
-                container = "There is no winner... there was an error.";
-            } else {
-                container+="The winner is the "+ winner.get(2)[0]+" party.";
             }
+
+            for (int g = 0; g < winner.size(); g++){
+                System.out.println(" Name: "+winner.get(g)[0]+" "+ winner.get(g)[1]+" Party: " + winner.get(g)[2] +" Position: "+winner.get(g)[3]);
+            }
+
+            if (partyList.size()>1) {
+                container+="=There was a tie. Here are the parties";
+                for (int r = 0; r < partyList.size(); r++) {
+                    container+=" " + partyList.get(r);
+                }
+                container+=". Here are the following contestants in the tie:";
+                for (int g = 0; g < winner.size(); g++){
+                    container+=" =Name: "+winner.get(g)[0]+" "+ winner.get(g)[1]+" -- Party: " + winner.get(g)[2] +" -- Position: "+winner.get(g)[3];
+                }
+            } else {
+                container+="=Congratulations to the winners of the " + partyList.get(0) + " party. Here are the candidates:";
+                for (int g = 0; g < winner.size(); g++){
+                    container+=" =Name: "+winner.get(g)[0]+" "+ winner.get(g)[1]+" -- Party: " + winner.get(g)[2] +" -- Position: "+winner.get(g)[3];
+                }
+            }
+
             LoginWindow.announce(container);
         });
         this.getChildren().add(logoutBtn4);
     };
 
-    /* TODO must get the results from votes and reset the Database? */
+    /* This method calculates the winner, returns an array list with all winners */
     public ArrayList<String[]> getWinner() {
         ArrayList<String[]> candidates = Database.getAllCandidates();
-        String[] winner = candidates.get(0);
-        ArrayList<String[]> winnerArrayList = new ArrayList<String[]>();
-        winnerArrayList.add(winner);
+        ArrayList<String[]> partyListResults = new ArrayList<String[]>();
+
         for (int i = 0; i < candidates.size(); i++ ) {
-            if (Integer.parseInt(winnerArrayList.get(0)[4]) == Integer.parseInt(candidates.get(i)[4])) {
-                winnerArrayList.add(candidates.get(i));
-            } else if (Integer.parseInt(winnerArrayList.get(0)[4]) < Integer.parseInt(candidates.get(i)[4])) {
-                winnerArrayList.clear();
-                winnerArrayList.add(candidates.get(i));
-            } 
+            if (partyListResults.isEmpty()) {
+                String[] tempResult = {candidates.get(i)[2], candidates.get(i)[4]};
+                partyListResults.add(tempResult);
+            } else {
+                boolean foundHome = false;
+                for (int r = 0; r < partyListResults.size(); r++) {
+                    if (partyListResults.get(r)[0] == candidates.get(i)[2]) {
+                        int tempInt = Integer.parseInt(partyListResults.get(r)[1]);
+                        tempInt+=Integer.parseInt(candidates.get(i)[4]);
+                        partyListResults.get(r)[1] = ""+tempInt;
+                        foundHome=true;
+                        break;
+                    }
+                }
+                if (foundHome==false) {
+                    String[] tempResult = {candidates.get(i)[2], candidates.get(i)[4]};
+                    partyListResults.add(tempResult);
+                }
+            }
+        } 
+        
+        for (int g = 0; g < partyListResults.size(); g++){
+            System.out.println(" Party: "+partyListResults.get(g)[0]+" Votes: "+ partyListResults.get(g)[1]);
         }
+
+        String[] winner = new String[2];
+        List<String> tieHolder = new ArrayList<String>();
+        for (int t = 0; t<partyListResults.size(); t++) {
+            if (winner[0]==null) {
+                winner = partyListResults.get(t);
+            } else {
+                if (Integer.parseInt(winner[1]) < Integer.parseInt(partyListResults.get(t)[1])) {
+                    winner = partyListResults.get(t);
+                    //tieHolder = new String[10];
+                    tieHolder.clear();
+                } else if (Integer.parseInt(winner[1]) == Integer.parseInt(partyListResults.get(t)[1])) {
+                    if (tieHolder.isEmpty()){
+                        tieHolder.add(winner[0]);
+                        tieHolder.add(partyListResults.get(t)[0]);
+                    } else {
+                        tieHolder.add(partyListResults.get(t)[0]);
+                    }
+                }
+            }
+        }
+
+        ArrayList<String[]> candidatesCollection = Database.getAllCandidates();
+        ArrayList<String[]> winnerArrayList = new ArrayList<String[]>();
+        if (tieHolder.isEmpty()) {
+            System.out.println("is empty");
+            for (int i = 0; i < candidatesCollection.size(); i++ ) {
+                System.out.println(winner[0] + " compared to "+ candidatesCollection.get(i)[2]);
+                if (winner[0].equalsIgnoreCase(candidatesCollection.get(i)[2])) {
+                    winnerArrayList.add(candidatesCollection.get(i));
+                    System.out.println("gets added");
+                } 
+            }
+        } else {
+            for (int f = 0; f < tieHolder.size(); f++){
+                for (int i = 0; i < candidatesCollection.size(); i++ ) {
+                    if (tieHolder.get(f) == candidatesCollection.get(i)[2]) {
+                        winnerArrayList.add(candidatesCollection.get(i));
+                    } 
+                }
+            }
+        }
+
+        if (winnerArrayList.isEmpty())
+            System.out.println("no winners??");
         return winnerArrayList;
     }
 
@@ -95,18 +169,52 @@ class CandidateResultsDisplay extends VBox {
     public void showResults() {
         ArrayList<String[]> candidates = Database.getAllCandidates();
         double totalVotes = (double) getNumAllCurrentVotes(candidates);
-        for (int i = 0; i < candidates.size(); i++){
+        ArrayList<String[]> partyListResults = new ArrayList<String[]>();
+
+        for (int i = 0; i < candidates.size(); i++ ) {
+            if (partyListResults.isEmpty()) {
+                String[] tempResult = {candidates.get(i)[2], candidates.get(i)[4]};
+                partyListResults.add(tempResult);
+            } else {
+                boolean foundHome = false;
+                for (int r = 0; r < partyListResults.size(); r++) {
+                    if (partyListResults.get(r)[0] == candidates.get(i)[2]) {
+                        int tempInt = Integer.parseInt(partyListResults.get(r)[1]);
+                        tempInt+=Integer.parseInt(candidates.get(i)[4]);
+                        partyListResults.get(r)[1] = ""+tempInt;
+                        foundHome=true;
+                        break;
+                    }
+                }
+                if (foundHome==false) {
+                    String[] tempResult = {candidates.get(i)[2], candidates.get(i)[4]};
+                    partyListResults.add(tempResult);
+                }
+            }
+        } 
+        
+        for (int g = 0; g < partyListResults.size(); g++){
+            double result = Integer.parseInt(partyListResults.get(g)[1])/totalVotes*100;
+            String party = partyListResults.get(g)[0];
+            PartyResultLabel label = new PartyResultLabel(party, result);
+            this.getChildren().add(label);
+        }
+        
+
+        //WAS for individuals
+        /*for (int i = 0; i < candidates.size(); i++){ 
             String[] tempCandidate = candidates.get(i);
-            int votes = Integer.parseInt(tempCandidate[4]);
+            int votes = Integer.parseInt(tempCandidate[4]); //change
             double result;
             if (votes!=0)
 
-                result = Integer.parseInt(tempCandidate[4])/totalVotes;
+                result = (Integer.parseInt(tempCandidate[4])/totalVotes)*100;
             else 
                 result = 0;
-            CandidateResult candLabel = new CandidateResult(tempCandidate[0],tempCandidate[1],tempCandidate[2],tempCandidate[3],result);
+
+            CandidateResultLabel candLabel = new CandidateResultLabel(tempCandidate[0],tempCandidate[1],tempCandidate[2],tempCandidate[3],result);
             this.getChildren().add(candLabel);
-        }
+        }*/
         
     }
 
@@ -121,9 +229,17 @@ class CandidateResultsDisplay extends VBox {
         return votes;
     }
 
-    public class CandidateResult extends Label {
-        public CandidateResult(String firstName, String lastName, String party, String position, double result) {
+    /*Label Class for Individuals*/
+    public class CandidateResultLabel extends Label {
+        public CandidateResultLabel(String firstName, String lastName, String party, String position, double result) {
             this.setText(firstName + " " + lastName + " --- Party: " + party + " --- Position: " + position + " --- Resulting Percentage: " + String.format("%.2f",result));
+        }
+    }
+
+    /*Label Class for parties */
+    public class PartyResultLabel extends Label {
+        public PartyResultLabel(String party, double result) {
+            this.setText("Party: " + party + " --- Resulting Percentage: " + String.format("%.2f",result));
         }
     }
 
