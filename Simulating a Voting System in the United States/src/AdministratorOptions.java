@@ -37,7 +37,7 @@ public class AdministratorOptions extends Application {
     public static Scene getScene(Stage administratorStage) {
         //Scenes initialized
         Scene OptionsScene, voterRegScene, adminRegScene, pollworkerRegScene, candidateRegScene, elecRegScene, 
-        ValScene, VoterDBScene; /*CandidateDBScene, CandidateDRScene;*/
+        ValScene, VoterDBScene, CandidateDRScene;
 
         //OPTIONS SCENE
         //Labels
@@ -53,7 +53,7 @@ public class AdministratorOptions extends Application {
         Button btn6 = new Button("Pollworker Registration");
         Button btn7 = new Button("Candidate Registration");
         Button btn9 = new Button("Electorate Registration");
-        //Button btn8 = new Button("Candidate Results");
+        Button btn8 = new Button("Candidate Results");
         Button logoutBtn = new Button("Log out");
         logoutBtn.setOnMouseClicked(e -> {
             administratorStage.setScene(LoginWindow.getScene(administratorStage));
@@ -64,7 +64,7 @@ public class AdministratorOptions extends Application {
         });
 
         //Layout
-        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn9, btn2, btn3, logoutBtn);
+        VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn9, btn2, btn3, btn8, logoutBtn);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 950, 700);
@@ -441,7 +441,7 @@ public class AdministratorOptions extends Application {
         layout5.getChildren().addAll(candidateDBgoBack, candidateDBlogoutBtn);
         layout5.setAlignment(Pos.CENTER);
         layout5.setPadding(new Insets(10, 10, 10, 10));
-        CandidateDBScene = new Scene(layout5, 950, 700);
+        CandidateDBScene = new Scene(layout5, 950, 700);*/
 
      
         //DISPLAY CANDIDATE RESULTS SCENE - (if questions, ask Daniel)
@@ -473,7 +473,7 @@ public class AdministratorOptions extends Application {
         btn2.setOnAction(e -> administratorStage.setScene(ValScene));
         btn3.setOnAction(e -> administratorStage.setScene(VoterDBScene));
         //btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene));
-        //btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));
+        btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));
         return OptionsScene;
     }
 
