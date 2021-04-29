@@ -16,7 +16,7 @@ public class PollWorker {
     private String firstName;
     private String lastName;
     private String SSN;
-    public static String password = "1234";
+    public static String password = "PollWorker";
 
     public PollWorker() {
     }

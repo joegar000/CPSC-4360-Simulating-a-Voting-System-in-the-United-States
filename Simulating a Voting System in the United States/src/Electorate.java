@@ -4,7 +4,7 @@
 
 public class Electorate {
     private String SSN, state, firstName, lastName;
-    public static String ePassword = "13";
+    public static String ePassword = "Electorate";
 
     //Default constructor
     public Electorate() {
