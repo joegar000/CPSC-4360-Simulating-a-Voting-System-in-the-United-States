@@ -30,8 +30,7 @@ public class Main extends Application {
 		Database.setUpPress();
 
 		Database.registerAdministrator("1", "Default", "User");
-
-		
+		Database.registerPress("2", "Associated", "Press");
 
 		Application.launch(args);
 	}

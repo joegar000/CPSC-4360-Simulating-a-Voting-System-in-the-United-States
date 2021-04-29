@@ -1,8 +1,12 @@
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.Iterator;
 
 import javax.lang.model.util.ElementScanner6;
+
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -67,9 +71,23 @@ class CandidateResultsDisplay extends VBox {
             }
 
             if (partyList.size()>1) {
-                container+="=There was a tie. Here are the parties";
-                for (int r = 0; r < partyList.size(); r++) {
-                    container+=" " + partyList.get(r);
+                container+="=There was a tie. The parties are";
+                if (partyList.size()>2) {
+                    for (int r = 0; r < partyList.size(); r++) {
+                        if (r==0) 
+                            container+=" " + partyList.get(r);
+                        else if (r<partyList.size()-1)
+                            container+=", " + partyList.get(r);
+                        else
+                            container+=", and " + partyList.get(r);
+                    }
+                } else {
+                    for (int r = 0; r < partyList.size(); r++) {
+                        if (r==0) 
+                            container+=" " + partyList.get(r);
+                        else
+                            container+=" and " + partyList.get(r);
+                    }
                 }
                 container+=". Here are the following contestants in the tie:";
                 for (int g = 0; g < winner.size(); g++){
@@ -80,7 +98,7 @@ class CandidateResultsDisplay extends VBox {
             } else {
                 container+="=Congratulations to the winners of the " + partyList.get(0) + " party. Here are the candidates:";
                 for (int g = 0; g < winner.size(); g++){
-                    container+=" =Name: "+winner.get(g)[0]+" "+ winner.get(g)[1]+" -- Party: " + winner.get(g)[2] +" -- Position: "+winner.get(g)[3];
+                    container+=" =Name: "+winner.get(g)[0]+" "+ winner.get(g)[1]+" -- Party: " + winner.get(g)[2] +" -- Position: "+ winner.get(g)[3];
                 }
             }
 
@@ -94,7 +112,26 @@ class CandidateResultsDisplay extends VBox {
         ArrayList<String[]> candidates = Database.getAllCandidates();
         ArrayList<String[]> partyListResults = new ArrayList<String[]>();
 
-        //This block sorts all the votes into their respective parties and totals them
+        HashSet<String[]> partiesAdded = new HashSet<String[]>();
+        for (int i = 0; i < candidates.size(); i++ ) {
+            Iterator<String[]> itParties = partiesAdded.iterator();
+            String party = candidates.get(i)[2];
+            String total = candidates.get(i)[4];
+            String[] temp = {party,total};
+            boolean check = true;
+            for (int d = 0; d < partiesAdded.size(); d++) {
+                String[] temp2 = itParties.next();
+                System.out.println(temp2[0]);
+                if (temp2[0].equalsIgnoreCase(temp[0])) {
+                    check = false;
+                }
+            }
+            if (check==true)
+                partiesAdded.add(temp);
+        }
+
+        /*//This block sorts all the votes into their respective parties and totals them
+        Set<String[]> partiesAdded = new HashSet<String[]>();
         for (int i = 0; i < candidates.size(); i++ ) {
             if (partyListResults.isEmpty()) {
                 String[] tempResult = {candidates.get(i)[2], candidates.get(i)[4]};
@@ -115,34 +152,38 @@ class CandidateResultsDisplay extends VBox {
                     partyListResults.add(tempResult);
                 }
             }
-        } 
+        }*/
         
         //This shows all the parties and respective total votes.
-        for (int g = 0; g < partyListResults.size(); g++){
+        /*for (int g = 0; g < partyListResults.size(); g++){
             System.out.println(" Party: "+partyListResults.get(g)[0]+" Votes: "+ partyListResults.get(g)[1]);
-        }
+        }*/
 
         // This block gets the party winner from the parties
         String[] winner = new String[2];
-        List<String> tieHolder = new ArrayList<String>();
-        for (int t = 0; t<partyListResults.size(); t++) {
+        Set<String> tieHolder = new HashSet<String>();
+        Iterator<String[]> it = partiesAdded.iterator();
+        for (int t = 0; t<partiesAdded.size(); t++) {
+            String[] temp = it.next();
             if (winner[0]==null) {
-                winner = partyListResults.get(t);
+                winner = temp;
             } else {
-                if (Integer.parseInt(winner[1]) < Integer.parseInt(partyListResults.get(t)[1])) {
-                    winner = partyListResults.get(t);
+                if (Integer.parseInt(winner[1]) < Integer.parseInt(temp[1])) {
+                    winner = temp;
                     //tieHolder = new String[10];
                     tieHolder.clear();
-                } else if (Integer.parseInt(winner[1]) == Integer.parseInt(partyListResults.get(t)[1])) {
+                } else if (Integer.parseInt(winner[1]) == Integer.parseInt(temp[1])) {
                     if (tieHolder.isEmpty()){
                         tieHolder.add(winner[0]);
-                        tieHolder.add(partyListResults.get(t)[0]);
+                        tieHolder.add(temp[0]);
                     } else {
-                        tieHolder.add(partyListResults.get(t)[0]);
+                        tieHolder.add(temp[0]);
                     }
                 }
             }
+
         }
+
 
         //This block gets all the candidates from the party(s) that win(s)
         ArrayList<String[]> candidatesCollection = Database.getAllCandidates();
@@ -157,9 +198,11 @@ class CandidateResultsDisplay extends VBox {
                 } 
             }
         } else {
+            Iterator<String> itTie = tieHolder.iterator();
             for (int f = 0; f < tieHolder.size(); f++){
+                String temp = itTie.next();
                 for (int i = 0; i < candidatesCollection.size(); i++ ) {
-                    if (tieHolder.get(f) == candidatesCollection.get(i)[2]) {
+                    if (temp.equalsIgnoreCase(candidatesCollection.get(i)[2])) {
                         winnerArrayList.add(candidatesCollection.get(i));
                     } 
                 }
@@ -173,9 +216,9 @@ class CandidateResultsDisplay extends VBox {
     public void showResults() {
         ArrayList<String[]> candidates = Database.getAllCandidates();
         double totalVotes = (double) getNumAllCurrentVotes(candidates);
-        ArrayList<String[]> partyListResults = new ArrayList<String[]>();
+        //ArrayList<String[]> partyListResults = new ArrayList<String[]>();
 
-        for (int i = 0; i < candidates.size(); i++ ) {
+        /*for (int i = 0; i < candidates.size(); i++ ) {
             if (partyListResults.isEmpty()) {
                 String[] tempResult = {candidates.get(i)[2], candidates.get(i)[4]};
                 partyListResults.add(tempResult);
@@ -195,18 +238,38 @@ class CandidateResultsDisplay extends VBox {
                     partyListResults.add(tempResult);
                 }
             }
-        } 
+        }*/
         
-        for (int g = 0; g < partyListResults.size(); g++){
-            double result = Integer.parseInt(partyListResults.get(g)[1])/totalVotes*100;
-            String party = partyListResults.get(g)[0];
+        HashSet<String[]> partiesAdded = new HashSet<String[]>();
+        for (int i = 0; i < candidates.size(); i++ ) {
+            Iterator<String[]> itParties = partiesAdded.iterator();
+            String party = candidates.get(i)[2];
+            String total = candidates.get(i)[4];
+            String[] temp = {party,total};
+            boolean check = true;
+            for (int d = 0; d < partiesAdded.size(); d++) {
+                String[] temp2 = itParties.next();
+                System.out.println(temp2[0]);
+                if (temp2[0].equalsIgnoreCase(temp[0])) {
+                    check = false;
+                }
+            }
+            if (check==true)
+                partiesAdded.add(temp);
+        }
+        
+        Iterator<String[]> itParties = partiesAdded.iterator();
+        for (int g = 0; g < partiesAdded.size(); g++){
+            String[] temp = itParties.next();
+            double result = Integer.parseInt(temp[1])/totalVotes*100;
+            String party = temp[0];
             PartyResultLabel label = new PartyResultLabel(party, result);
             this.getChildren().add(label);
         }
         
 
-        //WAS for individuals
-        /*for (int i = 0; i < candidates.size(); i++){ 
+        /*//WAS for individuals
+        for (int i = 0; i < candidates.size(); i++){ 
             String[] tempCandidate = candidates.get(i);
             int votes = Integer.parseInt(tempCandidate[4]); //change
             double result;
@@ -225,11 +288,36 @@ class CandidateResultsDisplay extends VBox {
     /* to get all of the current Votes */
     public int getNumAllCurrentVotes(ArrayList<String[]> candidates){
         int votes = 0;
-        for (int i = 0; i < candidates.size(); i++) {
+        HashSet<String[]> partiesAdded = new HashSet<String[]>();
+        for (int i = 0; i < candidates.size(); i++ ) {
+            Iterator<String[]> itParties = partiesAdded.iterator();
+            String party = candidates.get(i)[2];
+            String total = candidates.get(i)[4];
+            String[] temp = {party,total};
+            boolean check = true;
+            for (int d = 0; d < partiesAdded.size(); d++) {
+                String[] temp2 = itParties.next();
+                System.out.println(temp2[0]);
+                if (temp2[0].equalsIgnoreCase(temp[0])) {
+                    check = false;
+                }
+            }
+            if (check==true)
+                partiesAdded.add(temp);
+        }
+
+        Iterator<String[]> itParties = partiesAdded.iterator();
+        for (int g = 0; g < partiesAdded.size(); g++){
+            String[] temp = itParties.next();
+            System.out.println("Party: "+temp[0]+" Votes: "+temp[1]);
+            votes+=Integer.parseInt(temp[1]);
+        }
+        
+        /*for (int i = 0; i < candidates.size(); i++) {
             String[] tempCandidate = candidates.get(i);
             int candidateVotes = Integer.parseInt(tempCandidate[4]);
             votes+=candidateVotes;
-        }
+        }*/
         return votes;
     }
 

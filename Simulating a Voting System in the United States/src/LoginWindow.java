@@ -95,7 +95,7 @@ public class LoginWindow extends Application {
         presentation.getChildren().add(exit);
         presentation.setAlignment(Pos.CENTER);
 
-        Scene winScene = new Scene(presentation,950,700);
+        Scene winScene = new Scene(presentation,1600,700);
         announcmentStage.setScene(winScene);
         announcmentStage.show();
     }
