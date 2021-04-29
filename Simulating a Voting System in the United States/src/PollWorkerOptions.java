@@ -184,7 +184,7 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
         }
         layout5.getChildren().addAll(goBack4, logoutBtn4);
         layout5.setAlignment(Pos.CENTER);
-        layout5.setPadding(new Insets(10, 10, 10, 10));
+        layout5.setPadding(new Insets(250, 10, 10, 10));
         ScrollPane scrollBar = new ScrollPane();
         scrollBar.setContent(layout5);
         scrollBar.setFitToWidth(true);
