@@ -29,12 +29,17 @@ public class Main extends Application {
 		Database.setUpElectorate();
 		Database.setUpPress();
 
-		Database.registerPollWorker("987654321", "David", "Garcia");
-		Database.registerCandidate("Donald", "Trump", "Republican", "President", "Mike Pence", "0");
-		Database.registerCandidate("Joe", "Biden", "Democrat", "President", "Kamala Harris", "0");
+		
+		Database.registerCandidate("Joe", "Biden", "Republican", "President", "Kamala Harris", "0");
 		Database.registerCandidate("Mary", "Jane", "Independent", "President", "Mason Hoover", "0");
 		Database.registerCandidate("Matt", "Guy", "Green", "Senate", "0");
-		Database.registerCandidate("Matt", "Geatz", "Republican", "Senate", "0");
+		Database.registerCandidate("Donald", "Trump", "Republican", "President", "Mike Pence", "0");
+		Database.registerCandidate("Matt2", "Geatz", "Republican", "Senate", "0");
+
+
+
+		Database.registerPollWorker("987654321", "David", "Garcia");
+
 		Database.registerAdministrator("431765289", "Kaden", "Carter");
 		Database.registerAdministrator("12","D","I");
 		Database.registerElector("12","Texas","D","I");

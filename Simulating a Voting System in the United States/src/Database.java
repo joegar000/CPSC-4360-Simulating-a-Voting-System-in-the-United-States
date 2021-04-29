@@ -351,10 +351,9 @@ public abstract class Database {
             System.out.println(e.getMessage() + "registercandidate1");
         }
     }
-
     public static void registerCandidate(String first_name, String last_name, String party, String position, String runningMate, String vote) {
         String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,?,?)";
-    
+
         try (PreparedStatement pstmt = candidatesConn.prepareStatement(sql)) {
             pstmt.setString(1, first_name);
             pstmt.setString(2, last_name);
@@ -412,7 +411,7 @@ public abstract class Database {
 
             try (Statement stmt = candidatesConn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
-                
+            int x = 0;
             while (rs.next()) {
                 if (rs.getString("runningmate") == null) {
                     String[] info = new String[5];
@@ -422,7 +421,6 @@ public abstract class Database {
                     info[3] = rs.getString("position");
                     info[4] = rs.getString("votes");
                     allCandidates.add(info);
-                    break;
                 }
                 else {
                     String[] info = new String[6];

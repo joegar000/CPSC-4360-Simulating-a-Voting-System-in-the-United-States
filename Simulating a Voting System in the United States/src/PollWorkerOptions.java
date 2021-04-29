@@ -1,6 +1,3 @@
-/* This class will contain the method for setting the JavaFX scene to the poll worker options
-   I (David) have tested setting JavaFX scenes this way and it works */
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -162,7 +159,6 @@ import javafx.stage.Stage;public class PollWorkerOptions extends Application {
 
         while(i.hasNext()) {
             String[] candidate = i.next();
-            System.out.println(candidate[0]);
             if (candidate.length == 6) {
                 Name = new Label("Name: " + candidate[0] + " " + candidate[1]);
                 party = new Label("Party: " + candidate[2]);
