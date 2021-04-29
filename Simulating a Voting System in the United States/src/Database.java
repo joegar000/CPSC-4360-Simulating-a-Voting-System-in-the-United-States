@@ -151,18 +151,17 @@ public abstract class Database {
     }
 
 
-    public static void vote(String party, String position, String vote) {
-        String sql = "UPDATE candidates SET votes = ? WHERE party = ? AND position = ?"; //AND position LIKE ?
+    public static void vote(String party, String vote) {
+        String sql = "UPDATE candidates SET votes = ? WHERE party = ?";
         
             try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
-                String[] votesArr = Database.getCandidate(party, position);
+                String[] votesArr = Database.getCandidate(party);
                 String votes = votesArr[votesArr.length-1];
                 int voteCount = Integer.parseInt(votes);
                 //int newVoteCount = voteCount+1;
                 votes = Integer.toString(++voteCount);
                 stmt.setString(1, votes);
                 stmt.setString(2, party);
-                stmt.setString(3, position);
                 stmt.executeUpdate();
             }
             catch(SQLException e) {
@@ -367,12 +366,11 @@ public abstract class Database {
         }
     }
 
-    public static String[] getCandidate(String party, String position) {
-        String sql = "SELECT first_name, last_name, party, position, votes, runningmate FROM candidates WHERE party LIKE ? and position LIKE ?";
+    public static String[] getCandidate(String party) {
+        String sql = "SELECT first_name, last_name, party, position, votes, runningmate FROM candidates WHERE party LIKE ?";
         String[] info = new String[6];
             try (PreparedStatement stmt = candidatesConn.prepareStatement(sql)) {
                 stmt.setString(1,party);
-                stmt.setString(2,position);
                 ResultSet rs = stmt.executeQuery();
                 
                 while (rs.next()) {

@@ -30,7 +30,7 @@ public class Main extends Application {
 		Database.setUpPress();
 
 		
-		Database.registerCandidate("Joe", "Biden", "Republican", "President", "Kamala Harris", "0");
+		Database.registerCandidate("Joe", "Biden", "Democraft", "President", "Kamala Harris", "0");
 		Database.registerCandidate("Mary", "Jane", "Independent", "President", "Mason Hoover", "0");
 		Database.registerCandidate("Matt", "Guy", "Green", "Senate", "0");
 		Database.registerCandidate("Matt", "Geatz", "Republican", "Senate", "0");

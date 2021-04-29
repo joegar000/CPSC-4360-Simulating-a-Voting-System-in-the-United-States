@@ -34,7 +34,7 @@ public class VoterOptions extends Application {
         Scene voteScene, thankYouScene;
 
         //Displays instructions to the voter. Also, changes text font and size. Creates labels for candidates.
-        Label firstLabel = new Label("Please choose the candidate you wish to support and enter their information into the fields below.");
+        Label firstLabel = new Label("Please choose the party you wish to support and enter it into the field below.");
         firstLabel.setFont(new Font("Arial", 18));
         Label ResponseLabel = new Label("You have casted your ballot!");
         ResponseLabel.setFont(new Font("Arial", 18));
@@ -83,11 +83,11 @@ public class VoterOptions extends Application {
 
         //Creates labels for entering information.
         Label candidatePartyLabel = new Label("Enter Party");
-        Label candidatePosLabel = new Label("Enter Position");
+        //Label candidatePosLabel = new Label("Enter Position");
 
         //Creates text fields to enter information.
         TextField candidatePartyTextField = new TextField();
-        TextField candidatePosTextField = new TextField();
+        //TextField candidatePosTextField = new TextField();
 
         //Creates a new VBox that contains the response and logout button.
         VBox layout2 = new VBox(15, ResponseLabel, Logout);
@@ -102,12 +102,12 @@ public class VoterOptions extends Application {
 
         //Once the button is pressed, the vote will go to that person and the thank you screen will appear.
         buttonCast.setOnAction(e -> {
-            Database.vote(candidatePartyTextField.getText(), candidatePosTextField.getText(), "1");
+            Database.vote(candidatePartyTextField.getText(), "1");
             voterStage.setScene(thankYouScene);
         });
 
         //Centers the cast button.
-        layout1.getChildren().addAll(firstLabel, candidatePartyLabel, candidatePartyTextField, candidatePosLabel, candidatePosTextField, buttonCast);
+        layout1.getChildren().addAll(firstLabel, candidatePartyLabel, candidatePartyTextField, buttonCast);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
 
