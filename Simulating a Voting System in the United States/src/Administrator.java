@@ -1,19 +1,8 @@
 /*
 Kaden Carter
-
-Please express any comments or concerns
-
-TODO
-    Add methods for vote validation, 
-    display voter database, 
-    and display candidate database
+This class is the constructor for the Administrator
 
 */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class Administrator {
 
@@ -25,8 +14,7 @@ public class Administrator {
     private String adminFirstName;
     private String adminLastName;
     private String AdminID;
-    public static String adminPassword = "ABCD";
-    private boolean adminLoggedIn = false;
+    public static String adminPassword = "Admin";
 
     //default constructor
     public Administrator(){
@@ -66,20 +54,6 @@ public class Administrator {
     public void setAdminID(String newAdminID){
         AdminID = newAdminID;
     }
-
-    //log in and log out methods
-   /* public void logIn(String adminFirstName, String adminLastName, String adminPassword) {
-        if (this.adminPassword.equals(adminPassword)) {
-            this.adminLoggedIn = true;
-        }
-        else {
-            System.out.println("The input name and/or password is incorrect.");
-        }
-    }
-
-    public void logOut() {
-        this.adminLoggedIn = false;
-    }*/
 
     public void registerVoter(String VoterSSN, String VoterFirstName, String VoterLastName, String VoterAge, String VoterState, boolean hasVoted) {
         Database.registerVoter(VoterSSN, VoterFirstName, VoterLastName, VoterAge, VoterState, hasVoted);

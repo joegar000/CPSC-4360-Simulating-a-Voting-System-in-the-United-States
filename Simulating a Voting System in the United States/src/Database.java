@@ -170,19 +170,6 @@ public abstract class Database {
             
     }
 
-    /*public static String[] getVotes(String votes){
-        String sql = "SELECT vote FROM candidates WHERE vote LIKE?";
-        String[] info = new String[1];
-
-        try(PreparedStatement stmt = candidatesConn.prepareStatement(sql)){
-
-        }
-        catch(SQLException e) {
-            System.out.println(e.getMessage() + "getVotes");
-        }
-    }*/
-
-
     public static void registerVoter(String ssn, String first_name, String last_name, String age, String state, boolean votedBool) {
         String voted = votedBool ? "TRUE" : "FALSE";
 

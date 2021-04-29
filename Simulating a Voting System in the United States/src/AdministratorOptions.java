@@ -1,12 +1,9 @@
-/* This class will contain the method for setting the JavaFX scene to the administrator options
-   I (David) have tested setting JavaFX scenes this way and it works */
-
-/*
-TODO:
-
-Fix errors
-implement code for different scenes 
+/*  Kaden Carter
+    This class creats a scene for the Administrator options.
 */
+
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -16,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -48,7 +46,6 @@ public class AdministratorOptions extends Application {
         Button btn1 = new Button("Voter Registration");
         Button btn2 = new Button("Display Candidate Database");
         Button btn3 = new Button("Display Voter Database");
-        //Button btn4 = new Button("Display Candidate Database");
         Button btn5 = new Button("Administrator Registration");
         Button btn6 = new Button("Pollworker Registration");
         Button btn7 = new Button("Candidate Registration");
@@ -96,7 +93,6 @@ public class AdministratorOptions extends Application {
             ageTextField.clear();
             stateTextField.clear();
         });
-        
         Button goBack1 = new Button("Go Back");
         goBack1.setOnAction(e -> administratorStage.setScene(OptionsScene));
         Button logoutBtn1 = new Button("Log out");
@@ -295,11 +291,10 @@ public class AdministratorOptions extends Application {
             LoginWindow.password.clear();
         });
         //Layout
-
         VBox layout3 = new VBox(20);
         Label cvfName, cvlName, cvparty, cvposition, cvRMate, cvotes;
         layout3.getChildren().addAll(cdLabel, cdWarning);
-
+        //This loop is used to display all candidates in the database
         while(j.hasNext()) {
             String[] candidate = j.next();
             if(candidate.length == 5){
@@ -315,7 +310,6 @@ public class AdministratorOptions extends Application {
                 cTemp.setAlignment(Pos.CENTER);
                 layout3.getChildren().add(cTemp);
             }
-
             else{
                 cvfName = new Label("First Name: " + candidate[0]);
                 cvlName = new Label("Last Name: " + candidate[1]);
@@ -330,15 +324,15 @@ public class AdministratorOptions extends Application {
                 cTemp.setAlignment(Pos.CENTER);
                 layout3.getChildren().add(cTemp);
 
-            }
-            
-            
+            }      
         }
-
         layout3.getChildren().addAll(goBack2, logoutBtn2);
         layout3.setAlignment(Pos.CENTER);
         layout3.setPadding(new Insets(10, 10, 10, 10));
-        ValScene = new Scene(layout3, 950, 700);
+        ScrollPane scrollBar = new ScrollPane();
+        scrollBar.setContent(layout3);
+        scrollBar.setFitToWidth(true);
+        ValScene = new Scene(scrollBar, 950, 700);
 
         //DISPLAY VOTER DATABASE SCENE
         ArrayList<String[]> voters = Database.getAllVoterInformation();
@@ -360,11 +354,10 @@ public class AdministratorOptions extends Application {
             LoginWindow.password.clear();
         });
         //Layout
-
         VBox voterDBLayout = new VBox(20);
         Label vfName, vlName, age, state, vSSN;
         voterDBLayout.getChildren().addAll(vdLabel, vdWarning);
-
+        //This Loop is used to display all voters in the database
         while(i.hasNext()) {
             String[] voter = i.next();
             vSSN = new Label("SSN: " + voter[0]);  //did not know if this should be displayed as this should be private information.
@@ -378,74 +371,15 @@ public class AdministratorOptions extends Application {
             voterDBLayout.getChildren().add(vTemp);
             
         }
-
         voterDBLayout.getChildren().addAll(voterDBgoBack, voterDBlogoutBtn);
         voterDBLayout.setAlignment(Pos.CENTER);
         voterDBLayout.setPadding(new Insets(10, 10, 10, 10));
-        VoterDBScene = new Scene(voterDBLayout, 950, 700);
+        ScrollPane scrollBar2 = new ScrollPane();
+        scrollBar2.setContent(voterDBLayout);
+        scrollBar2.setFitToWidth(true);
+        VoterDBScene = new Scene(scrollBar2, 950, 700);
         
-        /*
-        //DISPLAY CANDIDATE DATABASE SCENE
-        ArrayList<String[]> candidates = Database.getAllCandidates();
-        Iterator<String[]> k = candidates.iterator();
-        //TextFields
-        //Buttons & Button Actions
-        Button candidateDBgoBack = new Button("Go Back");
-        candidateDBgoBack.setOnAction(e1 -> administratorStage.setScene(OptionsScene));
-        Button candidateDBlogoutBtn = new Button("Log out");
-        candidateDBlogoutBtn.setOnMouseClicked(e2 -> {
-            administratorStage.setScene(LoginWindow.getScene(administratorStage));
-            LoginWindow.firstName.clear();
-            LoginWindow.lastName.clear();
-            LoginWindow.SSN.clear();
-            LoginWindow.password.clear();
-        });
-        //Layout
-
-        VBox layout5 = new VBox(20);
-        Label cfName, clName, party, position, rMate;
-
-        while(k.hasNext()) {
-            String[] candidate = k.next();
-            if(candidate.length == 5){
-                cfName = new Label("First Name: " + candidate[0]);
-                clName = new Label("Last Name: " + candidate[1]);
-                party = new Label("Party: " + candidate[2]);
-                position = new Label ("Position: " + candidate[3]);
-                layout5.getChildren().add(new HBox(20, cfName, clName, 
-                party, position)); 
-                
-                HBox cTemp = new HBox(20, cfName, clName, party, position);
-                cTemp.setAlignment(Pos.CENTER);
-                layout5.getChildren().add(cTemp);
-            }
-
-            else{
-                cfName = new Label("First Name: " + candidate[0]);
-                clName = new Label("Last Name: " + candidate[1]);
-                party = new Label("Party: " + candidate[2]);
-                position = new Label ("Position: " + candidate[3]);
-                rMate = new Label ("Running Mate: " + candidate[5]);
-                layout5.getChildren().add(new HBox(20, cfName, clName, 
-                party, position, rMate)); 
-
-                HBox cTemp = new HBox(20, cfName, clName, party, position, rMate);
-                cTemp.setAlignment(Pos.CENTER);
-                layout5.getChildren().add(cTemp);
-
-            }
-            
-            
-        }
-
-        layout5.getChildren().addAll(candidateDBgoBack, candidateDBlogoutBtn);
-        layout5.setAlignment(Pos.CENTER);
-        layout5.setPadding(new Insets(10, 10, 10, 10));
-        CandidateDBScene = new Scene(layout5, 950, 700);*/
-
-     
         //DISPLAY CANDIDATE RESULTS SCENE - (if questions, ask Daniel)
-      
         CandidateResultsDisplay candidateResultsDisplay = new CandidateResultsDisplay();
         candidateResultsDisplay.showResults();
         candidateResultsDisplay.enableGoBack(administratorStage, OptionsScene);
@@ -453,18 +387,11 @@ public class AdministratorOptions extends Application {
         candidateResultsDisplay.setPadding(new Insets(10, 10, 10, 10));
         CandidateDRScene = new Scene(candidateResultsDisplay, 950, 700);
     
-
         /*Option scene button actions.
           Had to put these down here for some reason. 
           Wouldn't work when placed with the buttons on the Options scene class.
           Also couldn't put the rest of the Options scene statements down here.
-        */
-        
-        
-        
-        
-         
-           
+        */  
         btn1.setOnAction(e -> administratorStage.setScene(voterRegScene));
         btn5.setOnAction(e -> administratorStage.setScene(adminRegScene));
         btn6.setOnAction(e -> administratorStage.setScene(pollworkerRegScene));
@@ -472,7 +399,6 @@ public class AdministratorOptions extends Application {
         btn9.setOnAction(e -> administratorStage.setScene(elecRegScene));
         btn2.setOnAction(e -> administratorStage.setScene(ValScene));
         btn3.setOnAction(e -> administratorStage.setScene(VoterDBScene));
-        //btn4.setOnAction(e -> administratorStage.setScene(CandidateDBScene));
         btn8.setOnAction(e -> administratorStage.setScene(CandidateDRScene));
         return OptionsScene;
     }
