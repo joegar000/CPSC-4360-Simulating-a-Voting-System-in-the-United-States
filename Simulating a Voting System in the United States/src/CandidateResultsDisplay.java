@@ -75,6 +75,8 @@ class CandidateResultsDisplay extends VBox {
                 for (int g = 0; g < winner.size(); g++){
                     container+=" =Name: "+winner.get(g)[0]+" "+ winner.get(g)[1]+" -- Party: " + winner.get(g)[2] +" -- Position: "+winner.get(g)[3];
                 }
+            } else if (partyList.isEmpty()) {
+                container+="=There were no winners... no one voted.";
             } else {
                 container+="=Congratulations to the winners of the " + partyList.get(0) + " party. Here are the candidates:";
                 for (int g = 0; g < winner.size(); g++){
