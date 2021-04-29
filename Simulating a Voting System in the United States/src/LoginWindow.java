@@ -94,20 +94,6 @@ public class LoginWindow extends Application {
         announcmentStage.setScene(winScene);
         announcmentStage.show();
     }
-
-    /*class Announcement extends HBox {
-        Label label;
-        Button exit;
-        public Announcement(String winner) {
-            this.setTranslateX(0); // change later
-            label.setFont(new Font("Arial", 25));
-            exit.setText("Close");
-            exit.setOnMouseClicked(e -> {
-                announcmentStage.close();
-            });
-            this.getChildren().addAll(label,exit);
-        }
-    }*/
     
     //Gets the first name to see if it is within the database.
     public static String getFirstName() {
