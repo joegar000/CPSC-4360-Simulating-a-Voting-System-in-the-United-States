@@ -1,14 +1,5 @@
 import java.util.ArrayList;
 
-/*
-David Garcia
-
-Poll workers can register voters, display saved voter information,
-and display the candidate database
-
-*/
-
-
 
 public class PollWorker {
     
