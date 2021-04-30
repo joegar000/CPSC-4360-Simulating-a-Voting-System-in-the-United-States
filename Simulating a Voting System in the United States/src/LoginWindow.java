@@ -23,7 +23,6 @@ public class LoginWindow extends Application {
     public static TextField SSN = new TextField();
     public static TextField password = new TextField();
     public static Label error = new Label();
-
     public static VBox layout1;
     public static Stage announcmentStage;
 
