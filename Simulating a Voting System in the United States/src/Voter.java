@@ -1,23 +1,8 @@
 /*
 Alejandro Figueroa, 4/2/2021
-
-Comments, edits, questions, suggestions, or concerns are welcomed!
-
-Todo list:
-
-1. Pull the persons information to see if they are within the system.
-If so, they vote and if not then they cannot.
-
-
+This class contains the constructors for the voter class.
 */
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-//import jdk.internal.net.http.common.Utils.ServerName;
 
 public class Voter {
     /*Variables Example:
@@ -102,9 +87,5 @@ public class Voter {
             else isRegistered = false;
         }
         return isRegistered;
-    }
-
-    public void displayCandidateList() {
-            //Later pull the list from the database.
     }
 }

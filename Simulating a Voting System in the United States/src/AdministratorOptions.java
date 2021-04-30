@@ -1,5 +1,5 @@
 /*  Kaden Carter
-    This class creats a scene for the Administrator options.
+    This class creates a scene for the Administrator options.
 */
 
 

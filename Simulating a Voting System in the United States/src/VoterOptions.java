@@ -1,11 +1,6 @@
 /* 
 Alejandro Figueroa, 4/2/2021
-
-Comments, edits, questions, suggestions, or concerns are welcomed!
-
-Todo list/Issues:
-    How to make Voter and VoterOptions work together.
-    Fetching the candidate list that will include senate and house.
+This class creates the voter scene.
 */
 
 import java.util.ArrayList;
