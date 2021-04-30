@@ -10,6 +10,7 @@ public class Administrator {
     Variables
     AdminName is the legal name of the admin.
     AdminID is the unique ID number to show the difference between various Admin accounts.
+    adminPassword is the type of account that is needed to login through the login window.
     */
     private String adminFirstName;
     private String adminLastName;
@@ -54,7 +55,7 @@ public class Administrator {
     public void setAdminID(String newAdminID){
         AdminID = newAdminID;
     }
-
+    //method used to register voters to the database.
     public void registerVoter(String VoterSSN, String VoterFirstName, String VoterLastName, String VoterAge, String VoterState, boolean hasVoted) {
         Database.registerVoter(VoterSSN, VoterFirstName, VoterLastName, VoterAge, VoterState, hasVoted);
     }

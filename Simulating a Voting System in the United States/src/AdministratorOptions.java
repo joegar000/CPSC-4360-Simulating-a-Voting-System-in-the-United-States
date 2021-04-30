@@ -28,7 +28,7 @@ public class AdministratorOptions extends Application {
     
     @Override
     public void start(Stage administratorStage) throws Exception {
-        // Ignore this
+        
     }
 
 
@@ -59,14 +59,12 @@ public class AdministratorOptions extends Application {
             LoginWindow.SSN.clear();
             LoginWindow.password.clear();
         });
-
         //Layout
         VBox layout1 = new VBox(20, label1, btn1, btn5, btn6, btn7, btn9, btn2, btn3, btn8, logoutBtn);
         layout1.setAlignment(Pos.CENTER);
         layout1.setPadding(new Insets(10, 10, 10, 10));
         OptionsScene = new Scene(layout1, 950, 700);
 
-        
         //VOTER REGISTRATION SCENE
         //Labels
         Label voterRegSceneTitle = new Label("Voter Registration");
@@ -110,7 +108,6 @@ public class AdministratorOptions extends Application {
         layout2.setAlignment(Pos.CENTER);
         layout2.setPadding(new Insets(10, 10, 10, 10));
         voterRegScene = new Scene(layout2, 950, 700);
-
 
         //ADMINISTRATOR REGISTRATION SCENE
         //Labels
@@ -360,7 +357,7 @@ public class AdministratorOptions extends Application {
         //This Loop is used to display all voters in the database
         while(i.hasNext()) {
             String[] voter = i.next();
-            vSSN = new Label("SSN: " + voter[0]);  //did not know if this should be displayed as this should be private information.
+            vSSN = new Label("SSN: " + voter[0]);
             vfName = new Label("First Name: " + voter[1]);
             vlName = new Label("Last Name: " + voter[2]);
             age = new Label("Age: " + voter[3]);
@@ -379,7 +376,7 @@ public class AdministratorOptions extends Application {
         scrollBar2.setFitToWidth(true);
         VoterDBScene = new Scene(scrollBar2, 950, 700);
         
-        //DISPLAY CANDIDATE RESULTS SCENE - (if questions, ask Daniel)
+        //DISPLAY CANDIDATE RESULTS SCENE
         CandidateResultsDisplay candidateResultsDisplay = new CandidateResultsDisplay();
         candidateResultsDisplay.showResults();
         candidateResultsDisplay.enableGoBack(administratorStage, OptionsScene);
