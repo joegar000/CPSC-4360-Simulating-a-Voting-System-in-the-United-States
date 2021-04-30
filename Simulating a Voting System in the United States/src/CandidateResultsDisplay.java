@@ -29,10 +29,10 @@ import javafx.stage.Stage;
 */
 class CandidateResultsDisplay extends VBox {
 
-    Label label1 = new Label("Candidate Results Display"); // This is a label for the title of the display
-    Button goBack = new Button("Go Back"); // This is a back button for when we need to go back (Admin)
-    Button logoutBtn = new Button("Log out"); // This button will log the user out
-    Button annBtn = new Button("Annouce"); // This button will announce the winners 
+    private Label label1 = new Label("Candidate Results Display"); // This is a label for the title of the display
+    private Button goBack = new Button("Go Back"); // This is a back button for when we need to go back (Admin)
+    private Button logoutBtn = new Button("Log out"); // This button will log the user out
+    private Button annBtn = new Button("Annouce"); // This button will announce the winners 
 
     /* constructor, only adds a title Label */
     public CandidateResultsDisplay() {
