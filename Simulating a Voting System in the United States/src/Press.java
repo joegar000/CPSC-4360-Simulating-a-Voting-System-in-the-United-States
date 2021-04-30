@@ -1,5 +1,5 @@
 /*
-    
+    This represents a Press user. The password for the user is stored here.
 */
 
 public class Press {

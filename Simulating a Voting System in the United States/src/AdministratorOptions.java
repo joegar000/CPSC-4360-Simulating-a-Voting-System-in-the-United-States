@@ -377,7 +377,7 @@ public class AdministratorOptions extends Application {
         VoterDBScene = new Scene(scrollBar2, 950, 700);
         
         //DISPLAY CANDIDATE RESULTS SCENE
-        CandidateResultsDisplay candidateResultsDisplay = new CandidateResultsDisplay();
+        CandidateResultsDisplay candidateResultsDisplay = new CandidateResultsDisplay(); // Contains the display (VBox)
         candidateResultsDisplay.showResults();
         candidateResultsDisplay.enableGoBack(administratorStage, OptionsScene);
         candidateResultsDisplay.setAlignment(Pos.CENTER);

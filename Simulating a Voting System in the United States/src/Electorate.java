@@ -1,5 +1,5 @@
 /*
-
+    This represents an Electorate user. The password for the user is stored here.
 */
 
 public class Electorate {

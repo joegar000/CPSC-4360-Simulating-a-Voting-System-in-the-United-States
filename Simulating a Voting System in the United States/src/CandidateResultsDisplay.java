@@ -68,9 +68,9 @@ class CandidateResultsDisplay extends VBox {
             LoginWindow.lastName.clear();
             LoginWindow.SSN.clear();
             LoginWindow.password.clear();
-            ArrayList<String[]> winner = getWinner();
+            ArrayList<String[]> winner = getWinner(); // Contains an ArrayList of all the winner candidates
             String container = "";
-            ArrayList<String> partyList = new ArrayList<String>();
+            ArrayList<String> partyList = new ArrayList<String>(); // Contains an ArrayList of the pary(s) that won
             for (int i = 0; i < winner.size(); i++){
                 if (partyList.size()<1) {
                     partyList.add(winner.get(i)[2]);
@@ -83,7 +83,7 @@ class CandidateResultsDisplay extends VBox {
                 System.out.println(" Name: "+winner.get(g)[0]+" "+ winner.get(g)[1]+" Party: " + winner.get(g)[2] +" Position: "+winner.get(g)[3]);
             }
 
-            // These if statements deal with formatting in the case of a single winner, tie and if no once votes. 
+            // These if statements deal with formatting in the case of a single winner, tie, and if no once votes. 
             if (partyList.size()>1) {
                 container+="=There was a tie. The parties are";
                 if (partyList.size()>2) {
