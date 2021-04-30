@@ -265,13 +265,6 @@ class CandidateResultsDisplay extends VBox {
         return votes;
     }
 
-    /*Label Class for Individuals*/
-    public class CandidateResultLabel extends Label {
-        public CandidateResultLabel(String firstName, String lastName, String party, String position, double result) {
-            this.setText(firstName + " " + lastName + " --- Party: " + party + " --- Position: " + position + " --- Resulting Percentage: " + String.format("%.2f",result));
-        }
-    }
-
     /*Label Class for parties */
     public class PartyResultLabel extends Label {
         public PartyResultLabel(String party, double result) {
