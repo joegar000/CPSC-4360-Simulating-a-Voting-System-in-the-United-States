@@ -9,9 +9,6 @@ public class PollWorker {
     private String SSN;
     public static String password = "PollWorker";
 
-    public PollWorker() {
-    }
-
     public PollWorker(String ssn, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -17,6 +17,8 @@ public abstract class Database {
     private static Connection electorateConn = null;
     private static Connection pressConn = null;
 
+
+    // SET UP DATABASES
     public static void setUpVoters() {
         voterConn = Database.connect("jdbc:sqlite:voters.db");
         Database.createNewVoterTable();
@@ -47,6 +49,10 @@ public abstract class Database {
         Database.createNewPressTable();
     }
 
+
+
+
+    // CREATE DATABASE TABLES
     public static void createNewVoterTable() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS voters (\n"
@@ -151,6 +157,9 @@ public abstract class Database {
     }
 
 
+
+
+    // VOTER METHODS
     public static void vote(String party, String vote) {
         String sql = "UPDATE candidates SET votes = ? WHERE party = ?";
         
@@ -254,6 +263,10 @@ public abstract class Database {
     }
 
 
+
+
+
+    // POLL WORKER METHODS
     public static void registerPollWorker(String ssn, String first_name, String last_name) {
         String sql = "INSERT INTO pollworkers(ssn,first_name,last_name) VALUES(?,?,?)";
 
@@ -267,6 +280,7 @@ public abstract class Database {
         }
     }
 
+    // Get the information for one poll worker based on their ssn
     public static String[] getPollWorkerInformation(String ssn) {
         String sql = "SELECT ssn, first_name, last_name FROM pollworkers WHERE ssn LIKE ?";
         String[] info = new String[3];
@@ -289,6 +303,11 @@ public abstract class Database {
         return info;
     }
 
+
+    
+
+
+    // ADMINISTRATOR METHODS
     public static void registerAdministrator(String ssn, String first_name, String last_name) {
         String sql = "INSERT INTO administrators(ssn,first_name,last_name) VALUES(?,?,?)";
     
@@ -302,6 +321,7 @@ public abstract class Database {
         }
     }
 
+    // Get the information for one administrator based on their ssn
     public static String[] getAdministratorInformation(String ssn) {
         String sql = "SELECT ssn, first_name, last_name FROM administrators WHERE ssn LIKE ?";
         String[] info = new String[3];
@@ -323,6 +343,12 @@ public abstract class Database {
         return info;
     }
 
+
+
+
+
+    // CANDIDATE METHODS
+    // Register a candidate without a running mate
     public static void registerCandidate(String first_name, String last_name, String party, String position, String vote) {
         String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,?,NULL)";
     
@@ -337,6 +363,7 @@ public abstract class Database {
             System.out.println(e.getMessage() + "registercandidate1");
         }
     }
+    // Register a candidate with a running mate
     public static void registerCandidate(String first_name, String last_name, String party, String position, String runningMate, String vote) {
         String sql = "INSERT INTO candidates(first_name,last_name,party,position,votes,runningmate) VALUES(?,?,?,?,?,?)";
 
@@ -353,6 +380,7 @@ public abstract class Database {
         }
     }
 
+    // Get a candidate based on their party
     public static String[] getCandidate(String party) {
         String sql = "SELECT first_name, last_name, party, position, votes, runningmate FROM candidates WHERE party LIKE ?";
         String[] info = new String[6];
@@ -427,6 +455,9 @@ public abstract class Database {
         return allCandidates;
     }
 
+
+
+    // ELECTOR METHODS
     public static void registerElector(String ssn, String state, String first_name, String last_name) {
         String sql = "INSERT INTO electorate(ssn,state,first_name,last_name) VALUES(?,?,?,?)";
 
@@ -441,6 +472,7 @@ public abstract class Database {
         }
     }
 
+    // Get an elector's information based on their ssn
     public static String[] getElectorInformation(String ssn) {
         String sql = "SELECT ssn, state, first_name, last_name FROM electorate WHERE ssn LIKE ?";
         String[] info = new String[4];
@@ -463,6 +495,11 @@ public abstract class Database {
         return info;
     }
 
+
+
+
+
+    // PRESS METHODS
     public static void registerPress(String ssn, String first_name, String last_name) {
         String sql = "INSERT INTO press(ssn,first_name,last_name) VALUES(?,?,?)";
 
@@ -476,6 +513,7 @@ public abstract class Database {
         }
     }
 
+    // Get the press's information based on their ssn
     public static String[] getPressInformation(String ssn) {
         String sql = "SELECT ssn, first_name, last_name FROM press WHERE ssn LIKE ?";
         String[] info = new String[3];
@@ -499,6 +537,8 @@ public abstract class Database {
 
 
 
+
+    // DATABASE CREATION METHODS
     public static Connection connect(String url) {
         Connection conn = null;
 
