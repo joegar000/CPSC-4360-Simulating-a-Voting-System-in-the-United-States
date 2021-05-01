@@ -106,14 +106,14 @@ public class Main extends Application {
    		}
 
 		// If the press password is correct
-		else if (password.equals(Press.ePassword)) {
+		else if (password.equals(Press.pPassword)) {
 
 			// Get the electorate's information based on their SSN
 			String[] info = Database.getPressInformation(SSN);
 			
 			// Compare firstName and lastName with database objects, if there is
    			// a match sign the user in
-			if (info[2].equals(firstName) && info[3].equals(lastName)) {
+			if (info[1].equals(firstName) && info[2].equals(lastName)) {
 				Press p = new Press(info[0], info[1], info[2]);
 				primaryStage.setScene(PressHandler.getScene(primaryStage));
 			}
