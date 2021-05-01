@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 */
 class CandidateResultsDisplay extends VBox {
 
-    private Label label1 = new Label("Candidate Results Display"); // This is a label for the title of the display
+    private Label title = new Label("Candidate Results Display"); // This is a label for the title of the display
     private Button goBack = new Button("Go Back"); // This is a back button for when we need to go back (Admin)
     private Button logoutBtn = new Button("Log out"); // This button will log the user out
     private Button annBtn = new Button("Annouce"); // This button will announce the winners 
@@ -37,9 +37,9 @@ class CandidateResultsDisplay extends VBox {
     /* constructor, only adds a title Label */
     public CandidateResultsDisplay() {
         this.setTranslateX(0); 
-        label1.setFont(new Font("Arial", 25));
+        title.setFont(new Font("Arial", 25));
         this.setSpacing(20.0);
-        this.getChildren().add(label1);
+        this.getChildren().add(title);
     }
 
     /* Adds a go back button for when we need to go back (Admin) */
